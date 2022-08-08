@@ -1,0 +1,125 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.36.0.0
+Copyright (C) 2021 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: jakka jakka, jakka, LIC=47GU5-GZ3P0-UHE8H-WADE6-WJZCL-AR6CT
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.36.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 7 (build 960)
+Assembler:       Armasm.exe V5.06 update 7 (build 960)
+Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
+Library Manager: ArmAr.exe V5.06 update 7 (build 960)
+Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
+CPU DLL:         SARMCM3.DLL V5.36.0.0
+Dialog DLL:      DCM.DLL V1.17.3.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.9.0
+Dialog DLL:      TCM.DLL V1.53.0.0
+ 
+<h2>Project:</h2>
+G:\My Drive\ARM_work\Master\MDK-ARM\Master.uvprojx
+Project File Date:  08/08/2022
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Build target 'Master'
+compiling GeneralFunction.c...
+..\Core\Src\GeneralFunction.c(428): warning:  #223-D: function "sprintf" declared implicitly
+      sprintf((char*)strBuff,"%0.01f",FloatData);
+..\Core\Src\GeneralFunction.c(481): warning:  #177-D: variable "Buffer"  was declared but never referenced
+  	unsigned char Buffer[256];
+..\Core\Src\GeneralFunction.c(482): warning:  #177-D: variable "pBuffer"  was declared but never referenced
+  	unsigned char *pBuffer;
+..\Core\Src\GeneralFunction.c(484): warning:  #177-D: variable "i"  was declared but never referenced
+  	unsigned int i;
+..\Core\Src\GeneralFunction.c: 4 warnings, 0 errors
+compiling xBee.c...
+..\Core\Src\xBee.c(16): error:  #20: identifier "UART_HandleTypeDef" is undefined
+  extern UART_HandleTypeDef huart2;
+..\Core\Src\xBee.c(17): error:  #20: identifier "UART_HandleTypeDef" is undefined
+  extern UART_HandleTypeDef huart3;
+..\Core\Src\xBee.c(97): warning:  #223-D: function "HAL_UART_Transmit" declared implicitly
+  		HAL_UART_Transmit(&huart3,HAL_xBeeRX.pdata,HAL_xBeeRX.size,100);
+..\Core\Src\xBee.c(341): warning:  #223-D: function "HAL_UART_Transmit" declared implicitly
+  		HAL_UART_Transmit(&huart2,pPackage->dat.pdata,pPackage->dat.size,100);
+..\Core\Src\xBee.c(389): warning:  #223-D: function "HAL_UART_Transmit" declared implicitly
+  	HAL_UART_Transmit(&huart2,packagebuffer,sumsize,100);
+..\Core\Src\xBee.c(397): warning:  #223-D: function "HAL_UART_Transmit" declared implicitly
+  	HAL_UART_Transmit(&huart2,cmd,8,100);
+..\Core\Src\xBee.c(423): warning:  #223-D: function "HAL_UART_Transmit" declared implicitly
+  			HAL_UART_Transmit(&huart2,protocol,8,100);
+..\Core\Src\xBee.c(449): warning:  #223-D: function "HAL_UART_Transmit" declared implicitly
+  			HAL_UART_Transmit(&huart2,protocol,8,100);
+..\Core\Src\xBee.c(475): warning:  #223-D: function "HAL_UART_Transmit" declared implicitly
+  			HAL_UART_Transmit(&huart2,protocol,8,100);
+..\Core\Src\xBee.c: 7 warnings, 2 errors
+compiling main.c...
+../Core/Src/main.c(393): warning:  #177-D: variable "connectionState"  was declared but never referenced
+     bool_t connectionState;
+../Core/Src/main.c(394): warning:  #177-D: variable "buttonState"  was declared but never referenced
+     uint_t buttonState;
+../Core/Src/main.c(395): warning:  #177-D: variable "prevButtonState"  was declared but never referenced
+     uint_t prevButtonState;
+../Core/Src/main.c(402): warning:  #177-D: variable "res"  was declared but never referenced
+  		uint16_t res;
+../Core/Src/main.c(403): warning:  #177-D: variable "strbuffer"  was declared but never referenced
+  		char strbuffer[20];
+../Core/Src/main.c(488): warning:  #177-D: variable "i"  was declared but never referenced
+     uint_t i;
+../Core/Src/main.c(489): warning:  #177-D: variable "value"  was declared but never referenced
+     uint32_t value;
+../Core/Src/main.c(490): warning:  #177-D: variable "task"  was declared but never referenced
+     OsTask *task;
+../Core/Src/main.c(497): warning:  #177-D: variable "ipv6Addr"  was declared but never referenced
+     Ipv6Addr ipv6Addr;
+../Core/Src/main.c: 9 warnings, 0 errors
+"Master\Master.axf" - 2 Error(s), 20 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.9.0.pack
+                ARM.CMSIS.5.9.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.6.0
+
+Package Vendor: Keil
+                https://www.keil.com/pack/Keil.ARM_Compiler.1.7.2.pack
+                Keil.ARM_Compiler.1.7.2
+                Keil ARM Compiler extensions for ARM Compiler 5 and ARM Compiler 6
+   * Component: STDERR Variant: Breakpoint Version: 1.2.0
+   * Component: STDIN Variant: Breakpoint Version: 1.2.0
+   * Component: STDOUT Variant: Breakpoint Version: 1.2.0
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32F4xx_DFP.2.15.0.pack
+                Keil.STM32F4xx_DFP.2.15.0
+                STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_Master
+  C:\Users\Jakkapan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include
+  C:\Users\Jakkapan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.6.0
+      Include file:  CMSIS\Core\Include\tz_context.h
+
+   * Component: Keil.ARM Compiler::Compiler:I/O:STDERR:Breakpoint:1.2.0
+      Source file:   Source\retarget_io.c
+
+   * Component: Keil.ARM Compiler::Compiler:I/O:STDIN:Breakpoint:1.2.0
+      Source file:   Source\retarget_io.c
+
+   * Component: Keil.ARM Compiler::Compiler:I/O:STDOUT:Breakpoint:1.2.0
+      Source file:   Source\retarget_io.c
+Target not created.
+Build Time Elapsed:  00:00:41
+</pre>
+</body>
+</html>
