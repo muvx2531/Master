@@ -21,63 +21,36 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.9.0
 Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
-G:\My Drive\ARM_work\Master\MDK-ARM\Master.uvprojx
-Project File Date:  08/08/2022
+F:\ARM_Work\Weather_masternode\Master\MDK-ARM\Master.uvprojx
+Project File Date:  08/10/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Master'
-compiling GeneralFunction.c...
-..\Core\Src\GeneralFunction.c(428): warning:  #223-D: function "sprintf" declared implicitly
-      sprintf((char*)strBuff,"%0.01f",FloatData);
-..\Core\Src\GeneralFunction.c(481): warning:  #177-D: variable "Buffer"  was declared but never referenced
-  	unsigned char Buffer[256];
-..\Core\Src\GeneralFunction.c(482): warning:  #177-D: variable "pBuffer"  was declared but never referenced
-  	unsigned char *pBuffer;
-..\Core\Src\GeneralFunction.c(484): warning:  #177-D: variable "i"  was declared but never referenced
-  	unsigned int i;
-..\Core\Src\GeneralFunction.c: 4 warnings, 0 errors
-compiling xBee.c...
-..\Core\Src\xBee.c(16): error:  #20: identifier "UART_HandleTypeDef" is undefined
-  extern UART_HandleTypeDef huart2;
-..\Core\Src\xBee.c(17): error:  #20: identifier "UART_HandleTypeDef" is undefined
-  extern UART_HandleTypeDef huart3;
-..\Core\Src\xBee.c(97): warning:  #223-D: function "HAL_UART_Transmit" declared implicitly
-  		HAL_UART_Transmit(&huart3,HAL_xBeeRX.pdata,HAL_xBeeRX.size,100);
-..\Core\Src\xBee.c(341): warning:  #223-D: function "HAL_UART_Transmit" declared implicitly
-  		HAL_UART_Transmit(&huart2,pPackage->dat.pdata,pPackage->dat.size,100);
-..\Core\Src\xBee.c(389): warning:  #223-D: function "HAL_UART_Transmit" declared implicitly
-  	HAL_UART_Transmit(&huart2,packagebuffer,sumsize,100);
-..\Core\Src\xBee.c(397): warning:  #223-D: function "HAL_UART_Transmit" declared implicitly
-  	HAL_UART_Transmit(&huart2,cmd,8,100);
-..\Core\Src\xBee.c(423): warning:  #223-D: function "HAL_UART_Transmit" declared implicitly
-  			HAL_UART_Transmit(&huart2,protocol,8,100);
-..\Core\Src\xBee.c(449): warning:  #223-D: function "HAL_UART_Transmit" declared implicitly
-  			HAL_UART_Transmit(&huart2,protocol,8,100);
-..\Core\Src\xBee.c(475): warning:  #223-D: function "HAL_UART_Transmit" declared implicitly
-  			HAL_UART_Transmit(&huart2,protocol,8,100);
-..\Core\Src\xBee.c: 7 warnings, 2 errors
 compiling main.c...
-../Core/Src/main.c(393): warning:  #177-D: variable "connectionState"  was declared but never referenced
+../Core/Src/main.c(397): warning:  #177-D: variable "connectionState"  was declared but never referenced
      bool_t connectionState;
-../Core/Src/main.c(394): warning:  #177-D: variable "buttonState"  was declared but never referenced
+../Core/Src/main.c(398): warning:  #177-D: variable "buttonState"  was declared but never referenced
      uint_t buttonState;
-../Core/Src/main.c(395): warning:  #177-D: variable "prevButtonState"  was declared but never referenced
+../Core/Src/main.c(399): warning:  #177-D: variable "prevButtonState"  was declared but never referenced
      uint_t prevButtonState;
-../Core/Src/main.c(402): warning:  #177-D: variable "res"  was declared but never referenced
+../Core/Src/main.c(406): warning:  #177-D: variable "res"  was declared but never referenced
   		uint16_t res;
-../Core/Src/main.c(403): warning:  #177-D: variable "strbuffer"  was declared but never referenced
+../Core/Src/main.c(407): warning:  #177-D: variable "strbuffer"  was declared but never referenced
   		char strbuffer[20];
-../Core/Src/main.c(488): warning:  #177-D: variable "i"  was declared but never referenced
+../Core/Src/main.c(492): warning:  #177-D: variable "i"  was declared but never referenced
      uint_t i;
-../Core/Src/main.c(489): warning:  #177-D: variable "value"  was declared but never referenced
+../Core/Src/main.c(493): warning:  #177-D: variable "value"  was declared but never referenced
      uint32_t value;
-../Core/Src/main.c(490): warning:  #177-D: variable "task"  was declared but never referenced
+../Core/Src/main.c(494): warning:  #177-D: variable "task"  was declared but never referenced
      OsTask *task;
-../Core/Src/main.c(497): warning:  #177-D: variable "ipv6Addr"  was declared but never referenced
+../Core/Src/main.c(501): warning:  #177-D: variable "ipv6Addr"  was declared but never referenced
      Ipv6Addr ipv6Addr;
 ../Core/Src/main.c: 9 warnings, 0 errors
-"Master\Master.axf" - 2 Error(s), 20 Warning(s).
+linking...
+Program Size: Code=134496 RO-data=10804 RW-data=496 ZI-data=85664  
+FromELF: creating hex file...
+"Master\Master.axf" - 0 Error(s), 9 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -118,8 +91,7 @@ Package Vendor: Keil
 
    * Component: Keil.ARM Compiler::Compiler:I/O:STDOUT:Breakpoint:1.2.0
       Source file:   Source\retarget_io.c
-Target not created.
-Build Time Elapsed:  00:00:41
+Build Time Elapsed:  00:00:07
 </pre>
 </body>
 </html>

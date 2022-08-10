@@ -1,5 +1,6 @@
 --cpu=Cortex-M4.fp.sp
 "master\startup_stm32f407xx.o"
+"master\generalfunction.o"
 "master\main.o"
 "master\freertos.o"
 "master\stm32f4xx_it.o"
@@ -28,6 +29,7 @@
 "master\stm32f4xx_hal_rng.o"
 "master\stm32f4xx_hal_tim.o"
 "master\stm32f4xx_hal_tim_ex.o"
+"master\stm32f4xx_hal_uart.o"
 "master\system_stm32f4xx.o"
 "master\croutine.o"
 "master\event_groups.o"
