@@ -341,7 +341,7 @@ error_t webSocketClientTest(void)
          //Check user button state
          //if(buttonEventFlag)
          {
-            //Clear flag
+            //Clear flag .
             buttonEventFlag = FALSE;
 
             //Format event message
