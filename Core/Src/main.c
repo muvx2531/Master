@@ -89,8 +89,8 @@ osThreadId defaultTaskHandle;
 osThreadId myTask02Handle;
 osThreadId myTask03Handle;
 /* USER CODE BEGIN PV */
-OsEvent appEvent;
-bool_t buttonEventFlag;
+//OsEvent appEvent;
+//bool_t buttonEventFlag;
 
 DhcpClientSettings dhcpClientSettings;
 DhcpClientContext dhcpClientContext;
@@ -186,7 +186,7 @@ error_t webSocketClientTlsInitCallback(WebSocket *webSocket,
  * @return Error code
  **/
 
-error_t webSocketClientTest(void)
+error_t webSocketClient(void)
 {
    error_t error;
    size_t length;
@@ -292,7 +292,7 @@ error_t webSocketClientTest(void)
          {
             //Wait for incoming traffic from the remote host. A non-infinite timeout is provided
             //to manage the idle timeout (60s). refer to the end of the loop
-            error = socketPoll(eventDesc, arraysize(eventDesc), &appEvent, 1000);
+            error = socketPoll(eventDesc, arraysize(eventDesc), NULL, 1000);
          }
 
          //Check status code
@@ -342,7 +342,7 @@ error_t webSocketClientTest(void)
          //if(buttonEventFlag)
          {
             //Clear flag .
-            buttonEventFlag = FALSE;
+            //buttonEventFlag = FALSE;
 
             //Format event message
             length = sprintf(buffer, "Test sent websocket %d",inc);
@@ -373,7 +373,7 @@ error_t webSocketClientTest(void)
             error = NO_ERROR;
             break;
          }
-				  osDelayTask(100);
+				  osDelayTask(500);
       }
 
       //Properly close the WebSocket connection
@@ -651,12 +651,12 @@ int main(void)
 	    //Register RNG callback
    webSocketRegisterRandCallback(webSocketClientRngCallback);
 
-   //Create an event object
-   if(!osCreateEvent(&appEvent))
-   {
-      //Debug message
-      TRACE_ERROR("Failed to create event!\r\n");
-   }
+//   //Create an event object
+//   if(!osCreateEvent(&appEvent))
+//   {
+//      //Debug message
+//      TRACE_ERROR("Failed to create event!\r\n");
+//   }
 	 
 	 
   /* USER CODE END 2 */
@@ -941,13 +941,13 @@ void StartTask02(void const * argument)
 {
   /* USER CODE BEGIN StartTask02 */
   /* Infinite loop */
-	osSetEvent(&appEvent);
+	//osSetEvent(&appEvent);
   for(;;)
   {
-		buttonEventFlag = TRUE;
+//		buttonEventFlag = TRUE;
 //		HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_4|GPIO_PIN_7);
 //		HAL_GPIO_TogglePin(GPIOE,GPIO_PIN_13);
-    osSetEvent(&appEvent);
+//    osSetEvent(&appEvent);
     osDelay(100);
   }
   /* USER CODE END StartTask02 */
@@ -967,15 +967,15 @@ void StartTask03(void const * argument)
   for(;;)
   {
 		  //Wait for the user button to be pressed
-      osWaitForEvent(&appEvent, INFINITE_DELAY);
+      //osWaitForEvent(&appEvent, INFINITE_DELAY);
 
       //Clear flag
-      buttonEventFlag = FALSE;
+      //buttonEventFlag = FALSE;
 
       //WebSocket client test routine
-      webSocketClientTest();
+      webSocketClient();
 		
-    osDelay(500);
+    osDelay(100);
   }
   /* USER CODE END StartTask03 */
 }
