@@ -209,9 +209,13 @@ unsigned char FindArraySet(unsigned char *datain,unsigned int sizein,unsigned ch
 	return 0;
 }
 
-unsigned char FindArray_toPosition(unsigned char *datain,unsigned int sizein,unsigned char *dataref,unsigned char size)
+unsigned char *p,*pp;
+
+int StringSearch(unsigned char *datain,unsigned int sizein,unsigned char *dataref,unsigned int size)
 {
 	unsigned short int i,j=0;
+	p = datain+i;
+	pp = dataref+j;
 	for(i=0;i<sizein;i++)
 	{
 		if(*(datain+i)==*(dataref+j))
@@ -228,10 +232,10 @@ unsigned char FindArray_toPosition(unsigned char *datain,unsigned int sizein,uns
 		}
 		if(j>size-1)
 		{
-			return i;
+			return i-j+1;
 		}
 	}
-	return 0;
+	return -1;
 }
 
 unsigned int attachdata(unsigned char *out,unsigned char *ag1,unsigned int size1,unsigned char *ag2,unsigned int size2,unsigned char *ag3,unsigned int size3,unsigned char *ag4,unsigned int size4)

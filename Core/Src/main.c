@@ -31,9 +31,10 @@
 #include "web_socket/web_socket.h"
 #include "rng/trng.h"
 #include "rng/yarrow.h"
-
-
+#include "xBee.h"
+#include "WeatherSensor.h"
 #include "debug.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -79,7 +80,9 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
- RNG_HandleTypeDef hrng;
+ I2C_HandleTypeDef hi2c1;
+
+RNG_HandleTypeDef hrng;
 
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim5;
@@ -100,6 +103,10 @@ SlaacContext slaacContext;
 YarrowContext yarrowContext;
 uint8_t seed[32];
 
+uint8_t Websocket_TX[1024];
+General_Buffer Websocket_TX_buffer;
+extern Nodeweatherdata NodeSensordata[Maxnodesize];
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -109,6 +116,7 @@ static void MX_RNG_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_USART3_UART_Init(void);
 static void MX_TIM5_Init(void);
+static void MX_I2C1_Init(void);
 void StartDefaultTask(void const * argument);
 void StartTask02(void const * argument);
 void StartTask03(void const * argument);
@@ -279,6 +287,8 @@ error_t webSocketClient(void)
       //Process events
       while(1)
       {
+				
+				
          //Set the events the application is interested in
          eventDesc[0].socket = webSocket->socket;
          eventDesc[0].eventMask = SOCKET_EVENT_RX_READY;
@@ -334,7 +344,6 @@ error_t webSocketClient(void)
                   if(error)
                      break;
                }
-
                //Save current time
                timestamp = osGetSystemTime();
             }
@@ -347,15 +356,28 @@ error_t webSocketClient(void)
             //buttonEventFlag = FALSE;
 
             //Format event message
-            length = sprintf(buffer, "Test sent websocket %d",inc);
-					  inc++;
+//            length = sprintf(buffer, "Test sent websocket %d",inc);
+//					  inc++;
 
             //Debug message
             TRACE_INFO("WebSocket: Sending message (%" PRIuSIZE " bytes)...\r\n", length);
             TRACE_INFO("  %s\r\n", buffer);
 
             //Send a message to the WebSocket server
-            error = webSocketSend(webSocket, buffer, length,
+					 {
+							Websocket_TX_buffer.size = 0;
+							 for(int n = 0;n<3;n++)
+							 {
+									for(int i = 0;i<NodeSensordata[n].size;i++)
+									{  
+										Websocket_TX_buffer.pdata[Websocket_TX_buffer.size] = NodeSensordata[n].JSON[i];
+										Websocket_TX_buffer.size++;
+									}
+							 }
+					 }
+					
+					 
+            error = webSocketSend(webSocket,Websocket_TX_buffer.pdata, Websocket_TX_buffer.size,
                WS_FRAME_TYPE_TEXT, NULL);
             //Any error to report?
             if(error)
@@ -526,9 +548,10 @@ int main(void)
   MX_TIM2_Init();
   MX_USART3_UART_Init();
   MX_TIM5_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
 	
-	HAL_TIM_Base_Start_IT(&htim5);
+
 	
    TRACE_INFO("\r\n");
    TRACE_INFO("****************************************\r\n");
@@ -761,6 +784,40 @@ void SystemClock_Config(void)
 }
 
 /**
+  * @brief I2C1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_I2C1_Init(void)
+{
+
+  /* USER CODE BEGIN I2C1_Init 0 */
+
+  /* USER CODE END I2C1_Init 0 */
+
+  /* USER CODE BEGIN I2C1_Init 1 */
+
+  /* USER CODE END I2C1_Init 1 */
+  hi2c1.Instance = I2C1;
+  hi2c1.Init.ClockSpeed = 400000;
+  hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
+  hi2c1.Init.OwnAddress1 = 0;
+  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c1.Init.OwnAddress2 = 0;
+  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN I2C1_Init 2 */
+
+  /* USER CODE END I2C1_Init 2 */
+
+}
+
+/**
   * @brief RNG Initialization Function
   * @param None
   * @retval None
@@ -852,7 +909,7 @@ static void MX_TIM5_Init(void)
   htim5.Instance = TIM5;
   htim5.Init.Prescaler = 60;
   htim5.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim5.Init.Period = 4294967295;
+  htim5.Init.Period = 1000;
   htim5.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim5.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim5) != HAL_OK)
@@ -993,13 +1050,18 @@ void StartTask02(void const * argument)
   /* USER CODE BEGIN StartTask02 */
   /* Infinite loop */
 	//osSetEvent(&appEvent);
+	initxBee();
+  HAL_TIM_Base_Start_IT(&htim5);
   for(;;)
   {
 //		buttonEventFlag = TRUE;
 //		HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_4|GPIO_PIN_7);
 //		HAL_GPIO_TogglePin(GPIOE,GPIO_PIN_13);
 //    osSetEvent(&appEvent);
-    osDelay(100);
+		
+		xBeeFunction();
+		main_weatherdataprocess();
+    osDelay(1);
   }
   /* USER CODE END StartTask02 */
 }
@@ -1014,6 +1076,10 @@ void StartTask02(void const * argument)
 void StartTask03(void const * argument)
 {
   /* USER CODE BEGIN StartTask03 */
+	
+	Websocket_TX_buffer.pdata = Websocket_TX;
+	Websocket_TX_buffer.size = 0;
+	Initweather();
   /* Infinite loop */
   for(;;)
   {

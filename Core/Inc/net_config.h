@@ -139,7 +139,7 @@
 #define UDP_RX_QUEUE_SIZE 4
 
 //Raw socket support
-#define RAW_SOCKET_SUPPORT DISABLED
+#define RAW_SOCKET_SUPPORT ENABLED
 //Receive queue depth for raw sockets
 #define RAW_SOCKET_RX_QUEUE_SIZE 4
 

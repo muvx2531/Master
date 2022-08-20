@@ -22,35 +22,21 @@ Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
 F:\ARM_Work\Weather_masternode\Master\MDK-ARM\Master.uvprojx
-Project File Date:  08/10/2022
+Project File Date:  08/16/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Master'
-compiling main.c...
-../Core/Src/main.c(397): warning:  #177-D: variable "connectionState"  was declared but never referenced
-     bool_t connectionState;
-../Core/Src/main.c(398): warning:  #177-D: variable "buttonState"  was declared but never referenced
-     uint_t buttonState;
-../Core/Src/main.c(399): warning:  #177-D: variable "prevButtonState"  was declared but never referenced
-     uint_t prevButtonState;
-../Core/Src/main.c(406): warning:  #177-D: variable "res"  was declared but never referenced
-  		uint16_t res;
-../Core/Src/main.c(407): warning:  #177-D: variable "strbuffer"  was declared but never referenced
-  		char strbuffer[20];
-../Core/Src/main.c(492): warning:  #177-D: variable "i"  was declared but never referenced
-     uint_t i;
-../Core/Src/main.c(493): warning:  #177-D: variable "value"  was declared but never referenced
-     uint32_t value;
-../Core/Src/main.c(494): warning:  #177-D: variable "task"  was declared but never referenced
-     OsTask *task;
-../Core/Src/main.c(501): warning:  #177-D: variable "ipv6Addr"  was declared but never referenced
-     Ipv6Addr ipv6Addr;
-../Core/Src/main.c: 9 warnings, 0 errors
+compiling WeatherSensor.c...
+..\Core\Src\WeatherSensor.c(66): warning:  #940-D: missing return statement at end of non-void function "DecodeWeatherNodesensor" 
+  }
+..\Core\Src\WeatherSensor.c(72): warning:  #940-D: missing return statement at end of non-void function "SearchString" 
+  }
+..\Core\Src\WeatherSensor.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=134388 RO-data=10808 RW-data=488 ZI-data=85664  
+Program Size: Code=138692 RO-data=10864 RW-data=1008 ZI-data=88904  
 FromELF: creating hex file...
-"Master\Master.axf" - 0 Error(s), 9 Warning(s).
+"Master\Master.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 

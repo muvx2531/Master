@@ -1,5 +1,5 @@
 //#include "GeneralFunction.h"
-#include "GeneralFunction.h"
+#include "main.h"
 
 #define XbeeModeMasterNode
 
@@ -74,8 +74,8 @@ void xBeeTestsentdata(uint8_t *pdata,uint16_t size);
 void xBeeintervalRSSI(void);
 void xBeeTimer(void);
 void mainslavenode(void);
-void PowerXbeecontrol_OFF(void);
-void PowerXbeecontrol_ON(void);
+//void PowerXbeecontrol_OFF(void);
+//void PowerXbeecontrol_ON(void);
 xBeestatus xBeeAPIcmdNT(uint16_t timeout);
 xBeestatus xBeeAPIcmdNR(uint16_t timeout);
 xBeestatus xBeeAPIcmdDIS(uint16_t Timeout);

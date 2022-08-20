@@ -26,6 +26,8 @@ master\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h
 master\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h
 master\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h
 master\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
+master\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h
+master\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c_ex.h
 master\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 master\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 master\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rng.h
@@ -35,6 +37,7 @@ master\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 master\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd.h
 master\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h
 master\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h
+master\main.o: ../Core/Inc/GeneralFunction.h
 master\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 master\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
 master\main.o: ../Core/Inc/FreeRTOSConfig.h
@@ -143,4 +146,6 @@ master\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\time.h
 master\main.o: ../cyclone_crypto/rng/trng.h
 master\main.o: ../cyclone_crypto/rng/yarrow.h
 master\main.o: ../cyclone_crypto/cipher/aes.h
+master\main.o: ../Core/Inc/xBee.h
+master\main.o: ../Core/Inc/WeatherSensor.h
 master\main.o: ../common/debug.h

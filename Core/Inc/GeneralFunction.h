@@ -111,7 +111,7 @@ void Longtobyte(unsigned long input,unsigned char *out);
 void StringByteTolong(unsigned char *ByteArray,unsigned char Size,unsigned long *Result);
 unsigned int DigitalLotateBit(unsigned int dataint,unsigned char bit);
 unsigned char FindArraySet(unsigned char *datain,unsigned int sizein,unsigned char *dataref,unsigned int size);
-unsigned char FindArray_toPosition(unsigned char *datain,unsigned int sizein,unsigned char *dataref,unsigned char size);
+int StringSearch(unsigned char *datain,unsigned int sizein,unsigned char *dataref,unsigned int size);
 unsigned int attachdata(unsigned char *out,unsigned char *ag1,unsigned int size1,unsigned char *ag2,unsigned int size2,unsigned char *ag3,unsigned int size3,unsigned char *ag4,unsigned int size4);
 unsigned char Comparearray(unsigned char *dat1,unsigned char *dat2,unsigned int size);
 unsigned char SerialNOCRCCheck(unsigned char* SerialNumber,signed char Size);
