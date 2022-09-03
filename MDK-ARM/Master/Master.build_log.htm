@@ -22,21 +22,65 @@ Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
 F:\ARM_Work\Weather_masternode\Master\MDK-ARM\Master.uvprojx
-Project File Date:  08/16/2022
+Project File Date:  09/01/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Master'
+compiling stm32f4xx_it.c...
+compiling stm32f4xx_hal_msp.c...
 compiling WeatherSensor.c...
-..\Core\Src\WeatherSensor.c(66): warning:  #940-D: missing return statement at end of non-void function "DecodeWeatherNodesensor" 
-  }
-..\Core\Src\WeatherSensor.c(72): warning:  #940-D: missing return statement at end of non-void function "SearchString" 
-  }
+..\Core\Src\WeatherSensor.c(73): warning:  #223-D: function "rand" declared implicitly
+  			ran = rand();
+..\Core\Src\WeatherSensor.c(68): warning:  #177-D: variable "index"  was declared but never referenced
+  		int16_t index=0;
 ..\Core\Src\WeatherSensor.c: 2 warnings, 0 errors
+compiling xBee.c...
+G:\My Drive\ARM_work\Master\Core\Src\xBee.c(535): warning:  #550-D: variable "x"  was set but never used
+  static char x;
+G:\My Drive\ARM_work\Master\Core\Src\xBee.c: 1 warning, 0 errors
+compiling freertos.c...
+compiling ssd1306_tests.c...
+../Core/Inc/ssd1306.h(165): warning:  #1295-D: Deprecated declaration ssd1306_GetDisplayOn - give arg types
+  uint8_t ssd1306_GetDisplayOn();
+..\Core\Src\ssd1306_tests.c: 1 warning, 0 errors
+compiling main.c...
+../Core/Inc/ssd1306.h(165): warning:  #1295-D: Deprecated declaration ssd1306_GetDisplayOn - give arg types
+  uint8_t ssd1306_GetDisplayOn();
+../Core/Src/main.c(184): warning:  #177-D: variable "inc"  was declared but never referenced
+  	 static unsigned int inc=0;
+../Core/Src/main.c(403): warning:  #177-D: variable "connectionState"  was declared but never referenced
+     bool_t connectionState;
+../Core/Src/main.c(404): warning:  #177-D: variable "buttonState"  was declared but never referenced
+     uint_t buttonState;
+../Core/Src/main.c(405): warning:  #177-D: variable "prevButtonState"  was declared but never referenced
+     uint_t prevButtonState;
+../Core/Src/main.c(412): warning:  #177-D: variable "res"  was declared but never referenced
+  		uint16_t res;
+../Core/Src/main.c(413): warning:  #177-D: variable "strbuffer"  was declared but never referenced
+  		char strbuffer[20];
+../Core/Src/main.c(498): warning:  #177-D: variable "i"  was declared but never referenced
+     uint_t i;
+../Core/Src/main.c(499): warning:  #177-D: variable "value"  was declared but never referenced
+     uint32_t value;
+../Core/Src/main.c(500): warning:  #177-D: variable "task"  was declared but never referenced
+     OsTask *task;
+../Core/Src/main.c(507): warning:  #177-D: variable "ipv6Addr"  was declared but never referenced
+     Ipv6Addr ipv6Addr;
+../Core/Src/main.c: 11 warnings, 0 errors
+compiling usb_device.c...
+compiling usbd_conf.c...
+compiling usbd_desc.c...
+compiling usbd_cdc_if.c...
+compiling usbd_ctlreq.c...
+compiling usbd_ioreq.c...
+compiling usbd_core.c...
+compiling usbd_cdc.c...
+compiling debug.c...
 linking...
-Program Size: Code=138692 RO-data=10864 RW-data=1008 ZI-data=88904  
+Program Size: Code=141408 RO-data=14124 RW-data=2160 ZI-data=90160  
 FromELF: creating hex file...
-"Master\Master.axf" - 0 Error(s), 2 Warning(s).
+"Master\Master.axf" - 0 Error(s), 15 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -77,7 +121,7 @@ Package Vendor: Keil
 
    * Component: Keil.ARM Compiler::Compiler:I/O:STDOUT:Breakpoint:1.2.0
       Source file:   Source\retarget_io.c
-Build Time Elapsed:  00:00:05
+Build Time Elapsed:  00:00:24
 </pre>
 </body>
 </html>

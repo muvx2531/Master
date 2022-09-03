@@ -3,7 +3,7 @@
 
 #define XbeeModeMasterNode
 
-#define xBee_Buffer_size 1024
+#define xBee_Buffer_size 512
 #define xBeeHeader 0x7E
 
 //#define xBeeModeMasterNode

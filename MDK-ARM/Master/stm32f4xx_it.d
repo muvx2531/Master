@@ -40,3 +40,4 @@ master\stm32f4xx_it.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.
 master\stm32f4xx_it.o: ../Core/Inc/GeneralFunction.h
 master\stm32f4xx_it.o: ../Core/Inc/stm32f4xx_it.h
 master\stm32f4xx_it.o: ../Core/Inc/xBee.h
+master\stm32f4xx_it.o: ../Core/Inc/WeatherSensor.h

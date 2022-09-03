@@ -1,4 +1,5 @@
 master\weathersensor.o: ..\Core\Src\WeatherSensor.c
+master\weathersensor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 master\weathersensor.o: ../Core/Inc/WeatherSensor.h
 master\weathersensor.o: ../Core/Inc/main.h
 master\weathersensor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h

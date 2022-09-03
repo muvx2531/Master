@@ -23,7 +23,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "xBee.h"
-
+#include "WeatherSensor.h"
 
 /* USER CODE END Includes */
 
@@ -201,6 +201,7 @@ void TIM5_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM5_IRQn 0 */
 	xBeeTimer();
+	WeatherProcesstimer();
   /* USER CODE END TIM5_IRQn 0 */
   HAL_TIM_IRQHandler(&htim5);
   /* USER CODE BEGIN TIM5_IRQn 1 */

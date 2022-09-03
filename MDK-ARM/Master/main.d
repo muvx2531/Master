@@ -149,3 +149,7 @@ master\main.o: ../cyclone_crypto/cipher/aes.h
 master\main.o: ../Core/Inc/xBee.h
 master\main.o: ../Core/Inc/WeatherSensor.h
 master\main.o: ../common/debug.h
+master\main.o: ../Core/Inc/ssd1306.h
+master\main.o: ../Core/Inc/ssd1306_conf.h
+master\main.o: ../Core/Inc/ssd1306_fonts.h
+master\main.o: ../Core/Inc/ssd1306_tests.h

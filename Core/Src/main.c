@@ -34,7 +34,8 @@
 #include "xBee.h"
 #include "WeatherSensor.h"
 #include "debug.h"
-
+#include "ssd1306.h"
+#include "ssd1306_tests.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -44,34 +45,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define APP_IF_NAME "eth0"
-#define APP_HOST_NAME "websocket-client-demo"
-#define APP_MAC_ADDR "00-AB-CD-EF-04-29"
 
-#define APP_USE_DHCP_CLIENT DISABLED
-#define APP_IPV4_HOST_ADDR "192.168.70.199"
-#define APP_IPV4_SUBNET_MASK "255.255.255.0"
-#define APP_IPV4_DEFAULT_GATEWAY "192.168.70.1"
-#define APP_IPV4_PRIMARY_DNS "8.8.8.8"
-#define APP_IPV4_SECONDARY_DNS "8.8.4.4"
-
-//#define APP_USE_SLAAC DISABLE
-//#define APP_IPV6_LINK_LOCAL_ADDR "fe80::429"
-//#define APP_IPV6_PREFIX "2001:db8::"
-//#define APP_IPV6_PREFIX_LENGTH 64
-//#define APP_IPV6_GLOBAL_ADDR "2001:db8::429"
-//#define APP_IPV6_ROUTER "fe80::1"
-//#define APP_IPV6_PRIMARY_DNS "2001:4860:4860::8888"
-//#define APP_IPV6_SECONDARY_DNS "2001:4860:4860::8844"
-
-//Application configuration
-#define APP_WS_SERVER_NAME "192.168.70.95"//"echo.websocket.org"
-#define APP_WS_SERVER_PORT 8181
-#define APP_WS_SERVER_URI "/"
-
-#define APP_SET_CIPHER_SUITES DISABLED
-#define APP_SET_SERVER_NAME DISABLED
-#define APP_SET_TRUSTED_CA_LIST DISABLED
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -366,6 +340,8 @@ error_t webSocketClient(void)
             //Send a message to the WebSocket server
 					 {
 							Websocket_TX_buffer.size = 0;
+						 	Websocket_TX_buffer.pdata[Websocket_TX_buffer.size] = '[';
+							Websocket_TX_buffer.size++;
 							 for(int n = 0;n<3;n++)
 							 {
 									for(int i = 0;i<NodeSensordata[n].size;i++)
@@ -373,7 +349,13 @@ error_t webSocketClient(void)
 										Websocket_TX_buffer.pdata[Websocket_TX_buffer.size] = NodeSensordata[n].JSON[i];
 										Websocket_TX_buffer.size++;
 									}
+									if(n != 2){
+									Websocket_TX_buffer.pdata[Websocket_TX_buffer.size] = ',';
+									Websocket_TX_buffer.size++;
+									}
 							 }
+							Websocket_TX_buffer.pdata[Websocket_TX_buffer.size] = ']';
+							Websocket_TX_buffer.size++;
 					 }
 					
 					 
@@ -397,7 +379,7 @@ error_t webSocketClient(void)
             error = NO_ERROR;
             break;
          }
-				  osDelayTask(500);
+				  osDelayTask(1000);
       }
 
       //Properly close the WebSocket connection
@@ -526,6 +508,9 @@ int main(void)
 #endif
   /* USER CODE END 1 */
 
+//	Initweather();
+//	main_weatherdataprocess();
+	
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
@@ -551,7 +536,7 @@ int main(void)
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
 	
-
+		ssd1306_Init();
 	
    TRACE_INFO("\r\n");
    TRACE_INFO("****************************************\r\n");
@@ -716,7 +701,7 @@ int main(void)
   myTask02Handle = osThreadCreate(osThread(myTask02), NULL);
 
   /* definition and creation of myTask03 */
-  osThreadDef(myTask03, StartTask03, osPriorityIdle, 0, 1024);
+  osThreadDef(myTask03, StartTask03, osPriorityIdle, 0, 768);
   myTask03Handle = osThreadCreate(osThread(myTask03), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
@@ -1033,6 +1018,8 @@ void StartDefaultTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
+		//ssd1306_TestAll();
+		MasternodeInfo();
     osDelay(1);
   }
   /* USER CODE END 5 */
@@ -1051,6 +1038,7 @@ void StartTask02(void const * argument)
   /* Infinite loop */
 	//osSetEvent(&appEvent);
 	initxBee();
+	
   HAL_TIM_Base_Start_IT(&htim5);
   for(;;)
   {
@@ -1058,9 +1046,9 @@ void StartTask02(void const * argument)
 //		HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_4|GPIO_PIN_7);
 //		HAL_GPIO_TogglePin(GPIOE,GPIO_PIN_13);
 //    osSetEvent(&appEvent);
+		//MasternoderecieverInfo();
 		
 		xBeeFunction();
-		main_weatherdataprocess();
     osDelay(1);
   }
   /* USER CODE END StartTask02 */
