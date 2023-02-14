@@ -192,17 +192,17 @@ void MasternodeInfo(void)
 		ssd1306_WriteString(buff, Font_6x8, White);
 	
     ssd1306_SetCursor(2,20);
-		if(NodeSensordata[0].tNode.Status == ENABLE)sprintf(buff,"Node%d : READY",NodeSensordata[0].MarkNode);
+	  if(NodeSensordata[0].tNode.Status == ENABLE)sprintf(buff,"Node%d: Online -%d dBm",NodeSensordata[0].MarkNode,NodeSensordata[0].RSSI);
 	  else sprintf(buff,"Node%d : NO CARRIER",NodeSensordata[0].MarkNode);
 		ssd1306_WriteString(buff, Font_6x8, White);
 	
     ssd1306_SetCursor(2,30);
-		if(NodeSensordata[1].tNode.Status == ENABLE)sprintf(buff,"Node%d : READY",NodeSensordata[1].MarkNode);
+		if(NodeSensordata[1].tNode.Status == ENABLE)sprintf(buff,"Node%d: Online -%d dBm",NodeSensordata[1].MarkNode,NodeSensordata[1].RSSI);
 	  else sprintf(buff,"Node%d : NO CARRIER",NodeSensordata[1].MarkNode);
 		ssd1306_WriteString(buff, Font_6x8, White);
 		
     ssd1306_SetCursor(2,40);
-		if(NodeSensordata[2].tNode.Status == ENABLE)sprintf(buff,"Node%d : READY",NodeSensordata[2].MarkNode);
+		if(NodeSensordata[2].tNode.Status == ENABLE)sprintf(buff,"Node%d: Online -%d dBm",NodeSensordata[2].MarkNode,NodeSensordata[2].RSSI);
 	  else sprintf(buff,"Node%d : NO CARRIER",NodeSensordata[2].MarkNode);
 		ssd1306_WriteString(buff, Font_6x8, White);
 		 

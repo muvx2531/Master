@@ -48,7 +48,7 @@ extern "C" {
 #define APP_USE_DHCP_CLIENT DISABLED
 #define APP_IPV4_HOST_ADDR "192.168.70.199"
 #define APP_IPV4_SUBNET_MASK "255.255.255.0"
-#define APP_IPV4_DEFAULT_GATEWAY "192.168.70.1"
+#define APP_IPV4_DEFAULT_GATEWAY "192.168.70.254"
 #define APP_IPV4_PRIMARY_DNS "8.8.8.8"
 #define APP_IPV4_SECONDARY_DNS "8.8.4.4"
 
@@ -62,7 +62,7 @@ extern "C" {
 //#define APP_IPV6_SECONDARY_DNS "2001:4860:4860::8844"
 
 //Application configuration
-#define APP_WS_SERVER_NAME "192.168.70.95"//"echo.websocket.org"
+#define APP_WS_SERVER_NAME "192.168.70.16"//"echo.websocket.org"
 #define APP_WS_SERVER_PORT 3000
 #define APP_WS_SERVER_URI "/"
 

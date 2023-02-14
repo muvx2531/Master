@@ -47,6 +47,30 @@ typedef struct{
 }xBeepackage;
 
 
+typedef enum
+{
+	Idle = 0,
+	Recieving = 1,
+	RxReady = 2
+}SerialState;
+
+typedef struct
+{
+	SerialState state;
+	const uint16_t tmr;
+	uint16_t counter;
+}SerialTimer;
+
+
+typedef struct
+{
+	uint8_t *RX;
+	uint16_t size;
+	const uint16_t Maxsize;
+	SerialTimer RXSplitters;
+	UART_HandleTypeDef *Serial;
+}UxSerial_Handle;
+
 
 #ifndef xBeeModeMasterNode
 #define xBeeModeSlaveNode
@@ -80,7 +104,7 @@ xBeestatus xBeeAPIcmdNT(uint16_t timeout);
 xBeestatus xBeeAPIcmdNR(uint16_t timeout);
 xBeestatus xBeeAPIcmdDIS(uint16_t Timeout);
 xBeestatus xBeeAPIcmdSentData(uint8_t *pdata,uint16_t size);
-
-
+void xBeeConnectionKeeper(void);
+void xBee_IRQHandler(void);
 
 

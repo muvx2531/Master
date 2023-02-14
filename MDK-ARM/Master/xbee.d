@@ -1,4 +1,4 @@
-master\xbee.o: G:\My Drive\ARM_work\Master\Core\Src\xBee.c
+master\xbee.o: ..\Core\Src\xBee.c
 master\xbee.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 master\xbee.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
 master\xbee.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h
@@ -28,6 +28,7 @@ master\xbee.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h
 master\xbee.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
 master\xbee.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h
 master\xbee.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c_ex.h
+master\xbee.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_iwdg.h
 master\xbee.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 master\xbee.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 master\xbee.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rng.h

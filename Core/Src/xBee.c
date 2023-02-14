@@ -3,6 +3,7 @@
 #include "stm32f4xx_hal.h"
 //#include "stm32f4xx_nucleo_144.h"
 #include "xBee.h"
+#include "WeatherSensor.h"
 
 
 
@@ -13,23 +14,27 @@ typedef struct{
 }xBeeinfo;
 
 
-extern UART_HandleTypeDef huart2;
 extern UART_HandleTypeDef huart3;
+extern IWDG_HandleTypeDef hiwdg;
 //extern RTC_HandleTypeDef hrtc;
 //extern float temperature, humidity;
 /***************** xBee module Hardware *******************/
 unsigned char xBee_RX_buffer[xBee_Buffer_size];
 unsigned char xBee_TX_buffer[xBee_Buffer_size];
-volatile General_Buffer HAL_xBeeRX;
+//volatile General_Buffer HAL_xBeeRX;
 xBeepackage HAL_xBeeTX;
+
+UxSerial_Handle xBeeSerial={.Serial = &huart3,.RX = xBee_RX_buffer,.Maxsize = xBee_Buffer_size,.size = 0,.RXSplitters ={.state = Idle,.tmr = 10,.counter = 0}};
 /*********************************************************/
 
 
 /******************* Genneral timer **********************/
-Solftimer xBee_RX_cuttext={DISABLE,0,100};
 Solftimer xBee_Test_intevalsent={DISABLE,0,5000};
 volatile Solftimer xBeeAPICMDTimeout={DISABLE,0,3000};
 TimerToFunc xBeeRSSItimer={{DISABLE,0,5000},&xBeeintervalRSSI};
+
+
+Solftimer tResetAll={ENABLE,0,60000};
 /*********************************************************/
 
 
@@ -60,49 +65,55 @@ xBeeinfo xBeenodeinfo;
 
 
 /***************** xBee Global variable****************/
+extern Nodeweatherdata NodeSensordata[Maxnodesize];
+
 uint8_t Flagcmd_NT = DISABLE;
 uint8_t Flagcmd_NR = DISABLE;
 uint8_t Flagcmd_DIS = DISABLE;
 uint8_t Flagcmd_Sent = DISABLE;
 /******************************************************/
 
+
 void initxBee(void)
 {
-	HAL_xBeeRX.Flag_status = DISABLE;
-	HAL_xBeeRX.pdata = xBee_RX_buffer;
-	HAL_xBeeRX.size = 0;
 	
 	HAL_xBeeTX.status = idle;
 	HAL_xBeeTX.dat.pdata = xBee_TX_buffer;
 	HAL_xBeeTX.dat.size  = 0;
-
+	 HAL_GPIO_WritePin(GPIOB,GPIO_PIN_4,GPIO_PIN_SET);// Enable 3.3V xbee
 	//HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,GPIO_PIN_RESET);// Enable 3.3V xbee
 	//HAL_Delay(200);
 
 	//Nodesenseor.stateSlaveNode = initparam;
 }
 
+void xBeeConnectionKeeper(void)
+{
+	if((CheckNodeCaonnected(1) == True) /*&& (CheckNodeCaonnected(2) == True)*/ && (CheckNodeCaonnected(3) == True))
+	{
+		tResetAll.counter = 0;
+		tResetAll.Status = ENABLE;
+		HAL_IWDG_Refresh(&hiwdg);
+	}
+	else {if(tResetAll.Status == 0x02)while(1);}
+}
 
 void xBeeFunction(void)
 {
 	uint16_t i;
-//	RTC_TimeTypeDef currTime;
-//	RTC_DateTypeDef currDate;
-//	uint16_t jsonsize;
-//	uint8_t jsonbuffer[512];
+  __HAL_UART_ENABLE_IT(&huart3,UART_IT_RXNE); //Enable Uart flag RXNE
 	
 	//xBee recieved handle
-	if(HAL_xBeeRX.Flag_status == 0x02)
+	if(xBeeSerial.RXSplitters.state ==  RxReady)
 	{
-		HAL_UART_Transmit(&huart3,HAL_xBeeRX.pdata,HAL_xBeeRX.size,100);
-		xBeeAPIhandle(HAL_xBeeRX.pdata,HAL_xBeeRX.size);
-		HAL_xBeeRX.size = 0;
-		HAL_xBeeRX.Flag_status = DISABLE;
-		for(i=0;i<xBee_Buffer_size;i++)
-		{
-			HAL_xBeeRX.pdata[i]= 0;
-		}
+		//HAL_UART_Transmit(&huart3,xBeeSerial.RX,xBeeSerial.size,100);
+		xBeeAPIhandle(xBeeSerial.RX,xBeeSerial.size);
+		xBeeSerial.size = 0;
+		xBeeSerial.RXSplitters.state =  Idle;
+		for(i=0;i<xBee_Buffer_size;i++)xBeeSerial.RX[i]= 0;
 	}
+	
+	xBeeConnectionKeeper();
 	
 	
 //	HAL_UART_Transmit(&UART_xBee_Handle,"test\r\n",6,100);
@@ -230,7 +241,7 @@ void xBeeAPIhandle(uint8_t *dat,uint16_t size)
 	uint16_t i;
 	uint8_t checksum;
 	uint16_t cmdsize;
-	
+	//uint8_t getFlag_
 
 	//uint8_t checksum=0;
 	for(i=0;i<size;i++)
@@ -246,24 +257,7 @@ void xBeeAPIhandle(uint8_t *dat,uint16_t size)
 	//				xBeeTestsentdata("stm32 acho",10);
 					if(dat[i+3] == 0x90)//Receive Packet - 0x90 .,data start at 15
 					{
-						char strout[25];
-						volatile uint8_t sizeout=0;
-						sizeout = Copy_String_Between_Text("\"Temperature\":",",\0",dat,size,(uint8_t*)strout);
-						temperature = atof(strout);
-						sizeout = Copy_String_Between_Text("\"Humidity\":",",\0",dat,size,(uint8_t*)strout);
-						humd = atof(strout);
-						sizeout = Copy_String_Between_Text("\"Pressure\":",",\0",dat,size,(uint8_t*)strout);
-						press = atoi(strout);
-						sizeout = Copy_String_Between_Text("\"Ambient_Light\":",",\0",dat,size,(uint8_t*)strout);
-						UV = atoi(strout);
-						sizeout = Copy_String_Between_Text("\"Dust\":",",\0",dat,size,(uint8_t*)strout);
-						dust = atoi(strout);
-						sizeout = Copy_String_Between_Text("\"Wind_Speed\":",",\0",dat,size,(uint8_t*)strout);
-						windsp = atof(strout);
-						sizeout = Copy_String_Between_Text("\"Wind_Direction\":",",\0",dat,size,(uint8_t*)strout);
-						windi = atoi(strout);
-						sizeout = Copy_String_Between_Text("\"Rain_rate\":","}\0",dat,size,(uint8_t*)strout);
-						rainrate = atoi(strout);
+					  DecodeWeatherNodesensor(dat+i+15,cmdsize,NodeSensordata);
 					}
 					else if(dat[i+3] == 0x88)//Local AT Command Response - 0x88 //cmd sent >>7E 00 04 08 01 4E 54 54
 					{
@@ -338,7 +332,7 @@ void xBeeTransmit(xBeepackage *pPackage)
 {
 	if(pPackage->status == inprocess)
 	{
-		HAL_UART_Transmit(&huart2,pPackage->dat.pdata,pPackage->dat.size,100);
+		HAL_UART_Transmit(&huart3,pPackage->dat.pdata,pPackage->dat.size,100);
 		pPackage->status = idle;
 	}
 }
@@ -386,7 +380,7 @@ void xBeeTestsentdata(uint8_t *pdata,uint16_t size)
 	packagebuffer[sumsize+3] = xBeeChecksum(&packagebuffer[3],sumsize);
 	sumsize+=4;
 	
-	HAL_UART_Transmit(&huart2,packagebuffer,sumsize,100);
+	HAL_UART_Transmit(&huart3,packagebuffer,sumsize,100);
 }
 
 
@@ -394,7 +388,7 @@ void xBeeintervalRSSI(void)
 {
 	//7e 00 04 08 52 44 42 1F
 	uint8_t cmd[]={0x7e,0x00,0x04,0x08,0x52,0x44,0x42,0x1F};
-	HAL_UART_Transmit(&huart2,cmd,8,100);
+	HAL_UART_Transmit(&huart3,cmd,8,100);
 }
 
 void PowerXbeecontrol_OFF(void)
@@ -420,7 +414,7 @@ xBeestatus xBeeAPIcmdNT(uint16_t Timeout){
 			xBeeAPICMDTimeout.TMR = Timeout;
 			xBeeAPICMDTimeout.counter = 0;
 			xBeeAPICMDTimeout.Status = ENABLE;
-			HAL_UART_Transmit(&huart2,protocol,8,100);
+			HAL_UART_Transmit(&huart3,protocol,8,100);
 		}
 		else if(xBeeAPICMDTimeout.Status == 0x02){
 			xBeeAPICMDTimeout.Status = DISABLE;
@@ -446,7 +440,7 @@ xBeestatus xBeeAPIcmdNR(uint16_t Timeout){
 			xBeeAPICMDTimeout.Status = ENABLE;
 			xBeeAPICMDTimeout.TMR = Timeout;
 			xBeeAPICMDTimeout.counter = 0;
-			HAL_UART_Transmit(&huart2,protocol,8,100);
+			HAL_UART_Transmit(&huart3,protocol,8,100);
 		}
 		else if(xBeeAPICMDTimeout.Status == 0x02){
 			xBeeAPICMDTimeout.Status = DISABLE;
@@ -472,7 +466,7 @@ xBeestatus xBeeAPIcmdDIS(uint16_t Timeout){
 			xBeeAPICMDTimeout.Status = ENABLE;
 			xBeeAPICMDTimeout.TMR = Timeout;
 			xBeeAPICMDTimeout.counter = 0;
-			HAL_UART_Transmit(&huart2,protocol,8,100);
+			HAL_UART_Transmit(&huart3,protocol,8,100);
 		}
 		else if(xBeeAPICMDTimeout.Status == 0x02){
 			xBeeAPICMDTimeout.Status = DISABLE;
@@ -549,7 +543,46 @@ void xBeeTimer(void)
 			xBeeAPICMDTimeout.Status = 0x02;
 		}
 	}
+	
+	if(xBeeSerial.RXSplitters.state == Recieving)
+	{
+		xBeeSerial.RXSplitters.counter++;
+		if(xBeeSerial.RXSplitters.counter >= xBeeSerial.RXSplitters.tmr)
+		{
+			xBeeSerial.RXSplitters.counter = 0;
+			xBeeSerial.RXSplitters.state = RxReady;
+		}
+	}
+	
+	if(tResetAll.Status == ENABLE)
+	{
+		tResetAll.counter++;
+		if(tResetAll.counter >= tResetAll.TMR)
+		{
+			tResetAll.counter = 0;
+			tResetAll.Status = 0x02;
+		}
+	}
 }
 
 
+void xBee_IRQHandler(void)
+{
+		if(((xBeeSerial.Serial->Instance->SR & USART_SR_RXNE) != RESET) && ((xBeeSerial.Serial->Instance->CR1 & USART_CR1_RXNEIE) != RESET))
+	{
+		if(xBeeSerial.RXSplitters.state == Idle)xBeeSerial.RXSplitters.state = Recieving;
+		if(xBeeSerial.RXSplitters.state == Recieving)
+		{
+			if(xBeeSerial.size < xBeeSerial.Maxsize)
+			{
+				xBeeSerial.RX[xBeeSerial.size] = (unsigned char)READ_REG(xBeeSerial.Serial->Instance->DR);
+				xBeeSerial.size++;
+				xBeeSerial.RXSplitters.counter = 0;
+			}
+			(void)READ_REG(xBeeSerial.Serial->Instance->DR);
+
+		}
+	}
+	(void)READ_REG(xBeeSerial.Serial->Instance->DR);
+}
 

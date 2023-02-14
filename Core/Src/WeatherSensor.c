@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "WeatherSensor.h"
 #include "string.h"
-
+#include <stdlib.h>
 
 //#define raw_json "{\"name\":\"Node1\",\"Bat\":3.65,\"RSSI\":51,\"Temp\":29.170000,\"Hum\":33.002998,\"Prs\":306,\"ALS\":0,\"PM25\":0,\"WS\":1,\"WD\":291,\"Rain\":0}{\"name\":\"Node2\",\"Bat\":4.65,\"RSSI\":51,\"Temp\":29.170000,\"Hum\":33.002998,\"Prs\":306,\"ALS\":0,\"PM25\":0,\"WS\":1,\"WD\":291,\"Rain\":0}{\"name\":\"Node3\",\"Bat\":5.65,\"RSSI\":51,\"Temp\":29.170000,\"Hum\":33.002998,\"Prs\":306,\"ALS\":0,\"PM25\":0,\"WS\":1,\"WD\":291,\"Rain\":0}"
 
@@ -11,12 +11,13 @@
 
 
 
-Nodeweatherdata NodeSensordata[Maxnodesize]={{.MarkNode = 1,.JSON = "{\"name\":\"Node1\",\"Bat\":99.65,\"RSSI\":51,\"Temp\":29.35,\"Hum\":31.00,\"Prs\":305,\"ALS\":457,\"PM25\":0,\"WS\":0,\"WD\":0,\"Rain\":0}\0"},
-																						{.MarkNode = 2,.JSON =  "{\"name\":\"Node2\",\"Bat\":99.65,\"RSSI\":49,\"Temp\":29.78,\"Hum\":32.08,\"Prs\":302,\"ALS\":433,\"PM25\":0,\"WS\":0,\"WD\":0,\"Rain\":0}\0"},
-																						{.MarkNode = 3,.JSON =  "{\"name\":\"Node3\",\"Bat\":99.70,\"RSSI\":48,\"Temp\":29.27,\"Hum\":30.12,\"Prs\":307,\"ALS\":428,\"PM25\":0,\"WS\":0,\"WD\":0,\"Rain\":0}\0"}};
+Nodeweatherdata NodeSensordata[Maxnodesize]={{.RSSI = 0,.MarkNode = 1,.JSON = "{\"name\":\"Node1\",\"Bat\":99.65,\"RSSI\":51,\"Temp\":29.35,\"Hum\":31.00,\"Prs\":305,\"ALS\":457,\"PM25\":0,\"WS\":0,\"WD\":0,\"Rain\":0}\0"},
+																						{.RSSI = 0,.MarkNode = 2,.JSON =  "{\"name\":\"Node2\",\"Bat\":99.65,\"RSSI\":49,\"Temp\":29.78,\"Hum\":32.08,\"Prs\":302,\"ALS\":433,\"PM25\":0,\"WS\":0,\"WD\":0,\"Rain\":0}\0"},
+																						{.RSSI = 0,.MarkNode = 3,.JSON =  "{\"name\":\"Node3\",\"Bat\":99.70,\"RSSI\":48,\"Temp\":29.27,\"Hum\":30.12,\"Prs\":307,\"ALS\":428,\"PM25\":0,\"WS\":0,\"WD\":0,\"Rain\":0}\0"}};
 
 
-
+																						
+																						
 void Initweather(void)
 {
 	uint16_t i,n;
@@ -41,40 +42,50 @@ void main_weatherdataprocess(void)
 	//DecodeWeatherNodesensor((uint8_t*)raw,sizeof(raw),NodeSensordata);
 }
 
+
+
+uint8_t DecodeWeatherNodesensor(uint8_t *pdata,uint16_t size,Nodeweatherdata *node){
+	
+	uint8_t i,c;
+
   uint16_t NodeID;
 	uint8_t Bat;
-	uint8_t nRSSI;
 	volatile float Temp;
 	volatile float Hum;
 
-	volatile uint16_t tt;
-	volatile uint16_t hh;
+	int16_t Tempint=0,TempFloat,TempSign;
+	int16_t TempBuff=0,HumBuff;
+  int16_t Humint=0,HumFloat;
 	uint16_t Prs;
 	uint32_t ALS;
 	uint16_t PM25;
 	uint16_t WS;
 	uint16_t WD;
 	float Rain;
-
-uint8_t DecodeWeatherNodesensor(uint8_t *pdata,uint16_t size,Nodeweatherdata *node){
 	
-	uint8_t i;
-	
- static uint8_t ran;
-
 	
 	uint8_t ret=0;
 	for(i=0;i<Maxnodesize;i++){
 		int16_t index=0;
 
 		NodeID = ((uint16_t)pdata[0]<<8)|(((uint16_t)pdata[1])&0x00FF);
-		if(NodeSensordata[i].MarkNode == NodeID){
+		
+		if(NodeSensordata[i].MarkNode == NodeID)
+		{
 			ret++;
-			ran = rand();
 			Bat = pdata[2];
-			nRSSI = pdata[3];
-			tt = ((uint16_t)pdata[4]<<8|(uint16_t)pdata[5])/100;
-			hh = ((uint16_t)pdata[6]<<8|(uint16_t)pdata[7])/100;
+			NodeSensordata[i].RSSI = pdata[3];
+			
+			TempBuff = ((uint16_t)pdata[4]<<8|(uint16_t)pdata[5]);
+			if(TempBuff > 0)TempSign = True;
+			else TempSign = False;
+			Tempint = TempBuff/100 ;
+			TempFloat = TempBuff%(Tempint*100);
+
+			HumBuff = ((uint16_t)pdata[6]<<8|(uint16_t)pdata[7]);
+			Humint = HumBuff/100 ;
+			HumFloat =HumBuff%(Humint*100);
+			
 			Prs  = (uint16_t)pdata[8]<<8|(uint16_t)pdata[9];
 			ALS  = (uint32_t)pdata[10]<<24|(uint32_t)pdata[11]<<16|(uint32_t)pdata[12]<<8|(uint32_t)pdata[13];
 			PM25 = ((uint16_t)pdata[14]<<8|(uint16_t)pdata[15])/100;
@@ -82,34 +93,17 @@ uint8_t DecodeWeatherNodesensor(uint8_t *pdata,uint16_t size,Nodeweatherdata *no
 			WD  = (uint16_t)pdata[18]<<8|(uint16_t)pdata[19];
 			Rain = (float)((uint16_t)pdata[20]<<8|(uint16_t)pdata[21])/100.0f;
 			
-//			NodeSensordata[i].size = 0;
-//			NodeSensordata[i].JSON[NodeSensordata[i].size]= '{';
-//			NodeSensordata[i].size++;
-//			NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":\"Node%d\",",Name,NodeID);
-//			NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":%d,",Batterry,Bat);
-//			NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":%d,",nodeRSSI,nRSSI);
-//			NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":%2.2f,",Temperature,Temp);
-//			NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":%2.2f,",Humidity,Hum);
 //			NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":%d,",Pressture,Prs);
-//			NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":%u,",Ambient,ALS);
-//			NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":%d,",DustPM25,PM25);
-//			NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":%d,",WindSpeed,WS);
-//			NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":%d,",WindDirection,WD);
-//			NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":%2.2f",Rainrate,Rain);
-//			NodeSensordata[i].JSON[NodeSensordata[i].size]= '}';
-//			NodeSensordata[i].size++;
-
 
 			NodeSensordata[i].size = 0;
 			NodeSensordata[i].JSON[NodeSensordata[i].size]= '{';
 			NodeSensordata[i].size++;
 			NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":\"Node%d\",",Name,NodeID);
 			NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":%d,",Batterry,Bat);
-			NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":%d,",nodeRSSI,nRSSI);
-			ran = rand()/25;
-			NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":%d.%d,",Temperature,tt,ran);
-			ran = rand()/25;
-			NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":%d.%d,",Humidity,hh,ran);
+			NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":%d,",nodeRSSI,NodeSensordata[i].RSSI);
+			if(TempSign == True)NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":%d.%d,",Temperature,Tempint,TempFloat);
+			else NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":-%d.%d,",Temperature,Tempint,TempFloat);
+			NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":%d.%d,",Humidity,Humint,HumFloat);
 			NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":%d,",Pressture,Prs);
 			NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":%u,",Ambient,ALS);
 			NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":%d,",DustPM25,PM25);
@@ -118,29 +112,8 @@ uint8_t DecodeWeatherNodesensor(uint8_t *pdata,uint16_t size,Nodeweatherdata *no
 			NodeSensordata[i].size += sprintf(NodeSensordata[i].JSON+NodeSensordata[i].size,"\"%s\":0",Rainrate);
 			NodeSensordata[i].JSON[NodeSensordata[i].size]= '}';
 			NodeSensordata[i].size++;
-
 			
-//			NodeSensordata[i].size = sprintf((char*)NodeSensordata[i].JSON,
-//				"{\"name\":\"Node%d\",\"Bat\":%d,\"RSSI\":%d,\"Temp\":%2.2f,\"Hum\":%2.2f,\"Prs\":%d,\"ALS\":%d,\"PM25\":%2.2f,\"WS\":%d,\"WD\":%d,\"Rain\":%2.2f}",
-//				NodeID,
-//				Bat,
-//				nRSSI,
-//				Temp,
-//				Hum,
-//				Prs,
-//				ALS,
-//				PM25,
-//				WS,
-//				WD,
-//				Rain
-//			);		
-
-			//clear time out
-//			if(NodeID == 1)
-//			{
-//				NodeSensordata[0].tNode.counter = 0;
-//				NodeSensordata[0].tNode.Status = ENABLE;
-//			}
+//		nRSSI,
 			NodeSensordata[i].tNode.counter = 0;
 			NodeSensordata[i].tNode.Status = ENABLE;
 		}
@@ -149,10 +122,14 @@ uint8_t DecodeWeatherNodesensor(uint8_t *pdata,uint16_t size,Nodeweatherdata *no
 }
 
 
-//uint16_t SearchString(uint8_t *in,uint16_t size,char *ref,uint16_t sizeref)
-//{
-//	
-//}
+_Bool CheckNodeCaonnected(uint8_t NodeID)
+{
+	uint8_t i;
+	for(i=0;i<Maxnodesize;i++)
+	{
+		if((NodeSensordata[i].MarkNode == NodeID) && (NodeSensordata[i].tNode.Status == ENABLE))return True;
+	}
+}
 
 void WeatherProcesstimer(void)
 {
@@ -186,8 +163,6 @@ void WeatherProcesstimer(void)
 			NodeSensordata[2].tNode.counter = 0;
 		}
 	}
-	
-	
 }
 
 

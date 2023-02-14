@@ -82,7 +82,7 @@ int_t fputc(int_t c, FILE *stream)
       uint8_t ch = c;
 
       //Transmit data
-		  CDC_Transmit_FS(&ch,1);
+		  //CDC_Transmit_FS(&ch,1);
       //HAL_UART_Transmit(&UART_Handle, &ch, 1, HAL_MAX_DELAY);
 
       //On success, the character written is returned

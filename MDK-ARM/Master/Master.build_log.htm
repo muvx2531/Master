@@ -3,9 +3,9 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: µVision V5.36.0.0
+IDE-Version: ?Vision V5.36.0.0
 Copyright (C) 2021 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: jakka jakka, jakka, LIC=47GU5-GZ3P0-UHE8H-WADE6-WJZCL-AR6CT
+License Information: jakka jakka, jakka, LIC=WHYH9-4AA1D-Z9MG9-4SXCX-2RW79-CCXG8
  
 Tool Versions:
 Toolchain:       MDK-ARM Plus  Version: 5.36.0.0
@@ -21,66 +21,13 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.9.0
 Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
-F:\ARM_Work\Weather_masternode\Master\MDK-ARM\Master.uvprojx
-Project File Date:  09/01/2022
+D:\ARM_work\MasternodeWeatherstation\Master\MDK-ARM\Master.uvprojx
+Project File Date:  02/08/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Master'
-compiling stm32f4xx_it.c...
-compiling stm32f4xx_hal_msp.c...
-compiling WeatherSensor.c...
-..\Core\Src\WeatherSensor.c(73): warning:  #223-D: function "rand" declared implicitly
-  			ran = rand();
-..\Core\Src\WeatherSensor.c(68): warning:  #177-D: variable "index"  was declared but never referenced
-  		int16_t index=0;
-..\Core\Src\WeatherSensor.c: 2 warnings, 0 errors
-compiling xBee.c...
-G:\My Drive\ARM_work\Master\Core\Src\xBee.c(535): warning:  #550-D: variable "x"  was set but never used
-  static char x;
-G:\My Drive\ARM_work\Master\Core\Src\xBee.c: 1 warning, 0 errors
-compiling freertos.c...
-compiling ssd1306_tests.c...
-../Core/Inc/ssd1306.h(165): warning:  #1295-D: Deprecated declaration ssd1306_GetDisplayOn - give arg types
-  uint8_t ssd1306_GetDisplayOn();
-..\Core\Src\ssd1306_tests.c: 1 warning, 0 errors
-compiling main.c...
-../Core/Inc/ssd1306.h(165): warning:  #1295-D: Deprecated declaration ssd1306_GetDisplayOn - give arg types
-  uint8_t ssd1306_GetDisplayOn();
-../Core/Src/main.c(184): warning:  #177-D: variable "inc"  was declared but never referenced
-  	 static unsigned int inc=0;
-../Core/Src/main.c(403): warning:  #177-D: variable "connectionState"  was declared but never referenced
-     bool_t connectionState;
-../Core/Src/main.c(404): warning:  #177-D: variable "buttonState"  was declared but never referenced
-     uint_t buttonState;
-../Core/Src/main.c(405): warning:  #177-D: variable "prevButtonState"  was declared but never referenced
-     uint_t prevButtonState;
-../Core/Src/main.c(412): warning:  #177-D: variable "res"  was declared but never referenced
-  		uint16_t res;
-../Core/Src/main.c(413): warning:  #177-D: variable "strbuffer"  was declared but never referenced
-  		char strbuffer[20];
-../Core/Src/main.c(498): warning:  #177-D: variable "i"  was declared but never referenced
-     uint_t i;
-../Core/Src/main.c(499): warning:  #177-D: variable "value"  was declared but never referenced
-     uint32_t value;
-../Core/Src/main.c(500): warning:  #177-D: variable "task"  was declared but never referenced
-     OsTask *task;
-../Core/Src/main.c(507): warning:  #177-D: variable "ipv6Addr"  was declared but never referenced
-     Ipv6Addr ipv6Addr;
-../Core/Src/main.c: 11 warnings, 0 errors
-compiling usb_device.c...
-compiling usbd_conf.c...
-compiling usbd_desc.c...
-compiling usbd_cdc_if.c...
-compiling usbd_ctlreq.c...
-compiling usbd_ioreq.c...
-compiling usbd_core.c...
-compiling usbd_cdc.c...
-compiling debug.c...
-linking...
-Program Size: Code=141408 RO-data=14124 RW-data=2160 ZI-data=90160  
-FromELF: creating hex file...
-"Master\Master.axf" - 0 Error(s), 15 Warning(s).
+"Master\Master.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -91,22 +38,22 @@ Package Vendor: ARM
    * Component: CORE Version: 5.6.0
 
 Package Vendor: Keil
-                https://www.keil.com/pack/Keil.ARM_Compiler.1.7.2.pack
-                Keil.ARM_Compiler.1.7.2
+                http://www.keil.com/pack/Keil.ARM_Compiler.1.6.3.pack
+                Keil.ARM_Compiler.1.6.3
                 Keil ARM Compiler extensions for ARM Compiler 5 and ARM Compiler 6
    * Component: STDERR Variant: Breakpoint Version: 1.2.0
    * Component: STDIN Variant: Breakpoint Version: 1.2.0
    * Component: STDOUT Variant: Breakpoint Version: 1.2.0
 
 Package Vendor: Keil
-                http://www.keil.com/pack/Keil.STM32F4xx_DFP.2.15.0.pack
-                Keil.STM32F4xx_DFP.2.15.0
+                https://www.keil.com/pack/Keil.STM32F4xx_DFP.2.17.0.pack
+                Keil.STM32F4xx_DFP.2.17.0
                 STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
 
 <h2>Collection of Component include folders:</h2>
   .\RTE\_Master
-  C:\Users\Jakkapan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include
-  C:\Users\Jakkapan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+  C:\Users\USER\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include
+  C:\Users\USER\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
 
 <h2>Collection of Component Files used:</h2>
 
@@ -121,7 +68,7 @@ Package Vendor: Keil
 
    * Component: Keil.ARM Compiler::Compiler:I/O:STDOUT:Breakpoint:1.2.0
       Source file:   Source\retarget_io.c
-Build Time Elapsed:  00:00:24
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

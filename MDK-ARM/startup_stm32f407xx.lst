@@ -61,7 +61,7 @@ ARM Macro Assembler    Page 1
    40 00000400         ;   <o>  Heap Size (in Bytes) <0x0-0xFFFFFFFF:8>
    41 00000400         ; </h>
    42 00000400         
-   43 00000400 0000AC00 
+   43 00000400 00010000 
                        Heap_Size
 
 
@@ -69,21 +69,21 @@ ARM Macro Assembler    Page 1
 ARM Macro Assembler    Page 2 
 
 
-                               EQU              0xAC00
+                               EQU              0x10000
    44 00000400         
    45 00000400                 AREA             HEAP, NOINIT, READWRITE, ALIGN=
 3
    46 00000000         __heap_base
    47 00000000         Heap_Mem
                                SPACE            Heap_Size
-   48 0000AC00         __heap_limit
-   49 0000AC00         
-   50 0000AC00                 PRESERVE8
-   51 0000AC00                 THUMB
-   52 0000AC00         
-   53 0000AC00         
-   54 0000AC00         ; Vector Table Mapped to Address 0 at Reset
-   55 0000AC00                 AREA             RESET, DATA, READONLY
+   48 00010000         __heap_limit
+   49 00010000         
+   50 00010000                 PRESERVE8
+   51 00010000                 THUMB
+   52 00010000         
+   53 00010000         
+   54 00010000         ; Vector Table Mapped to Address 0 at Reset
+   55 00010000                 AREA             RESET, DATA, READONLY
    56 00000000                 EXPORT           __Vectors
    57 00000000                 EXPORT           __Vectors_End
    58 00000000                 EXPORT           __Vectors_Size
@@ -839,7 +839,7 @@ ARM Macro Assembler    Page 13
               00000000 
               00000000 
               00000400 
-              0000AC00 
+              00010000 
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --apcs=
 interwork --depend=master\startup_stm32f407xx.d -omaster\startup_stm32f407xx.o 
@@ -849,12 +849,11 @@ interwork --depend=master\startup_stm32f407xx.d -omaster\startup_stm32f407xx.o
 ARM Macro Assembler    Page 14 
 
 
--I..\Core\Inc -I.\RTE\_Master -IC:\Users\Jakkapan\AppData\Local\Arm\Packs\ARM\C
-MSIS\5.9.0\CMSIS\Core\Include -IC:\Users\Jakkapan\AppData\Local\Arm\Packs\Keil\
-STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include --predefine="__U
-VISION_VERSION SETA 536" --predefine="_RTE_ SETA 1" --predefine="STM32F407xx SE
-TA 1" --predefine="_RTE_ SETA 1" --list=startup_stm32f407xx.lst startup_stm32f4
-07xx.s
+-I..\Core\Inc -I.\RTE\_Master -IC:\Users\USER\AppData\Local\Arm\Packs\ARM\CMSIS
+\5.9.0\CMSIS\Core\Include -IC:\Users\USER\AppData\Local\Arm\Packs\Keil\STM32F4x
+x_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include --predefine="__UVISION_V
+ERSION SETA 536" --predefine="_RTE_ SETA 1" --predefine="STM32F407xx SETA 1" --
+predefine="_RTE_ SETA 1" --list=startup_stm32f407xx.lst startup_stm32f407xx.s
 
 
 
@@ -918,7 +917,7 @@ Symbol: __heap_base
    Uses
       None
 Comment: __heap_base unused
-__heap_limit 0000AC00
+__heap_limit 00010000
 
 Symbol: __heap_limit
    Definitions
@@ -1900,7 +1899,7 @@ Comment: __user_initial_stackheap used once
 ARM Macro Assembler    Page 1 Alphabetic symbol ordering
 Absolute symbols
 
-Heap_Size 0000AC00
+Heap_Size 00010000
 
 Symbol: Heap_Size
    Definitions

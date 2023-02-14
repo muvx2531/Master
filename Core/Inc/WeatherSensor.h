@@ -31,6 +31,7 @@ typedef struct
 	uint16_t MarkNode;
 	char JSON[JsonNodeMaxsize];
 	uint16_t size;
+	uint8_t RSSI;
 	
 	Solftimer tNode;
 	
@@ -44,6 +45,7 @@ typedef struct
 
 void Initweather(void);
 void main_weatherdataprocess(void);
+_Bool CheckNodeCaonnected(uint8_t NodeID);
 uint8_t DecodeWeatherNodesensor(uint8_t *pdata,uint16_t size,Nodeweatherdata *node);
 void WeatherProcesstimer(void);
 

@@ -36,6 +36,7 @@
 #include "debug.h"
 #include "ssd1306.h"
 #include "ssd1306_tests.h"
+#include "core/bsd_socket.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -55,6 +56,8 @@
 
 /* Private variables ---------------------------------------------------------*/
  I2C_HandleTypeDef hi2c1;
+
+IWDG_HandleTypeDef hiwdg;
 
 RNG_HandleTypeDef hrng;
 
@@ -91,6 +94,7 @@ static void MX_TIM2_Init(void);
 static void MX_USART3_UART_Init(void);
 static void MX_TIM5_Init(void);
 static void MX_I2C1_Init(void);
+static void MX_IWDG_Init(void);
 void StartDefaultTask(void const * argument);
 void StartTask02(void const * argument);
 void StartTask03(void const * argument);
@@ -261,8 +265,6 @@ error_t webSocketClient(void)
       //Process events
       while(1)
       {
-				
-				
          //Set the events the application is interested in
          eventDesc[0].socket = webSocket->socket;
          eventDesc[0].eventMask = SOCKET_EVENT_RX_READY;
@@ -337,33 +339,46 @@ error_t webSocketClient(void)
             TRACE_INFO("WebSocket: Sending message (%" PRIuSIZE " bytes)...\r\n", length);
             TRACE_INFO("  %s\r\n", buffer);
 
-            //Send a message to the WebSocket server
-					 {
-							Websocket_TX_buffer.size = 0;
-						 	Websocket_TX_buffer.pdata[Websocket_TX_buffer.size] = '[';
-							Websocket_TX_buffer.size++;
-							 for(int n = 0;n<3;n++)
-							 {
-									for(int i = 0;i<NodeSensordata[n].size;i++)
-									{  
-										Websocket_TX_buffer.pdata[Websocket_TX_buffer.size] = NodeSensordata[n].JSON[i];
-										Websocket_TX_buffer.size++;
-									}
-									if(n != 2){
-									Websocket_TX_buffer.pdata[Websocket_TX_buffer.size] = ',';
-									Websocket_TX_buffer.size++;
-									}
-							 }
-							Websocket_TX_buffer.pdata[Websocket_TX_buffer.size] = ']';
-							Websocket_TX_buffer.size++;
-					 }
-					
-					 
-            error = webSocketSend(webSocket,Websocket_TX_buffer.pdata, Websocket_TX_buffer.size,
+//            //Send a message to the WebSocket server
+//					 {
+//							Websocket_TX_buffer.size = 0;
+//						 	Websocket_TX_buffer.pdata[Websocket_TX_buffer.size] = '[';
+//							Websocket_TX_buffer.size++;
+//							for(int n = 0;n<3;n++)
+//							{
+//									for(int i = 0;i<NodeSensordata[n].size;i++)
+//									{  
+//										Websocket_TX_buffer.pdata[Websocket_TX_buffer.size] = NodeSensordata[n].JSON[i];
+//										Websocket_TX_buffer.size++;
+//									}
+//									if(n != 2){
+//									Websocket_TX_buffer.pdata[Websocket_TX_buffer.size] = ',';
+//									Websocket_TX_buffer.size++;
+//									}
+//							}
+//							Websocket_TX_buffer.pdata[Websocket_TX_buffer.size] = ']';
+//							Websocket_TX_buffer.size++;
+//					 }
+//            error = webSocketSend(webSocket,Websocket_TX_buffer.pdata, Websocket_TX_buffer.size,
+//               WS_FRAME_TYPE_TEXT, NULL);
+//            //Any error to report?
+//            if(error)
+//               break;
+
+
+					static uint8_t runnumber = 0;
+					if(NodeSensordata[runnumber].size != 0)
+					{
+            error = webSocketSend(webSocket,NodeSensordata[runnumber].JSON, NodeSensordata[runnumber].size,
                WS_FRAME_TYPE_TEXT, NULL);
+						NodeSensordata[runnumber].size = 0;
             //Any error to report?
             if(error)
                break;
+					}
+					runnumber++;
+					if(runnumber >= 3)runnumber=0;
+						
 
             //Save current time
             timestamp = osGetSystemTime();
@@ -379,7 +394,7 @@ error_t webSocketClient(void)
             error = NO_ERROR;
             break;
          }
-				  osDelayTask(1000);
+				  osDelayTask(100);
       }
 
       //Properly close the WebSocket connection
@@ -395,7 +410,92 @@ error_t webSocketClient(void)
    return error;
 }
 
+		TcpState state;
 
+void TCPServer(void const * argument)
+{
+	   error_t error;
+		 Socket *socket; 
+	   Socket *csocket; 
+	   IpAddr localIP;
+		 IpAddr ClientIpAddr;
+		 uint16_t Port=0;
+		 uint8_t rec[256];
+	   size_t size_rec=0;
+			char strout[256];
+
+	
+	static uint8_t res=0;
+
+		//Create a connection-oriented socket 
+		socket = socketOpen(SOCKET_TYPE_STREAM, SOCKET_IP_PROTO_TCP);
+		//Failed to create socket? 
+		if(!socket) {
+		TRACE_INFO("***ERROR sock ***\r\n");
+		} 
+		
+		error = socketSetTimeout(socket,50);
+		if(error) {
+		TRACE_INFO("***ERROR set timeout ***\r\n");
+		} 
+		
+		
+	  ipStringToAddr(APP_IPV4_HOST_ADDR, &localIP);
+		error = socketBind(socket, &localIP, 80);
+		if(error) {
+		TRACE_INFO("***ERROR bind ***\r\n");
+		} 
+		
+		error = socketListen(socket,1); 
+		if(error) {
+		TRACE_INFO("***ERROR Listen ***\r\n");
+		}
+
+		
+		while(1)
+		{
+
+			if(res != 1)
+			{
+				csocket = socketAccept(socket,&ClientIpAddr,&Port);
+				if(!csocket) {
+				TRACE_INFO("***Error accepting connection***\r\n");
+				}
+				else
+				{
+					sprintf(strout,"Start Master node\r\n");
+					error = socketSend(csocket,strout, strlen(strout), NULL, SOCKET_FLAG_NO_DELAY); 
+					res = 1;
+				}
+			}
+			
+			
+			if(res == 1)
+			{
+				//tcpReceive
+				error = socketReceive(csocket,rec, 256,&size_rec,SOCKET_FLAG_DONT_WAIT);
+				if(!error) {
+				TRACE_INFO("***ERROR Listen ***\r\n");
+				} 
+				
+				if(size_rec != 0)
+				{
+					sprintf(strout,"rec = %s\r\n",rec);
+					error = socketSend(csocket,strout, strlen(strout), NULL, SOCKET_FLAG_NO_DELAY); 
+					TRACE_INFO("***Data incomming ***\r\n");
+				}
+			}
+			
+				state = tcpGetState(csocket);
+				if((state == TCP_STATE_CLOSE_WAIT) ||  (state == TCP_STATE_CLOSED) || state >= 11)
+				{
+					res = 0;
+					socketClose(csocket);
+				}
+			
+			osDelayTask(50);
+		}
+}
 
 void TCPTestTask(void const * argument)
 {
@@ -415,31 +515,30 @@ void TCPTestTask(void const * argument)
 
 	
 	 TRACE_INFO("***Start TCP simple ***\r\n");
-			//SMTP server address 
+
 		error = ipStringToAddr("192.168.70.55", &serverIpAddr); 
 		//Failed to convert the string to a valid IP address? 
 		if(error) {
 			TRACE_INFO("***ERROR IP ***\r\n");
 		} 
 		
-		
 		//Create a connection-oriented socket 
 		socket = socketOpen(SOCKET_TYPE_STREAM, SOCKET_IP_PROTO_TCP); 
 		//Failed to create socket? 
 		if(!socket) {
 		TRACE_INFO("***ERROR sock ***\r\n");
-		} 
+		}
 		
 		error = socketBindToInterface(socket, &netInterface[0]); 
-		if(!socket) {
+		if(!error) {
 		TRACE_INFO("***ERROR bind ***\r\n");
-		} 
+		}
 		//Establish a connection with the specified server 
 		error = socketConnect(socket, &serverIpAddr, 1001); 
 		//Check whether the connection succeeded 
 		if(error) {
 			TRACE_INFO("***ERROR connect ***\r\n");
-		} 
+		}
 
 //		
 //			char Nodename[] = "Node1";
@@ -508,9 +607,6 @@ int main(void)
 #endif
   /* USER CODE END 1 */
 
-//	Initweather();
-//	main_weatherdataprocess();
-	
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
@@ -534,10 +630,11 @@ int main(void)
   MX_USART3_UART_Init();
   MX_TIM5_Init();
   MX_I2C1_Init();
+  //MX_IWDG_Init();
   /* USER CODE BEGIN 2 */
 	
 		ssd1306_Init();
-	
+
    TRACE_INFO("\r\n");
    TRACE_INFO("****************************************\r\n");
    TRACE_INFO("* CycloneTCP Weather station TCPClient *\r\n");
@@ -697,11 +794,11 @@ int main(void)
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* definition and creation of myTask02 */
-  osThreadDef(myTask02, StartTask02, osPriorityIdle, 0, 128);
+  osThreadDef(myTask02, TCPServer, osPriorityIdle, 0, 1024);
   myTask02Handle = osThreadCreate(osThread(myTask02), NULL);
 
   /* definition and creation of myTask03 */
-  osThreadDef(myTask03, StartTask03, osPriorityIdle, 0, 768);
+  osThreadDef(myTask03,StartTask03, osPriorityIdle, 0, 1024);
   myTask03Handle = osThreadCreate(osThread(myTask03), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
@@ -740,8 +837,9 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSI|RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.LSIState = RCC_LSI_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 15;
@@ -799,6 +897,34 @@ static void MX_I2C1_Init(void)
   /* USER CODE BEGIN I2C1_Init 2 */
 
   /* USER CODE END I2C1_Init 2 */
+
+}
+
+/**
+  * @brief IWDG Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_IWDG_Init(void)
+{
+
+  /* USER CODE BEGIN IWDG_Init 0 */
+
+  /* USER CODE END IWDG_Init 0 */
+
+  /* USER CODE BEGIN IWDG_Init 1 */
+
+  /* USER CODE END IWDG_Init 1 */
+  hiwdg.Instance = IWDG;
+  hiwdg.Init.Prescaler = IWDG_PRESCALER_128;
+  hiwdg.Init.Reload = 4095;
+  if (HAL_IWDG_Init(&hiwdg) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN IWDG_Init 2 */
+
+  /* USER CODE END IWDG_Init 2 */
 
 }
 
@@ -974,6 +1100,9 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOE, GPIO_PIN_13|GPIO_PIN_0|GPIO_PIN_1, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_3, GPIO_PIN_SET);
+
+  /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4|GPIO_PIN_9, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : PA4 PA7 */
@@ -990,8 +1119,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PB4 PB9 */
-  GPIO_InitStruct.Pin = GPIO_PIN_4|GPIO_PIN_9;
+  /*Configure GPIO pins : PB3 PB4 PB9 */
+  GPIO_InitStruct.Pin = GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_9;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -1080,7 +1209,7 @@ void StartTask03(void const * argument)
       //WebSocket client test routine
       webSocketClient();
 		
-    osDelay(100);
+    osDelay(1);
   }
   /* USER CODE END StartTask03 */
 }
