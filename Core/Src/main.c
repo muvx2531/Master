@@ -19,7 +19,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
-#include "usb_device.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -37,6 +36,7 @@
 #include "ssd1306.h"
 #include "ssd1306_tests.h"
 #include "core/bsd_socket.h"
+#include "TCP_protocol_Handle.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -69,6 +69,7 @@ UART_HandleTypeDef huart3;
 osThreadId defaultTaskHandle;
 osThreadId myTask02Handle;
 osThreadId myTask03Handle;
+osThreadId myTask04Handle;
 /* USER CODE BEGIN PV */
 //OsEvent appEvent;
 //bool_t buttonEventFlag;
@@ -98,6 +99,7 @@ static void MX_IWDG_Init(void);
 void StartDefaultTask(void const * argument);
 void StartTask02(void const * argument);
 void StartTask03(void const * argument);
+void TCPServer(void const * argument);
 
 /* USER CODE BEGIN PFP */
 
@@ -410,93 +412,6 @@ error_t webSocketClient(void)
    return error;
 }
 
-		TcpState state;
-
-void TCPServer(void const * argument)
-{
-	   error_t error;
-		 Socket *socket; 
-	   Socket *csocket; 
-	   IpAddr localIP;
-		 IpAddr ClientIpAddr;
-		 uint16_t Port=0;
-		 uint8_t rec[256];
-	   size_t size_rec=0;
-			char strout[256];
-
-	
-	static uint8_t res=0;
-
-		//Create a connection-oriented socket 
-		socket = socketOpen(SOCKET_TYPE_STREAM, SOCKET_IP_PROTO_TCP);
-		//Failed to create socket? 
-		if(!socket) {
-		TRACE_INFO("***ERROR sock ***\r\n");
-		} 
-		
-		error = socketSetTimeout(socket,50);
-		if(error) {
-		TRACE_INFO("***ERROR set timeout ***\r\n");
-		} 
-		
-		
-	  ipStringToAddr(APP_IPV4_HOST_ADDR, &localIP);
-		error = socketBind(socket, &localIP, 80);
-		if(error) {
-		TRACE_INFO("***ERROR bind ***\r\n");
-		} 
-		
-		error = socketListen(socket,1); 
-		if(error) {
-		TRACE_INFO("***ERROR Listen ***\r\n");
-		}
-
-		
-		while(1)
-		{
-
-			if(res != 1)
-			{
-				csocket = socketAccept(socket,&ClientIpAddr,&Port);
-				if(!csocket) {
-				TRACE_INFO("***Error accepting connection***\r\n");
-				}
-				else
-				{
-					sprintf(strout,"Start Master node\r\n");
-					error = socketSend(csocket,strout, strlen(strout), NULL, SOCKET_FLAG_NO_DELAY); 
-					res = 1;
-				}
-			}
-			
-			
-			if(res == 1)
-			{
-				//tcpReceive
-				error = socketReceive(csocket,rec, 256,&size_rec,SOCKET_FLAG_DONT_WAIT);
-				if(!error) {
-				TRACE_INFO("***ERROR Listen ***\r\n");
-				} 
-				
-				if(size_rec != 0)
-				{
-					sprintf(strout,"rec = %s\r\n",rec);
-					error = socketSend(csocket,strout, strlen(strout), NULL, SOCKET_FLAG_NO_DELAY); 
-					TRACE_INFO("***Data incomming ***\r\n");
-				}
-			}
-			
-				state = tcpGetState(csocket);
-				if((state == TCP_STATE_CLOSE_WAIT) ||  (state == TCP_STATE_CLOSED) || state >= 11)
-				{
-					res = 0;
-					socketClose(csocket);
-				}
-			
-			osDelayTask(50);
-		}
-}
-
 void TCPTestTask(void const * argument)
 {
    error_t error;
@@ -606,6 +521,10 @@ int main(void)
    Ipv6Addr ipv6Addr;
 #endif
   /* USER CODE END 1 */
+	
+	
+	Protocol_Handle();
+	
 
   /* MCU Configuration--------------------------------------------------------*/
 
@@ -643,6 +562,7 @@ int main(void)
    TRACE_INFO("Compiled: %s %s\r\n", __DATE__, __TIME__);
    TRACE_INFO("Target: STM32F407V\r\n");
    TRACE_INFO("\r\n");
+	
 	 
    //Initialize hardware cryptographic accelerator
    error = stm32f4xxCryptoInit();
@@ -794,12 +714,16 @@ int main(void)
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* definition and creation of myTask02 */
-  osThreadDef(myTask02, TCPServer, osPriorityIdle, 0, 1024);
+  osThreadDef(myTask02, StartTask02, osPriorityIdle, 0, 128);
   myTask02Handle = osThreadCreate(osThread(myTask02), NULL);
 
   /* definition and creation of myTask03 */
-  osThreadDef(myTask03,StartTask03, osPriorityIdle, 0, 1024);
+  osThreadDef(myTask03, StartTask03, osPriorityIdle, 0, 1536);
   myTask03Handle = osThreadCreate(osThread(myTask03), NULL);
+
+  /* definition and creation of myTask04 */
+  osThreadDef(myTask04, TCPServer, osPriorityIdle, 0, 512);
+  myTask04Handle = osThreadCreate(osThread(myTask04), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -1141,8 +1065,6 @@ static void MX_GPIO_Init(void)
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void const * argument)
 {
-  /* init code for USB_DEVICE */
-  MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
   for(;;)
@@ -1171,13 +1093,8 @@ void StartTask02(void const * argument)
   HAL_TIM_Base_Start_IT(&htim5);
   for(;;)
   {
-//		buttonEventFlag = TRUE;
-//		HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_4|GPIO_PIN_7);
-//		HAL_GPIO_TogglePin(GPIOE,GPIO_PIN_13);
-//    osSetEvent(&appEvent);
-		//MasternoderecieverInfo();
-		
 		xBeeFunction();
+		HAL_IWDG_Refresh(&hiwdg);
     osDelay(1);
   }
   /* USER CODE END StartTask02 */
@@ -1208,10 +1125,98 @@ void StartTask03(void const * argument)
 
       //WebSocket client test routine
       webSocketClient();
-		
     osDelay(1);
   }
   /* USER CODE END StartTask03 */
+}
+
+/* USER CODE BEGIN Header_TCPServer */
+/**
+* @brief Function implementing the myTask04 thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_TCPServer */
+void TCPServer(void const * argument)
+{
+  /* USER CODE BEGIN TCPServer */
+	  TcpState state;
+	  error_t error;
+		Socket *socket; 
+	  Socket *csocket; 
+	  IpAddr localIP;
+		IpAddr ClientIpAddr;
+		uint16_t Port=0;
+		uint8_t rec[256];
+	  size_t size_rec=0;
+		char strout[256];
+		static uint8_t res=0;
+	
+		//Create a connection-oriented socket 
+		socket = socketOpen(SOCKET_TYPE_STREAM, SOCKET_IP_PROTO_TCP);
+		//Failed to create socket? 
+		if(!socket) {
+		TRACE_INFO("***ERROR sock ***\r\n");
+		} 
+		
+		error = socketSetTimeout(socket,50);
+		if(error) {
+		TRACE_INFO("***ERROR set timeout ***\r\n");
+		} 
+		
+		
+	  ipStringToAddr(APP_IPV4_HOST_ADDR, &localIP);
+		error = socketBind(socket, &localIP, 80);
+		if(error) {
+		TRACE_INFO("***ERROR bind ***\r\n");
+		} 
+		
+		error = socketListen(socket,1); 
+		if(error) {
+		TRACE_INFO("***ERROR Listen ***\r\n");
+		}
+	
+  /* Infinite loop */
+  for(;;)
+  {
+			if(res != 1)
+			{
+				csocket = socketAccept(socket,&ClientIpAddr,&Port);
+				if(!csocket) {
+				TRACE_INFO("***Error accepting connection***\r\n");
+				}
+				else
+				{
+					sprintf(strout,"Start Master node\r\n");
+					error = socketSend(csocket,strout, strlen(strout), NULL, SOCKET_FLAG_NO_DELAY); 
+					res = 1;
+				}
+			}
+			
+			if(res == 1)
+			{
+				//tcpReceive
+				error = socketReceive(csocket,rec, 256,&size_rec,SOCKET_FLAG_DONT_WAIT);
+				if(!error) {
+				TRACE_INFO("***ERROR Listen ***\r\n");
+				}
+				
+				if(size_rec != 0){
+					sprintf(strout,"rec = %s\r\n",rec);
+					error = socketSend(csocket,strout, strlen(strout), NULL, SOCKET_FLAG_NO_DELAY); 
+					TRACE_INFO("***Data incomming ***\r\n");
+				}
+			}
+			
+			state = tcpGetState(csocket);
+			if((state == TCP_STATE_CLOSE_WAIT) ||  (state == TCP_STATE_CLOSED) || state >= 11)
+			{
+				res = 0;
+				socketClose(csocket);
+			}
+		osDelayTask(50);
+  }
+  /* USER CODE END TCPServer */
 }
 
 /**

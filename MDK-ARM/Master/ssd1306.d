@@ -36,9 +36,6 @@ master\ssd1306.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rng.h
 master\ssd1306.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 master\ssd1306.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 master\ssd1306.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
-master\ssd1306.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd.h
-master\ssd1306.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h
-master\ssd1306.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h
 master\ssd1306.o: ../Core/Inc/ssd1306_fonts.h
 master\ssd1306.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 master\ssd1306.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

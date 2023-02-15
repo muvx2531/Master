@@ -34,9 +34,6 @@ master\stm32f4xx_crypto_trng.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ha
 master\stm32f4xx_crypto_trng.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 master\stm32f4xx_crypto_trng.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 master\stm32f4xx_crypto_trng.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
-master\stm32f4xx_crypto_trng.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd.h
-master\stm32f4xx_crypto_trng.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h
-master\stm32f4xx_crypto_trng.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h
 master\stm32f4xx_crypto_trng.o: ../cyclone_crypto/core/crypto.h
 master\stm32f4xx_crypto_trng.o: ../common/os_port.h
 master\stm32f4xx_crypto_trng.o: ../Core/Inc/os_port_config.h

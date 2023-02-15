@@ -28,7 +28,7 @@
 
 //Dependencies
 #include "debug.h"
-#include "usbd_cdc_if.h"
+//#include "usbd_cdc_if.h"
 
 /**
  * @brief Display the contents of an array
@@ -79,7 +79,9 @@ int_t fputc(int_t c, FILE *stream)
    if(stream == stdout || stream == stderr)
    {
       //Character to be written
-      uint8_t ch = c;
+      static uint8_t ch ;
+		 //ch++;
+		 
 
       //Transmit data
 		  //CDC_Transmit_FS(&ch,1);

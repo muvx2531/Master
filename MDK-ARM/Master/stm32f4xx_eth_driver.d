@@ -34,9 +34,6 @@ master\stm32f4xx_eth_driver.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal
 master\stm32f4xx_eth_driver.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 master\stm32f4xx_eth_driver.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 master\stm32f4xx_eth_driver.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
-master\stm32f4xx_eth_driver.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd.h
-master\stm32f4xx_eth_driver.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h
-master\stm32f4xx_eth_driver.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h
 master\stm32f4xx_eth_driver.o: ../cyclone_tcp/core/net.h
 master\stm32f4xx_eth_driver.o: ../common/os_port.h
 master\stm32f4xx_eth_driver.o: ../Core/Inc/os_port_config.h

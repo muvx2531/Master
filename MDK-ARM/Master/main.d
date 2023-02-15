@@ -35,9 +35,6 @@ master\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rng.h
 master\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 master\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 master\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
-master\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd.h
-master\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h
-master\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h
 master\main.o: ../Core/Inc/GeneralFunction.h
 master\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 master\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
@@ -53,18 +50,15 @@ master\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
 master\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 master\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 master\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
-master\main.o: ../USB_DEVICE/App/usb_device.h
-master\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h
-master\main.o: ../USB_DEVICE/Target/usbd_conf.h
-master\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-master\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-master\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 master\main.o: ../cyclone_tcp/core/net.h
 master\main.o: ../common/os_port.h
 master\main.o: ../Core/Inc/os_port_config.h
 master\main.o: ../common/compiler_port.h
 master\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
 master\main.o: ../common/os_port_freertos.h
+master\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+master\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+master\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 master\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
 master\main.o: ../Core/Inc/net_config.h
 master\main.o: ../cyclone_tcp/core/net_legacy.h
@@ -155,3 +149,4 @@ master\main.o: ../Core/Inc/ssd1306_conf.h
 master\main.o: ../Core/Inc/ssd1306_fonts.h
 master\main.o: ../Core/Inc/ssd1306_tests.h
 master\main.o: ../cyclone_tcp/core/bsd_socket.h
+master\main.o: ../Core/Inc/TCP_protocol_Handle.h
