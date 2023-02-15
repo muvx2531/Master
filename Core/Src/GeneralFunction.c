@@ -102,7 +102,7 @@ void CRC16Gen(unsigned char *data,unsigned short int size,unsigned char* CRCResu
 
         result=result<<1|Feeddata;
 
-        if(result >= check)result=result^CRC16modbus;
+        if(result >= check)result=result^CRC16poly;
 
         currentBit--;  //point to next bit
         if(currentBit==0)

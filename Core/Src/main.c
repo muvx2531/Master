@@ -501,6 +501,8 @@ void TCPTestTask(void const * argument)
 
 /* USER CODE END 0 */
 
+
+
 /**
   * @brief  The application entry point.
   * @retval int
@@ -521,9 +523,6 @@ int main(void)
    Ipv6Addr ipv6Addr;
 #endif
   /* USER CODE END 1 */
-	
-	
-	Protocol_Handle();
 	
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -1205,6 +1204,8 @@ void TCPServer(void const * argument)
 					sprintf(strout,"rec = %s\r\n",rec);
 					error = socketSend(csocket,strout, strlen(strout), NULL, SOCKET_FLAG_NO_DELAY); 
 					TRACE_INFO("***Data incomming ***\r\n");
+					
+					Protocol_Handle(rec,size_rec);
 				}
 			}
 			

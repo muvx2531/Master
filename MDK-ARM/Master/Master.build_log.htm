@@ -27,12 +27,25 @@ Project File Date:  02/14/2023
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Master'
-compiling TCP_protocol_Handle.c...
-..\Core\Src\TCP_protocol_Handle.c(19): warning:  #111-D: statement is unreachable
-  						break;
-..\Core\Src\TCP_protocol_Handle.c(31): warning:  #940-D: missing return statement at end of non-void function "CheckXORsum" 
+compiling freertos.c...
+compiling ssd1306_tests.c...
+../Core/Inc/ssd1306.h(165): warning:  #1295-D: Deprecated declaration ssd1306_GetDisplayOn - give arg types
+  uint8_t ssd1306_GetDisplayOn();
+..\Core\Src\ssd1306_tests.c: 1 warning, 0 errors
+compiling xBee.c...
+compiling stm32f4xx_it.c...
+compiling stm32f4xx_hal_msp.c...
+compiling WeatherSensor.c...
+..\Core\Src\WeatherSensor.c(69): warning:  #177-D: variable "index"  was declared but never referenced
+  		int16_t index=0;
+..\Core\Src\WeatherSensor.c(49): warning:  #177-D: variable "c"  was declared but never referenced
+  	uint8_t i,c;
+..\Core\Src\WeatherSensor.c(64): warning:  #550-D: variable "Rain"  was set but never used
+  	float Rain;
+..\Core\Src\WeatherSensor.c(132): warning:  #940-D: missing return statement at end of non-void function "CheckNodeCaonnected" 
   }
-..\Core\Src\TCP_protocol_Handle.c: 2 warnings, 0 errors
+..\Core\Src\WeatherSensor.c: 4 warnings, 0 errors
+compiling TCP_protocol_Handle.c...
 compiling main.c...
 ../Core/Inc/ssd1306.h(165): warning:  #1295-D: Deprecated declaration ssd1306_GetDisplayOn - give arg types
   uint8_t ssd1306_GetDisplayOn();
@@ -48,20 +61,21 @@ compiling main.c...
   		uint16_t res;
 ../Core/Src/main.c(428): warning:  #177-D: variable "strbuffer"  was declared but never referenced
   		char strbuffer[20];
-../Core/Src/main.c(526): error:  #165: too few arguments in function call
-  	Protocol_Handle();
-../Core/Src/main.c(512): warning:  #177-D: variable "i"  was declared but never referenced
+../Core/Src/main.c(514): warning:  #177-D: variable "i"  was declared but never referenced
      uint_t i;
-../Core/Src/main.c(513): warning:  #177-D: variable "value"  was declared but never referenced
+../Core/Src/main.c(515): warning:  #177-D: variable "value"  was declared but never referenced
      uint32_t value;
-../Core/Src/main.c(514): warning:  #177-D: variable "task"  was declared but never referenced
+../Core/Src/main.c(516): warning:  #177-D: variable "task"  was declared but never referenced
      OsTask *task;
-../Core/Src/main.c(521): warning:  #177-D: variable "ipv6Addr"  was declared but never referenced
+../Core/Src/main.c(523): warning:  #177-D: variable "ipv6Addr"  was declared but never referenced
      Ipv6Addr ipv6Addr;
-../Core/Src/main.c(832): warning:  #177-D: function "MX_IWDG_Init"  was declared but never referenced
+../Core/Src/main.c(831): warning:  #177-D: function "MX_IWDG_Init"  was declared but never referenced
   static void MX_IWDG_Init(void)
-../Core/Src/main.c: 12 warnings, 1 error
-"Master\Master.axf" - 1 Error(s), 14 Warning(s).
+../Core/Src/main.c: 12 warnings, 0 errors
+linking...
+Program Size: Code=132634 RO-data=14190 RW-data=1952 ZI-data=104784  
+FromELF: creating hex file...
+"Master\Master.axf" - 0 Error(s), 17 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -102,8 +116,7 @@ Package Vendor: Keil
 
    * Component: Keil.ARM Compiler::Compiler:I/O:STDOUT:Breakpoint:1.2.0
       Source file:   Source\retarget_io.c
-Target not created.
-Build Time Elapsed:  00:00:03
+Build Time Elapsed:  00:00:08
 </pre>
 </body>
 </html>
