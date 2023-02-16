@@ -93,9 +93,9 @@ void xBeeConnectionKeeper(void)
 	{
 		tResetAll.counter = 0;
 		tResetAll.Status = ENABLE;
-		//HAL_IWDG_Refresh(&hiwdg);
+		HAL_IWDG_Refresh(&hiwdg);
 	}
-	//else {if(tResetAll.Status == 0x02)while(1);}
+	else {if(tResetAll.Status == 0x02)NVIC_SystemReset();}
 }
 
 void xBeeFunction(void)
@@ -113,7 +113,7 @@ void xBeeFunction(void)
 		for(i=0;i<xBee_Buffer_size;i++)xBeeSerial.RX[i]= 0;
 	}
 	
-	//xBeeConnectionKeeper();
+	xBeeConnectionKeeper();
 	
 	
 //	HAL_UART_Transmit(&UART_xBee_Handle,"test\r\n",6,100);

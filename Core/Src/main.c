@@ -501,8 +501,6 @@ void TCPTestTask(void const * argument)
 
 /* USER CODE END 0 */
 
-
-
 /**
   * @brief  The application entry point.
   * @retval int
@@ -523,7 +521,6 @@ int main(void)
    Ipv6Addr ipv6Addr;
 #endif
   /* USER CODE END 1 */
-	
 
   /* MCU Configuration--------------------------------------------------------*/
 
@@ -548,7 +545,7 @@ int main(void)
   MX_USART3_UART_Init();
   MX_TIM5_Init();
   MX_I2C1_Init();
-  //MX_IWDG_Init();
+  MX_IWDG_Init();
   /* USER CODE BEGIN 2 */
 	
 		ssd1306_Init();
@@ -717,11 +714,11 @@ int main(void)
   myTask02Handle = osThreadCreate(osThread(myTask02), NULL);
 
   /* definition and creation of myTask03 */
-  osThreadDef(myTask03, StartTask03, osPriorityIdle, 0, 1536);
+  osThreadDef(myTask03, StartTask03, osPriorityIdle, 0, 1024);
   myTask03Handle = osThreadCreate(osThread(myTask03), NULL);
 
   /* definition and creation of myTask04 */
-  osThreadDef(myTask04, TCPServer, osPriorityIdle, 0, 512);
+  osThreadDef(myTask04, TCPServer, osPriorityIdle, 0, 1024);
   myTask04Handle = osThreadCreate(osThread(myTask04), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
@@ -1093,7 +1090,6 @@ void StartTask02(void const * argument)
   for(;;)
   {
 		xBeeFunction();
-		HAL_IWDG_Refresh(&hiwdg);
     osDelay(1);
   }
   /* USER CODE END StartTask02 */
@@ -1216,6 +1212,7 @@ void TCPServer(void const * argument)
 				socketClose(csocket);
 			}
 		osDelayTask(50);
+		HAL_IWDG_Refresh(&hiwdg);
   }
   /* USER CODE END TCPServer */
 }

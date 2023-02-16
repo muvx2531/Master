@@ -424,6 +424,11 @@
               <FilePath>..\Core\Src\xBee.c</FilePath>
             </File>
             <File>
+              <FileName>TCP_protocol_Handle.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\TCP_protocol_Handle.c</FilePath>
+            </File>
+            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/main.c</FilePath>
@@ -447,11 +452,6 @@
               <FileName>stm32f4xx_hal_timebase_tim.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/stm32f4xx_hal_timebase_tim.c</FilePath>
-            </File>
-            <File>
-              <FileName>TCP_protocol_Handle.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\TCP_protocol_Handle.c</FilePath>
             </File>
           </Files>
         </Group>
