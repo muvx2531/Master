@@ -193,9 +193,7 @@ Section Cross References
     xbee.o(i.xBeeAPIhandle) refers to xbee.o(.data) for .data
     xbee.o(i.xBeeAPIhandle) refers to weathersensor.o(.data) for NodeSensordata
     xbee.o(i.xBeeConnectionKeeper) refers to weathersensor.o(i.CheckNodeCaonnected) for CheckNodeCaonnected
-    xbee.o(i.xBeeConnectionKeeper) refers to stm32f4xx_hal_iwdg.o(i.HAL_IWDG_Refresh) for HAL_IWDG_Refresh
     xbee.o(i.xBeeConnectionKeeper) refers to xbee.o(.data) for .data
-    xbee.o(i.xBeeConnectionKeeper) refers to main.o(.bss) for hiwdg
     xbee.o(i.xBeeFunction) refers to xbee.o(i.xBeeAPIhandle) for xBeeAPIhandle
     xbee.o(i.xBeeFunction) refers to xbee.o(i.xBeeConnectionKeeper) for xBeeConnectionKeeper
     xbee.o(i.xBeeFunction) refers to main.o(.bss) for huart3
@@ -8717,161 +8715,161 @@ Image Symbol Table
     i.xBeeAPIhandle                          0x0801fb40   Section        0  xbee.o(i.xBeeAPIhandle)
     i.xBeeChecksum                           0x0801fc10   Section        0  xbee.o(i.xBeeChecksum)
     i.xBeeConnectionKeeper                   0x0801fc2c   Section        0  xbee.o(i.xBeeConnectionKeeper)
-    i.xBeeFunction                           0x0801fc84   Section        0  xbee.o(i.xBeeFunction)
-    i.xBeeTimer                              0x0801fccc   Section        0  xbee.o(i.xBeeTimer)
-    i.xBee_IRQHandler                        0x0801fd60   Section        0  xbee.o(i.xBee_IRQHandler)
-    i.xBeeintervalRSSI                       0x0801fdac   Section        0  xbee.o(i.xBeeintervalRSSI)
-    i.xPortStartScheduler                    0x0801fdd4   Section        0  port.o(i.xPortStartScheduler)
-    i.xQueueCreateMutex                      0x0801fec8   Section        0  queue.o(i.xQueueCreateMutex)
-    i.xQueueGenericCreate                    0x0801feec   Section        0  queue.o(i.xQueueGenericCreate)
-    i.xQueueGenericReset                     0x0801ff38   Section        0  queue.o(i.xQueueGenericReset)
-    i.xQueueGenericSend                      0x0801ffc0   Section        0  queue.o(i.xQueueGenericSend)
-    i.xQueueGiveFromISR                      0x08020120   Section        0  queue.o(i.xQueueGiveFromISR)
-    i.xQueueSemaphoreTake                    0x080201bc   Section        0  queue.o(i.xQueueSemaphoreTake)
-    i.xTaskCheckForTimeOut                   0x08020334   Section        0  tasks.o(i.xTaskCheckForTimeOut)
-    i.xTaskCreate                            0x080203a8   Section        0  tasks.o(i.xTaskCreate)
-    i.xTaskGetSchedulerState                 0x08020400   Section        0  tasks.o(i.xTaskGetSchedulerState)
-    i.xTaskGetTickCount                      0x0802041c   Section        0  tasks.o(i.xTaskGetTickCount)
-    i.xTaskIncrementTick                     0x08020428   Section        0  tasks.o(i.xTaskIncrementTick)
-    i.xTaskPriorityDisinherit                0x080204f4   Section        0  tasks.o(i.xTaskPriorityDisinherit)
-    i.xTaskPriorityInherit                   0x0802058c   Section        0  tasks.o(i.xTaskPriorityInherit)
-    i.xTaskRemoveFromEventList               0x08020618   Section        0  tasks.o(i.xTaskRemoveFromEventList)
-    i.xTaskResumeAll                         0x0802068c   Section        0  tasks.o(i.xTaskResumeAll)
-    i.yarrowFastReseed                       0x08020750   Section        0  yarrow.o(i.yarrowFastReseed)
-    i.yarrowGenerateBlock                    0x080207ba   Section        0  yarrow.o(i.yarrowGenerateBlock)
-    i.yarrowInit                             0x080207e6   Section        0  yarrow.o(i.yarrowInit)
-    i.yarrowRead                             0x08020814   Section        0  yarrow.o(i.yarrowRead)
-    i.yarrowSeed                             0x08020892   Section        0  yarrow.o(i.yarrowSeed)
-    locale$$code                             0x080208b0   Section       44  lc_ctype_c.o(locale$$code)
-    x$fpl$fpinit                             0x080208dc   Section       10  fpinit.o(x$fpl$fpinit)
-    $v0                                      0x080208dc   Number         0  fpinit.o(x$fpl$fpinit)
-    .constdata                               0x080208e6   Section     1520  ssd1306_fonts.o(.constdata)
-    Font6x8                                  0x080208e6   Data        1520  ssd1306_fonts.o(.constdata)
-    .constdata                               0x08020ed8   Section     1789  ssd1306_tests.o(.constdata)
-    .constdata                               0x080215d8   Section       80  main.o(.constdata)
-    .constdata                               0x08021628   Section       16  system_stm32f4xx.o(.constdata)
-    .constdata                               0x08021638   Section        8  system_stm32f4xx.o(.constdata)
-    .constdata                               0x08021640   Section        6  ethernet.o(.constdata)
-    .constdata                               0x08021646   Section        6  ethernet.o(.constdata)
-    .constdata                               0x0802164c   Section       64  ethernet_misc.o(.constdata)
-    .constdata                               0x0802168c   Section        8  ip.o(.constdata)
-    .constdata                               0x08021694   Section       24  net_misc.o(.constdata)
-    .constdata                               0x080216ac   Section       16  net_misc.o(.constdata)
-    .constdata                               0x080216bc   Section       56  socket.o(.constdata)
-    .constdata                               0x080216f4   Section       20  lan8742_driver.o(.constdata)
-    .constdata                               0x08021708   Section       64  stm32f4xx_eth_driver.o(.constdata)
-    .constdata                               0x08021748   Section        7  dhcp_client_misc.o(.constdata)
-    .constdata                               0x08021750   Section      644  web_socket_misc.o(.constdata)
-    statusCodeList                           0x08021778   Data         480  web_socket_misc.o(.constdata)
-    template                                 0x08021958   Data         124  web_socket_misc.o(.constdata)
-    .constdata                               0x080219d4   Section       64  gcm.o(.constdata)
-    red                                      0x080219d4   Data          64  gcm.o(.constdata)
-    .constdata                               0x08021a14   Section     2604  aes.o(.constdata)
-    sbox                                     0x08021a14   Data         256  aes.o(.constdata)
-    isbox                                    0x08021b14   Data         256  aes.o(.constdata)
-    te                                       0x08021c14   Data        1024  aes.o(.constdata)
-    td                                       0x08022014   Data        1024  aes.o(.constdata)
-    rcon                                     0x08022414   Data          44  aes.o(.constdata)
-    .constdata                               0x08022440   Section       36  aes.o(.constdata)
-    .constdata                               0x08022464   Section        7  ecdsa.o(.constdata)
-    .constdata                               0x0802246b   Section        8  ecdsa.o(.constdata)
-    .constdata                               0x08022473   Section        8  ecdsa.o(.constdata)
-    .constdata                               0x0802247b   Section        8  ecdsa.o(.constdata)
-    .constdata                               0x08022483   Section        8  ecdsa.o(.constdata)
-    .constdata                               0x0802248c   Section     2288  ec_curves.o(.constdata)
-    .constdata                               0x08022d7c   Section        7  ec.o(.constdata)
-    .constdata                               0x08022d83   Section      192  base64.o(.constdata)
-    base64EncTable                           0x08022d83   Data          64  base64.o(.constdata)
-    base64DecTable                           0x08022dc3   Data         128  base64.o(.constdata)
-    .constdata                               0x08022e43   Section       64  sha1.o(.constdata)
-    padding                                  0x08022e43   Data          64  sha1.o(.constdata)
-    .constdata                               0x08022e83   Section        5  sha1.o(.constdata)
-    .constdata                               0x08022e88   Section       52  sha1.o(.constdata)
-    .constdata                               0x08022ebc   Section      320  sha256.o(.constdata)
-    padding                                  0x08022ebc   Data          64  sha256.o(.constdata)
-    k                                        0x08022efc   Data         256  sha256.o(.constdata)
-    .constdata                               0x08022ffc   Section        9  sha256.o(.constdata)
-    .constdata                               0x08023008   Section       52  sha256.o(.constdata)
-    .constdata                               0x0802303c   Section        9  sha384.o(.constdata)
-    .constdata                               0x08023048   Section       52  sha384.o(.constdata)
-    .constdata                               0x08023080   Section      768  sha512.o(.constdata)
-    padding                                  0x08023080   Data         128  sha512.o(.constdata)
-    k                                        0x08023100   Data         640  sha512.o(.constdata)
-    .constdata                               0x08023380   Section        9  sha512.o(.constdata)
-    .constdata                               0x0802338c   Section       52  sha512.o(.constdata)
-    .constdata                               0x080233c0   Section        7  dsa.o(.constdata)
-    .constdata                               0x080233c7   Section        3  x509_common.o(.constdata)
-    .constdata                               0x080233ca   Section        3  x509_common.o(.constdata)
-    .constdata                               0x080233cd   Section        3  x509_common.o(.constdata)
-    .constdata                               0x080233d0   Section        3  x509_common.o(.constdata)
-    .constdata                               0x080233d3   Section        3  x509_common.o(.constdata)
-    .constdata                               0x080233d6   Section        3  x509_common.o(.constdata)
-    .constdata                               0x080233d9   Section        3  x509_common.o(.constdata)
-    .constdata                               0x080233dc   Section        3  x509_common.o(.constdata)
-    .constdata                               0x080233df   Section        3  x509_common.o(.constdata)
-    .constdata                               0x080233e2   Section        3  x509_common.o(.constdata)
-    .constdata                               0x080233e5   Section        3  x509_common.o(.constdata)
-    .constdata                               0x080233e8   Section        3  x509_common.o(.constdata)
-    .constdata                               0x080233eb   Section        3  x509_common.o(.constdata)
-    .constdata                               0x080233ee   Section        3  x509_common.o(.constdata)
-    .constdata                               0x080233f1   Section        3  x509_common.o(.constdata)
-    .constdata                               0x080233f4   Section        3  x509_common.o(.constdata)
-    .constdata                               0x080233f7   Section        3  x509_common.o(.constdata)
-    .constdata                               0x080233fa   Section        3  x509_common.o(.constdata)
-    .constdata                               0x080233fd   Section        3  x509_common.o(.constdata)
-    .constdata                               0x08023400   Section        3  x509_common.o(.constdata)
-    .constdata                               0x08023403   Section        3  x509_common.o(.constdata)
-    .constdata                               0x08023406   Section        3  x509_common.o(.constdata)
-    .constdata                               0x08023409   Section        9  x509_common.o(.constdata)
-    .constdata                               0x08023412   Section        4  x509_common.o(.constdata)
+    i.xBeeFunction                           0x0801fc78   Section        0  xbee.o(i.xBeeFunction)
+    i.xBeeTimer                              0x0801fcc0   Section        0  xbee.o(i.xBeeTimer)
+    i.xBee_IRQHandler                        0x0801fd54   Section        0  xbee.o(i.xBee_IRQHandler)
+    i.xBeeintervalRSSI                       0x0801fda0   Section        0  xbee.o(i.xBeeintervalRSSI)
+    i.xPortStartScheduler                    0x0801fdc8   Section        0  port.o(i.xPortStartScheduler)
+    i.xQueueCreateMutex                      0x0801febc   Section        0  queue.o(i.xQueueCreateMutex)
+    i.xQueueGenericCreate                    0x0801fee0   Section        0  queue.o(i.xQueueGenericCreate)
+    i.xQueueGenericReset                     0x0801ff2c   Section        0  queue.o(i.xQueueGenericReset)
+    i.xQueueGenericSend                      0x0801ffb4   Section        0  queue.o(i.xQueueGenericSend)
+    i.xQueueGiveFromISR                      0x08020114   Section        0  queue.o(i.xQueueGiveFromISR)
+    i.xQueueSemaphoreTake                    0x080201b0   Section        0  queue.o(i.xQueueSemaphoreTake)
+    i.xTaskCheckForTimeOut                   0x08020328   Section        0  tasks.o(i.xTaskCheckForTimeOut)
+    i.xTaskCreate                            0x0802039c   Section        0  tasks.o(i.xTaskCreate)
+    i.xTaskGetSchedulerState                 0x080203f4   Section        0  tasks.o(i.xTaskGetSchedulerState)
+    i.xTaskGetTickCount                      0x08020410   Section        0  tasks.o(i.xTaskGetTickCount)
+    i.xTaskIncrementTick                     0x0802041c   Section        0  tasks.o(i.xTaskIncrementTick)
+    i.xTaskPriorityDisinherit                0x080204e8   Section        0  tasks.o(i.xTaskPriorityDisinherit)
+    i.xTaskPriorityInherit                   0x08020580   Section        0  tasks.o(i.xTaskPriorityInherit)
+    i.xTaskRemoveFromEventList               0x0802060c   Section        0  tasks.o(i.xTaskRemoveFromEventList)
+    i.xTaskResumeAll                         0x08020680   Section        0  tasks.o(i.xTaskResumeAll)
+    i.yarrowFastReseed                       0x08020744   Section        0  yarrow.o(i.yarrowFastReseed)
+    i.yarrowGenerateBlock                    0x080207ae   Section        0  yarrow.o(i.yarrowGenerateBlock)
+    i.yarrowInit                             0x080207da   Section        0  yarrow.o(i.yarrowInit)
+    i.yarrowRead                             0x08020808   Section        0  yarrow.o(i.yarrowRead)
+    i.yarrowSeed                             0x08020886   Section        0  yarrow.o(i.yarrowSeed)
+    locale$$code                             0x080208a4   Section       44  lc_ctype_c.o(locale$$code)
+    x$fpl$fpinit                             0x080208d0   Section       10  fpinit.o(x$fpl$fpinit)
+    $v0                                      0x080208d0   Number         0  fpinit.o(x$fpl$fpinit)
+    .constdata                               0x080208da   Section     1520  ssd1306_fonts.o(.constdata)
+    Font6x8                                  0x080208da   Data        1520  ssd1306_fonts.o(.constdata)
+    .constdata                               0x08020ecc   Section     1789  ssd1306_tests.o(.constdata)
+    .constdata                               0x080215cc   Section       80  main.o(.constdata)
+    .constdata                               0x0802161c   Section       16  system_stm32f4xx.o(.constdata)
+    .constdata                               0x0802162c   Section        8  system_stm32f4xx.o(.constdata)
+    .constdata                               0x08021634   Section        6  ethernet.o(.constdata)
+    .constdata                               0x0802163a   Section        6  ethernet.o(.constdata)
+    .constdata                               0x08021640   Section       64  ethernet_misc.o(.constdata)
+    .constdata                               0x08021680   Section        8  ip.o(.constdata)
+    .constdata                               0x08021688   Section       24  net_misc.o(.constdata)
+    .constdata                               0x080216a0   Section       16  net_misc.o(.constdata)
+    .constdata                               0x080216b0   Section       56  socket.o(.constdata)
+    .constdata                               0x080216e8   Section       20  lan8742_driver.o(.constdata)
+    .constdata                               0x080216fc   Section       64  stm32f4xx_eth_driver.o(.constdata)
+    .constdata                               0x0802173c   Section        7  dhcp_client_misc.o(.constdata)
+    .constdata                               0x08021744   Section      644  web_socket_misc.o(.constdata)
+    statusCodeList                           0x0802176c   Data         480  web_socket_misc.o(.constdata)
+    template                                 0x0802194c   Data         124  web_socket_misc.o(.constdata)
+    .constdata                               0x080219c8   Section       64  gcm.o(.constdata)
+    red                                      0x080219c8   Data          64  gcm.o(.constdata)
+    .constdata                               0x08021a08   Section     2604  aes.o(.constdata)
+    sbox                                     0x08021a08   Data         256  aes.o(.constdata)
+    isbox                                    0x08021b08   Data         256  aes.o(.constdata)
+    te                                       0x08021c08   Data        1024  aes.o(.constdata)
+    td                                       0x08022008   Data        1024  aes.o(.constdata)
+    rcon                                     0x08022408   Data          44  aes.o(.constdata)
+    .constdata                               0x08022434   Section       36  aes.o(.constdata)
+    .constdata                               0x08022458   Section        7  ecdsa.o(.constdata)
+    .constdata                               0x0802245f   Section        8  ecdsa.o(.constdata)
+    .constdata                               0x08022467   Section        8  ecdsa.o(.constdata)
+    .constdata                               0x0802246f   Section        8  ecdsa.o(.constdata)
+    .constdata                               0x08022477   Section        8  ecdsa.o(.constdata)
+    .constdata                               0x08022480   Section     2288  ec_curves.o(.constdata)
+    .constdata                               0x08022d70   Section        7  ec.o(.constdata)
+    .constdata                               0x08022d77   Section      192  base64.o(.constdata)
+    base64EncTable                           0x08022d77   Data          64  base64.o(.constdata)
+    base64DecTable                           0x08022db7   Data         128  base64.o(.constdata)
+    .constdata                               0x08022e37   Section       64  sha1.o(.constdata)
+    padding                                  0x08022e37   Data          64  sha1.o(.constdata)
+    .constdata                               0x08022e77   Section        5  sha1.o(.constdata)
+    .constdata                               0x08022e7c   Section       52  sha1.o(.constdata)
+    .constdata                               0x08022eb0   Section      320  sha256.o(.constdata)
+    padding                                  0x08022eb0   Data          64  sha256.o(.constdata)
+    k                                        0x08022ef0   Data         256  sha256.o(.constdata)
+    .constdata                               0x08022ff0   Section        9  sha256.o(.constdata)
+    .constdata                               0x08022ffc   Section       52  sha256.o(.constdata)
+    .constdata                               0x08023030   Section        9  sha384.o(.constdata)
+    .constdata                               0x0802303c   Section       52  sha384.o(.constdata)
+    .constdata                               0x08023070   Section      768  sha512.o(.constdata)
+    padding                                  0x08023070   Data         128  sha512.o(.constdata)
+    k                                        0x080230f0   Data         640  sha512.o(.constdata)
+    .constdata                               0x08023370   Section        9  sha512.o(.constdata)
+    .constdata                               0x0802337c   Section       52  sha512.o(.constdata)
+    .constdata                               0x080233b0   Section        7  dsa.o(.constdata)
+    .constdata                               0x080233b7   Section        3  x509_common.o(.constdata)
+    .constdata                               0x080233ba   Section        3  x509_common.o(.constdata)
+    .constdata                               0x080233bd   Section        3  x509_common.o(.constdata)
+    .constdata                               0x080233c0   Section        3  x509_common.o(.constdata)
+    .constdata                               0x080233c3   Section        3  x509_common.o(.constdata)
+    .constdata                               0x080233c6   Section        3  x509_common.o(.constdata)
+    .constdata                               0x080233c9   Section        3  x509_common.o(.constdata)
+    .constdata                               0x080233cc   Section        3  x509_common.o(.constdata)
+    .constdata                               0x080233cf   Section        3  x509_common.o(.constdata)
+    .constdata                               0x080233d2   Section        3  x509_common.o(.constdata)
+    .constdata                               0x080233d5   Section        3  x509_common.o(.constdata)
+    .constdata                               0x080233d8   Section        3  x509_common.o(.constdata)
+    .constdata                               0x080233db   Section        3  x509_common.o(.constdata)
+    .constdata                               0x080233de   Section        3  x509_common.o(.constdata)
+    .constdata                               0x080233e1   Section        3  x509_common.o(.constdata)
+    .constdata                               0x080233e4   Section        3  x509_common.o(.constdata)
+    .constdata                               0x080233e7   Section        3  x509_common.o(.constdata)
+    .constdata                               0x080233ea   Section        3  x509_common.o(.constdata)
+    .constdata                               0x080233ed   Section        3  x509_common.o(.constdata)
+    .constdata                               0x080233f0   Section        3  x509_common.o(.constdata)
+    .constdata                               0x080233f3   Section        3  x509_common.o(.constdata)
+    .constdata                               0x080233f6   Section        3  x509_common.o(.constdata)
+    .constdata                               0x080233f9   Section        9  x509_common.o(.constdata)
+    .constdata                               0x08023402   Section        4  x509_common.o(.constdata)
+    .constdata                               0x08023406   Section        8  x509_common.o(.constdata)
+    .constdata                               0x0802340e   Section        8  x509_common.o(.constdata)
     .constdata                               0x08023416   Section        8  x509_common.o(.constdata)
     .constdata                               0x0802341e   Section        8  x509_common.o(.constdata)
     .constdata                               0x08023426   Section        8  x509_common.o(.constdata)
     .constdata                               0x0802342e   Section        8  x509_common.o(.constdata)
-    .constdata                               0x08023436   Section        8  x509_common.o(.constdata)
-    .constdata                               0x0802343e   Section        8  x509_common.o(.constdata)
-    .constdata                               0x08023446   Section        9  rsa.o(.constdata)
-    .constdata                               0x0802344f   Section        9  rsa.o(.constdata)
-    .constdata                               0x08023458   Section        9  rsa.o(.constdata)
-    .constdata                               0x08023461   Section        9  rsa.o(.constdata)
-    .constdata                               0x0802346a   Section        9  rsa.o(.constdata)
-    .constdata                               0x08023473   Section        9  rsa.o(.constdata)
-    .constdata                               0x0802347c   Section        9  rsa.o(.constdata)
-    .constdata                               0x08023485   Section        8  rsa.o(.constdata)
-    padding                                  0x08023485   Data           8  rsa.o(.constdata)
-    .constdata                               0x0802348d   Section       64  md5.o(.constdata)
-    padding                                  0x0802348d   Data          64  md5.o(.constdata)
-    .constdata                               0x080234cd   Section        8  md5.o(.constdata)
-    .constdata                               0x080234d8   Section       52  md5.o(.constdata)
-    .constdata                               0x0802350c   Section        8  tls13_misc.o(.constdata)
-    .constdata                               0x08023514   Section        8  tls13_misc.o(.constdata)
-    .constdata                               0x0802351c   Section       32  tls13_misc.o(.constdata)
-    .constdata                               0x0802353c   Section       46  tls_client_extensions.o(.constdata)
-    .constdata                               0x0802356c   Section      836  tls_cipher_suites.o(.constdata)
-    defaultName                              0x0802356c   Data           8  tls_cipher_suites.o(.constdata)
-    .constdata                               0x080238b0   Section        7  retarget_io.o(.constdata)
-    .constdata                               0x080238b7   Section        8  retarget_io.o(.constdata)
-    .constdata                               0x080238bf   Section        8  retarget_io.o(.constdata)
-    .constdata                               0x080238c7   Section       40  _printf_hex_int.o(.constdata)
-    uc_hextab                                0x080238c7   Data          20  _printf_hex_int.o(.constdata)
-    lc_hextab                                0x080238db   Data          20  _printf_hex_int.o(.constdata)
-    .constdata                               0x080238ef   Section       17  __printf_flags_wp.o(.constdata)
-    maptable                                 0x080238ef   Data          17  __printf_flags_wp.o(.constdata)
-    .conststring                             0x08023900   Section       48  main.o(.conststring)
-    .conststring                             0x08023930   Section       96  dhcp_client_misc.o(.conststring)
-    .conststring                             0x08023990   Section        4  aes.o(.conststring)
-    .conststring                             0x08023994   Section       59  ec_curves.o(.conststring)
-    .conststring                             0x080239d0   Section        6  sha1.o(.conststring)
-    .conststring                             0x080239d8   Section        8  sha256.o(.conststring)
-    .conststring                             0x080239e0   Section        8  sha384.o(.conststring)
-    .conststring                             0x080239e8   Section        8  sha512.o(.conststring)
-    .conststring                             0x080239f0   Section        4  md5.o(.conststring)
-    .conststring                             0x080239f4   Section       72  tls_misc.o(.conststring)
-    .conststring                             0x08023a3c   Section      833  tls_cipher_suites.o(.conststring)
-    locale$$data                             0x08023dc0   Section      272  lc_ctype_c.o(locale$$data)
-    __lcctype_c_name                         0x08023dc4   Data           2  lc_ctype_c.o(locale$$data)
-    __lcctype_c_start                        0x08023dcc   Data           0  lc_ctype_c.o(locale$$data)
-    __lcctype_c_end                          0x08023ed0   Data           0  lc_ctype_c.o(locale$$data)
+    .constdata                               0x08023436   Section        9  rsa.o(.constdata)
+    .constdata                               0x0802343f   Section        9  rsa.o(.constdata)
+    .constdata                               0x08023448   Section        9  rsa.o(.constdata)
+    .constdata                               0x08023451   Section        9  rsa.o(.constdata)
+    .constdata                               0x0802345a   Section        9  rsa.o(.constdata)
+    .constdata                               0x08023463   Section        9  rsa.o(.constdata)
+    .constdata                               0x0802346c   Section        9  rsa.o(.constdata)
+    .constdata                               0x08023475   Section        8  rsa.o(.constdata)
+    padding                                  0x08023475   Data           8  rsa.o(.constdata)
+    .constdata                               0x0802347d   Section       64  md5.o(.constdata)
+    padding                                  0x0802347d   Data          64  md5.o(.constdata)
+    .constdata                               0x080234bd   Section        8  md5.o(.constdata)
+    .constdata                               0x080234c8   Section       52  md5.o(.constdata)
+    .constdata                               0x080234fc   Section        8  tls13_misc.o(.constdata)
+    .constdata                               0x08023504   Section        8  tls13_misc.o(.constdata)
+    .constdata                               0x0802350c   Section       32  tls13_misc.o(.constdata)
+    .constdata                               0x0802352c   Section       46  tls_client_extensions.o(.constdata)
+    .constdata                               0x0802355c   Section      836  tls_cipher_suites.o(.constdata)
+    defaultName                              0x0802355c   Data           8  tls_cipher_suites.o(.constdata)
+    .constdata                               0x080238a0   Section        7  retarget_io.o(.constdata)
+    .constdata                               0x080238a7   Section        8  retarget_io.o(.constdata)
+    .constdata                               0x080238af   Section        8  retarget_io.o(.constdata)
+    .constdata                               0x080238b7   Section       40  _printf_hex_int.o(.constdata)
+    uc_hextab                                0x080238b7   Data          20  _printf_hex_int.o(.constdata)
+    lc_hextab                                0x080238cb   Data          20  _printf_hex_int.o(.constdata)
+    .constdata                               0x080238df   Section       17  __printf_flags_wp.o(.constdata)
+    maptable                                 0x080238df   Data          17  __printf_flags_wp.o(.constdata)
+    .conststring                             0x080238f0   Section       48  main.o(.conststring)
+    .conststring                             0x08023920   Section       96  dhcp_client_misc.o(.conststring)
+    .conststring                             0x08023980   Section        4  aes.o(.conststring)
+    .conststring                             0x08023984   Section       59  ec_curves.o(.conststring)
+    .conststring                             0x080239c0   Section        6  sha1.o(.conststring)
+    .conststring                             0x080239c8   Section        8  sha256.o(.conststring)
+    .conststring                             0x080239d0   Section        8  sha384.o(.conststring)
+    .conststring                             0x080239d8   Section        8  sha512.o(.conststring)
+    .conststring                             0x080239e0   Section        4  md5.o(.conststring)
+    .conststring                             0x080239e4   Section       72  tls_misc.o(.conststring)
+    .conststring                             0x08023a2c   Section      833  tls_cipher_suites.o(.conststring)
+    locale$$data                             0x08023db0   Section      272  lc_ctype_c.o(locale$$data)
+    __lcctype_c_name                         0x08023db4   Data           2  lc_ctype_c.o(locale$$data)
+    __lcctype_c_start                        0x08023dbc   Data           0  lc_ctype_c.o(locale$$data)
+    __lcctype_c_end                          0x08023ec0   Data           0  lc_ctype_c.o(locale$$data)
     .data                                    0x20000000   Section        4  tcp_protocol_handle.o(.data)
     .data                                    0x20000004   Section       32  main.o(.data)
     runnumber                                0x20000004   Data           1  main.o(.data)
@@ -10199,127 +10197,127 @@ Image Symbol Table
     x509VerifySignature                      0x0801faef   Thumb Code    82  x509_signature.o(i.x509VerifySignature)
     xBeeAPIhandle                            0x0801fb41   Thumb Code   198  xbee.o(i.xBeeAPIhandle)
     xBeeChecksum                             0x0801fc11   Thumb Code    28  xbee.o(i.xBeeChecksum)
-    xBeeConnectionKeeper                     0x0801fc2d   Thumb Code    72  xbee.o(i.xBeeConnectionKeeper)
-    xBeeFunction                             0x0801fc85   Thumb Code    62  xbee.o(i.xBeeFunction)
-    xBeeTimer                                0x0801fccd   Thumb Code   142  xbee.o(i.xBeeTimer)
-    xBee_IRQHandler                          0x0801fd61   Thumb Code    72  xbee.o(i.xBee_IRQHandler)
-    xBeeintervalRSSI                         0x0801fdad   Thumb Code    26  xbee.o(i.xBeeintervalRSSI)
-    xPortStartScheduler                      0x0801fdd5   Thumb Code   222  port.o(i.xPortStartScheduler)
-    xQueueCreateMutex                        0x0801fec9   Thumb Code    36  queue.o(i.xQueueCreateMutex)
-    xQueueGenericCreate                      0x0801feed   Thumb Code    76  queue.o(i.xQueueGenericCreate)
-    xQueueGenericReset                       0x0801ff39   Thumb Code   132  queue.o(i.xQueueGenericReset)
-    xQueueGenericSend                        0x0801ffc1   Thumb Code   346  queue.o(i.xQueueGenericSend)
-    xQueueGiveFromISR                        0x08020121   Thumb Code   156  queue.o(i.xQueueGiveFromISR)
-    xQueueSemaphoreTake                      0x080201bd   Thumb Code   372  queue.o(i.xQueueSemaphoreTake)
-    xTaskCheckForTimeOut                     0x08020335   Thumb Code   112  tasks.o(i.xTaskCheckForTimeOut)
-    xTaskCreate                              0x080203a9   Thumb Code    86  tasks.o(i.xTaskCreate)
-    xTaskGetSchedulerState                   0x08020401   Thumb Code    22  tasks.o(i.xTaskGetSchedulerState)
-    xTaskGetTickCount                        0x0802041d   Thumb Code     6  tasks.o(i.xTaskGetTickCount)
-    xTaskIncrementTick                       0x08020429   Thumb Code   194  tasks.o(i.xTaskIncrementTick)
-    xTaskPriorityDisinherit                  0x080204f5   Thumb Code   144  tasks.o(i.xTaskPriorityDisinherit)
-    xTaskPriorityInherit                     0x0802058d   Thumb Code   130  tasks.o(i.xTaskPriorityInherit)
-    xTaskRemoveFromEventList                 0x08020619   Thumb Code   108  tasks.o(i.xTaskRemoveFromEventList)
-    xTaskResumeAll                           0x0802068d   Thumb Code   182  tasks.o(i.xTaskResumeAll)
-    yarrowFastReseed                         0x08020751   Thumb Code   106  yarrow.o(i.yarrowFastReseed)
-    yarrowGenerateBlock                      0x080207bb   Thumb Code    44  yarrow.o(i.yarrowGenerateBlock)
-    yarrowInit                               0x080207e7   Thumb Code    46  yarrow.o(i.yarrowInit)
-    yarrowRead                               0x08020815   Thumb Code   126  yarrow.o(i.yarrowRead)
-    yarrowSeed                               0x08020893   Thumb Code    30  yarrow.o(i.yarrowSeed)
-    _get_lc_ctype                            0x080208b1   Thumb Code    44  lc_ctype_c.o(locale$$code)
-    _fp_init                                 0x080208dd   Thumb Code    10  fpinit.o(x$fpl$fpinit)
-    __fplib_config_fpu_vfp                   0x080208e5   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x080208e5   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    garfield_128x64                          0x08020ed8   Data        1024  ssd1306_tests.o(.constdata)
-    github_logo_64x64                        0x080212d8   Data         512  ssd1306_tests.o(.constdata)
-    AHBPrescTable                            0x08021628   Data          16  system_stm32f4xx.o(.constdata)
-    APBPrescTable                            0x08021638   Data           8  system_stm32f4xx.o(.constdata)
-    MAC_UNSPECIFIED_ADDR                     0x08021640   Data           6  ethernet.o(.constdata)
-    MAC_BROADCAST_ADDR                       0x08021646   Data           6  ethernet.o(.constdata)
-    ethPadding                               0x0802164c   Data          64  ethernet_misc.o(.constdata)
-    IP_ADDR_ANY                              0x0802168c   Data           8  ip.o(.constdata)
-    NET_DEFAULT_TX_ANCILLARY                 0x08021694   Data          24  net_misc.o(.constdata)
-    NET_DEFAULT_RX_ANCILLARY                 0x080216ac   Data          16  net_misc.o(.constdata)
-    SOCKET_DEFAULT_MSG                       0x080216bc   Data          56  socket.o(.constdata)
-    lan8742PhyDriver                         0x080216f4   Data          20  lan8742_driver.o(.constdata)
-    stm32f4xxEthDriver                       0x08021708   Data          64  stm32f4xx_eth_driver.o(.constdata)
-    dhcpOptionList                           0x08021748   Data           7  dhcp_client_misc.o(.constdata)
-    webSocketGuid                            0x08021750   Data          37  web_socket_misc.o(.constdata)
-    aesCipherAlgo                            0x08022440   Data          36  aes.o(.constdata)
-    ECDSA_WITH_SHA1_OID                      0x08022464   Data           7  ecdsa.o(.constdata)
-    ECDSA_WITH_SHA224_OID                    0x0802246b   Data           8  ecdsa.o(.constdata)
-    ECDSA_WITH_SHA256_OID                    0x08022473   Data           8  ecdsa.o(.constdata)
-    ECDSA_WITH_SHA384_OID                    0x0802247b   Data           8  ecdsa.o(.constdata)
-    ECDSA_WITH_SHA512_OID                    0x08022483   Data           8  ecdsa.o(.constdata)
-    X25519_OID                               0x0802248c   Data           3  ec_curves.o(.constdata)
-    SECP224R1_OID                            0x0802248f   Data           5  ec_curves.o(.constdata)
-    SECP384R1_OID                            0x08022494   Data           5  ec_curves.o(.constdata)
-    SECP521R1_OID                            0x08022499   Data           5  ec_curves.o(.constdata)
-    SECP256R1_OID                            0x0802249e   Data           8  ec_curves.o(.constdata)
-    secp224r1Curve                           0x080224a8   Data         452  ec_curves.o(.constdata)
-    secp256r1Curve                           0x0802266c   Data         452  ec_curves.o(.constdata)
-    secp384r1Curve                           0x08022830   Data         452  ec_curves.o(.constdata)
-    secp521r1Curve                           0x080229f4   Data         452  ec_curves.o(.constdata)
-    x25519Curve                              0x08022bb8   Data         452  ec_curves.o(.constdata)
-    EC_PUBLIC_KEY_OID                        0x08022d7c   Data           7  ec.o(.constdata)
-    sha1Oid                                  0x08022e83   Data           5  sha1.o(.constdata)
-    sha1HashAlgo                             0x08022e88   Data          52  sha1.o(.constdata)
-    sha256Oid                                0x08022ffc   Data           9  sha256.o(.constdata)
-    sha256HashAlgo                           0x08023008   Data          52  sha256.o(.constdata)
-    sha384Oid                                0x0802303c   Data           9  sha384.o(.constdata)
-    sha384HashAlgo                           0x08023048   Data          52  sha384.o(.constdata)
-    sha512Oid                                0x08023380   Data           9  sha512.o(.constdata)
-    sha512HashAlgo                           0x0802338c   Data          52  sha512.o(.constdata)
-    DSA_OID                                  0x080233c0   Data           7  dsa.o(.constdata)
-    X509_COMMON_NAME_OID                     0x080233c7   Data           3  x509_common.o(.constdata)
-    X509_SURNAME_OID                         0x080233ca   Data           3  x509_common.o(.constdata)
-    X509_SERIAL_NUMBER_OID                   0x080233cd   Data           3  x509_common.o(.constdata)
-    X509_COUNTRY_NAME_OID                    0x080233d0   Data           3  x509_common.o(.constdata)
-    X509_LOCALITY_NAME_OID                   0x080233d3   Data           3  x509_common.o(.constdata)
-    X509_STATE_OR_PROVINCE_NAME_OID          0x080233d6   Data           3  x509_common.o(.constdata)
-    X509_ORGANIZATION_NAME_OID               0x080233d9   Data           3  x509_common.o(.constdata)
-    X509_ORGANIZATIONAL_UNIT_NAME_OID        0x080233dc   Data           3  x509_common.o(.constdata)
-    X509_TITLE_OID                           0x080233df   Data           3  x509_common.o(.constdata)
-    X509_NAME_OID                            0x080233e2   Data           3  x509_common.o(.constdata)
-    X509_GIVEN_NAME_OID                      0x080233e5   Data           3  x509_common.o(.constdata)
-    X509_INITIALS_OID                        0x080233e8   Data           3  x509_common.o(.constdata)
-    X509_GENERATION_QUALIFIER_OID            0x080233eb   Data           3  x509_common.o(.constdata)
-    X509_DN_QUALIFIER_OID                    0x080233ee   Data           3  x509_common.o(.constdata)
-    X509_PSEUDONYM_OID                       0x080233f1   Data           3  x509_common.o(.constdata)
-    X509_SUBJECT_KEY_ID_OID                  0x080233f4   Data           3  x509_common.o(.constdata)
-    X509_KEY_USAGE_OID                       0x080233f7   Data           3  x509_common.o(.constdata)
-    X509_SUBJECT_ALT_NAME_OID                0x080233fa   Data           3  x509_common.o(.constdata)
-    X509_BASIC_CONSTRAINTS_OID               0x080233fd   Data           3  x509_common.o(.constdata)
-    X509_NAME_CONSTRAINTS_OID                0x08023400   Data           3  x509_common.o(.constdata)
-    X509_AUTHORITY_KEY_ID_OID                0x08023403   Data           3  x509_common.o(.constdata)
-    X509_EXTENDED_KEY_USAGE_OID              0x08023406   Data           3  x509_common.o(.constdata)
-    X509_NS_CERT_TYPE_OID                    0x08023409   Data           9  x509_common.o(.constdata)
-    X509_ANY_EXT_KEY_USAGE_OID               0x08023412   Data           4  x509_common.o(.constdata)
-    X509_KP_SERVER_AUTH_OID                  0x08023416   Data           8  x509_common.o(.constdata)
-    X509_KP_CLIENT_AUTH_OID                  0x0802341e   Data           8  x509_common.o(.constdata)
-    X509_KP_CODE_SIGNING_OID                 0x08023426   Data           8  x509_common.o(.constdata)
-    X509_KP_EMAIL_PROTECTION_OID             0x0802342e   Data           8  x509_common.o(.constdata)
-    X509_KP_TIME_STAMPING_OID                0x08023436   Data           8  x509_common.o(.constdata)
-    X509_KP_OCSP_SIGNING_OID                 0x0802343e   Data           8  x509_common.o(.constdata)
-    RSA_ENCRYPTION_OID                       0x08023446   Data           9  rsa.o(.constdata)
-    MD5_WITH_RSA_ENCRYPTION_OID              0x0802344f   Data           9  rsa.o(.constdata)
-    SHA1_WITH_RSA_ENCRYPTION_OID             0x08023458   Data           9  rsa.o(.constdata)
-    SHA256_WITH_RSA_ENCRYPTION_OID           0x08023461   Data           9  rsa.o(.constdata)
-    SHA384_WITH_RSA_ENCRYPTION_OID           0x0802346a   Data           9  rsa.o(.constdata)
-    SHA512_WITH_RSA_ENCRYPTION_OID           0x08023473   Data           9  rsa.o(.constdata)
-    RSASSA_PSS_OID                           0x0802347c   Data           9  rsa.o(.constdata)
-    md5Oid                                   0x080234cd   Data           8  md5.o(.constdata)
-    md5HashAlgo                              0x080234d8   Data          52  md5.o(.constdata)
-    tls11DowngradeRandom                     0x0802350c   Data           8  tls13_misc.o(.constdata)
-    tls12DowngradeRandom                     0x08023514   Data           8  tls13_misc.o(.constdata)
-    tls13HelloRetryRequestRandom             0x0802351c   Data          32  tls13_misc.o(.constdata)
-    tlsSupportedGroups                       0x0802353c   Data          46  tls_client_extensions.o(.constdata)
-    tlsSupportedCipherSuites                 0x08023574   Data         828  tls_cipher_suites.o(.constdata)
-    __stdin_name                             0x080238b0   Data           7  retarget_io.o(.constdata)
-    __stdout_name                            0x080238b7   Data           8  retarget_io.o(.constdata)
-    __stderr_name                            0x080238bf   Data           8  retarget_io.o(.constdata)
-    Region$$Table$$Base                      0x08023d80   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08023dc0   Number         0  anon$$obj.o(Region$$Table)
-    __ctype                                  0x08023dcd   Data           0  lc_ctype_c.o(locale$$data)
+    xBeeConnectionKeeper                     0x0801fc2d   Thumb Code    62  xbee.o(i.xBeeConnectionKeeper)
+    xBeeFunction                             0x0801fc79   Thumb Code    62  xbee.o(i.xBeeFunction)
+    xBeeTimer                                0x0801fcc1   Thumb Code   142  xbee.o(i.xBeeTimer)
+    xBee_IRQHandler                          0x0801fd55   Thumb Code    72  xbee.o(i.xBee_IRQHandler)
+    xBeeintervalRSSI                         0x0801fda1   Thumb Code    26  xbee.o(i.xBeeintervalRSSI)
+    xPortStartScheduler                      0x0801fdc9   Thumb Code   222  port.o(i.xPortStartScheduler)
+    xQueueCreateMutex                        0x0801febd   Thumb Code    36  queue.o(i.xQueueCreateMutex)
+    xQueueGenericCreate                      0x0801fee1   Thumb Code    76  queue.o(i.xQueueGenericCreate)
+    xQueueGenericReset                       0x0801ff2d   Thumb Code   132  queue.o(i.xQueueGenericReset)
+    xQueueGenericSend                        0x0801ffb5   Thumb Code   346  queue.o(i.xQueueGenericSend)
+    xQueueGiveFromISR                        0x08020115   Thumb Code   156  queue.o(i.xQueueGiveFromISR)
+    xQueueSemaphoreTake                      0x080201b1   Thumb Code   372  queue.o(i.xQueueSemaphoreTake)
+    xTaskCheckForTimeOut                     0x08020329   Thumb Code   112  tasks.o(i.xTaskCheckForTimeOut)
+    xTaskCreate                              0x0802039d   Thumb Code    86  tasks.o(i.xTaskCreate)
+    xTaskGetSchedulerState                   0x080203f5   Thumb Code    22  tasks.o(i.xTaskGetSchedulerState)
+    xTaskGetTickCount                        0x08020411   Thumb Code     6  tasks.o(i.xTaskGetTickCount)
+    xTaskIncrementTick                       0x0802041d   Thumb Code   194  tasks.o(i.xTaskIncrementTick)
+    xTaskPriorityDisinherit                  0x080204e9   Thumb Code   144  tasks.o(i.xTaskPriorityDisinherit)
+    xTaskPriorityInherit                     0x08020581   Thumb Code   130  tasks.o(i.xTaskPriorityInherit)
+    xTaskRemoveFromEventList                 0x0802060d   Thumb Code   108  tasks.o(i.xTaskRemoveFromEventList)
+    xTaskResumeAll                           0x08020681   Thumb Code   182  tasks.o(i.xTaskResumeAll)
+    yarrowFastReseed                         0x08020745   Thumb Code   106  yarrow.o(i.yarrowFastReseed)
+    yarrowGenerateBlock                      0x080207af   Thumb Code    44  yarrow.o(i.yarrowGenerateBlock)
+    yarrowInit                               0x080207db   Thumb Code    46  yarrow.o(i.yarrowInit)
+    yarrowRead                               0x08020809   Thumb Code   126  yarrow.o(i.yarrowRead)
+    yarrowSeed                               0x08020887   Thumb Code    30  yarrow.o(i.yarrowSeed)
+    _get_lc_ctype                            0x080208a5   Thumb Code    44  lc_ctype_c.o(locale$$code)
+    _fp_init                                 0x080208d1   Thumb Code    10  fpinit.o(x$fpl$fpinit)
+    __fplib_config_fpu_vfp                   0x080208d9   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x080208d9   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    garfield_128x64                          0x08020ecc   Data        1024  ssd1306_tests.o(.constdata)
+    github_logo_64x64                        0x080212cc   Data         512  ssd1306_tests.o(.constdata)
+    AHBPrescTable                            0x0802161c   Data          16  system_stm32f4xx.o(.constdata)
+    APBPrescTable                            0x0802162c   Data           8  system_stm32f4xx.o(.constdata)
+    MAC_UNSPECIFIED_ADDR                     0x08021634   Data           6  ethernet.o(.constdata)
+    MAC_BROADCAST_ADDR                       0x0802163a   Data           6  ethernet.o(.constdata)
+    ethPadding                               0x08021640   Data          64  ethernet_misc.o(.constdata)
+    IP_ADDR_ANY                              0x08021680   Data           8  ip.o(.constdata)
+    NET_DEFAULT_TX_ANCILLARY                 0x08021688   Data          24  net_misc.o(.constdata)
+    NET_DEFAULT_RX_ANCILLARY                 0x080216a0   Data          16  net_misc.o(.constdata)
+    SOCKET_DEFAULT_MSG                       0x080216b0   Data          56  socket.o(.constdata)
+    lan8742PhyDriver                         0x080216e8   Data          20  lan8742_driver.o(.constdata)
+    stm32f4xxEthDriver                       0x080216fc   Data          64  stm32f4xx_eth_driver.o(.constdata)
+    dhcpOptionList                           0x0802173c   Data           7  dhcp_client_misc.o(.constdata)
+    webSocketGuid                            0x08021744   Data          37  web_socket_misc.o(.constdata)
+    aesCipherAlgo                            0x08022434   Data          36  aes.o(.constdata)
+    ECDSA_WITH_SHA1_OID                      0x08022458   Data           7  ecdsa.o(.constdata)
+    ECDSA_WITH_SHA224_OID                    0x0802245f   Data           8  ecdsa.o(.constdata)
+    ECDSA_WITH_SHA256_OID                    0x08022467   Data           8  ecdsa.o(.constdata)
+    ECDSA_WITH_SHA384_OID                    0x0802246f   Data           8  ecdsa.o(.constdata)
+    ECDSA_WITH_SHA512_OID                    0x08022477   Data           8  ecdsa.o(.constdata)
+    X25519_OID                               0x08022480   Data           3  ec_curves.o(.constdata)
+    SECP224R1_OID                            0x08022483   Data           5  ec_curves.o(.constdata)
+    SECP384R1_OID                            0x08022488   Data           5  ec_curves.o(.constdata)
+    SECP521R1_OID                            0x0802248d   Data           5  ec_curves.o(.constdata)
+    SECP256R1_OID                            0x08022492   Data           8  ec_curves.o(.constdata)
+    secp224r1Curve                           0x0802249c   Data         452  ec_curves.o(.constdata)
+    secp256r1Curve                           0x08022660   Data         452  ec_curves.o(.constdata)
+    secp384r1Curve                           0x08022824   Data         452  ec_curves.o(.constdata)
+    secp521r1Curve                           0x080229e8   Data         452  ec_curves.o(.constdata)
+    x25519Curve                              0x08022bac   Data         452  ec_curves.o(.constdata)
+    EC_PUBLIC_KEY_OID                        0x08022d70   Data           7  ec.o(.constdata)
+    sha1Oid                                  0x08022e77   Data           5  sha1.o(.constdata)
+    sha1HashAlgo                             0x08022e7c   Data          52  sha1.o(.constdata)
+    sha256Oid                                0x08022ff0   Data           9  sha256.o(.constdata)
+    sha256HashAlgo                           0x08022ffc   Data          52  sha256.o(.constdata)
+    sha384Oid                                0x08023030   Data           9  sha384.o(.constdata)
+    sha384HashAlgo                           0x0802303c   Data          52  sha384.o(.constdata)
+    sha512Oid                                0x08023370   Data           9  sha512.o(.constdata)
+    sha512HashAlgo                           0x0802337c   Data          52  sha512.o(.constdata)
+    DSA_OID                                  0x080233b0   Data           7  dsa.o(.constdata)
+    X509_COMMON_NAME_OID                     0x080233b7   Data           3  x509_common.o(.constdata)
+    X509_SURNAME_OID                         0x080233ba   Data           3  x509_common.o(.constdata)
+    X509_SERIAL_NUMBER_OID                   0x080233bd   Data           3  x509_common.o(.constdata)
+    X509_COUNTRY_NAME_OID                    0x080233c0   Data           3  x509_common.o(.constdata)
+    X509_LOCALITY_NAME_OID                   0x080233c3   Data           3  x509_common.o(.constdata)
+    X509_STATE_OR_PROVINCE_NAME_OID          0x080233c6   Data           3  x509_common.o(.constdata)
+    X509_ORGANIZATION_NAME_OID               0x080233c9   Data           3  x509_common.o(.constdata)
+    X509_ORGANIZATIONAL_UNIT_NAME_OID        0x080233cc   Data           3  x509_common.o(.constdata)
+    X509_TITLE_OID                           0x080233cf   Data           3  x509_common.o(.constdata)
+    X509_NAME_OID                            0x080233d2   Data           3  x509_common.o(.constdata)
+    X509_GIVEN_NAME_OID                      0x080233d5   Data           3  x509_common.o(.constdata)
+    X509_INITIALS_OID                        0x080233d8   Data           3  x509_common.o(.constdata)
+    X509_GENERATION_QUALIFIER_OID            0x080233db   Data           3  x509_common.o(.constdata)
+    X509_DN_QUALIFIER_OID                    0x080233de   Data           3  x509_common.o(.constdata)
+    X509_PSEUDONYM_OID                       0x080233e1   Data           3  x509_common.o(.constdata)
+    X509_SUBJECT_KEY_ID_OID                  0x080233e4   Data           3  x509_common.o(.constdata)
+    X509_KEY_USAGE_OID                       0x080233e7   Data           3  x509_common.o(.constdata)
+    X509_SUBJECT_ALT_NAME_OID                0x080233ea   Data           3  x509_common.o(.constdata)
+    X509_BASIC_CONSTRAINTS_OID               0x080233ed   Data           3  x509_common.o(.constdata)
+    X509_NAME_CONSTRAINTS_OID                0x080233f0   Data           3  x509_common.o(.constdata)
+    X509_AUTHORITY_KEY_ID_OID                0x080233f3   Data           3  x509_common.o(.constdata)
+    X509_EXTENDED_KEY_USAGE_OID              0x080233f6   Data           3  x509_common.o(.constdata)
+    X509_NS_CERT_TYPE_OID                    0x080233f9   Data           9  x509_common.o(.constdata)
+    X509_ANY_EXT_KEY_USAGE_OID               0x08023402   Data           4  x509_common.o(.constdata)
+    X509_KP_SERVER_AUTH_OID                  0x08023406   Data           8  x509_common.o(.constdata)
+    X509_KP_CLIENT_AUTH_OID                  0x0802340e   Data           8  x509_common.o(.constdata)
+    X509_KP_CODE_SIGNING_OID                 0x08023416   Data           8  x509_common.o(.constdata)
+    X509_KP_EMAIL_PROTECTION_OID             0x0802341e   Data           8  x509_common.o(.constdata)
+    X509_KP_TIME_STAMPING_OID                0x08023426   Data           8  x509_common.o(.constdata)
+    X509_KP_OCSP_SIGNING_OID                 0x0802342e   Data           8  x509_common.o(.constdata)
+    RSA_ENCRYPTION_OID                       0x08023436   Data           9  rsa.o(.constdata)
+    MD5_WITH_RSA_ENCRYPTION_OID              0x0802343f   Data           9  rsa.o(.constdata)
+    SHA1_WITH_RSA_ENCRYPTION_OID             0x08023448   Data           9  rsa.o(.constdata)
+    SHA256_WITH_RSA_ENCRYPTION_OID           0x08023451   Data           9  rsa.o(.constdata)
+    SHA384_WITH_RSA_ENCRYPTION_OID           0x0802345a   Data           9  rsa.o(.constdata)
+    SHA512_WITH_RSA_ENCRYPTION_OID           0x08023463   Data           9  rsa.o(.constdata)
+    RSASSA_PSS_OID                           0x0802346c   Data           9  rsa.o(.constdata)
+    md5Oid                                   0x080234bd   Data           8  md5.o(.constdata)
+    md5HashAlgo                              0x080234c8   Data          52  md5.o(.constdata)
+    tls11DowngradeRandom                     0x080234fc   Data           8  tls13_misc.o(.constdata)
+    tls12DowngradeRandom                     0x08023504   Data           8  tls13_misc.o(.constdata)
+    tls13HelloRetryRequestRandom             0x0802350c   Data          32  tls13_misc.o(.constdata)
+    tlsSupportedGroups                       0x0802352c   Data          46  tls_client_extensions.o(.constdata)
+    tlsSupportedCipherSuites                 0x08023564   Data         828  tls_cipher_suites.o(.constdata)
+    __stdin_name                             0x080238a0   Data           7  retarget_io.o(.constdata)
+    __stdout_name                            0x080238a7   Data           8  retarget_io.o(.constdata)
+    __stderr_name                            0x080238af   Data           8  retarget_io.o(.constdata)
+    Region$$Table$$Base                      0x08023d70   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08023db0   Number         0  anon$$obj.o(Region$$Table)
+    __ctype                                  0x08023dbd   Data           0  lc_ctype_c.o(locale$$data)
     PackageSize                              0x20000000   Data           2  tcp_protocol_handle.o(.data)
     crcres                                   0x20000002   Data           2  tcp_protocol_handle.o(.data)
     defaultTaskHandle                        0x2000000c   Data           4  main.o(.data)
@@ -10388,9 +10386,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000189
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00024678, Max: 0x00080000, ABSOLUTE, COMPRESSED[0x000240e8])
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00024668, Max: 0x00080000, ABSOLUTE, COMPRESSED[0x000240d8])
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00023ed0, Max: 0x00080000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00023ec0, Max: 0x00080000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -11594,171 +11592,170 @@ Memory Map of the image
     0x0801faee   0x0801faee   0x00000052   Code   RO        13451    i.x509VerifySignature  x509_signature.o
     0x0801fb40   0x0801fb40   0x000000d0   Code   RO          720    i.xBeeAPIhandle     xbee.o
     0x0801fc10   0x0801fc10   0x0000001c   Code   RO          721    i.xBeeChecksum      xbee.o
-    0x0801fc2c   0x0801fc2c   0x00000058   Code   RO          722    i.xBeeConnectionKeeper  xbee.o
-    0x0801fc84   0x0801fc84   0x00000048   Code   RO          723    i.xBeeFunction      xbee.o
-    0x0801fccc   0x0801fccc   0x00000094   Code   RO          725    i.xBeeTimer         xbee.o
-    0x0801fd60   0x0801fd60   0x0000004c   Code   RO          727    i.xBee_IRQHandler   xbee.o
-    0x0801fdac   0x0801fdac   0x00000028   Code   RO          729    i.xBeeintervalRSSI  xbee.o
-    0x0801fdd4   0x0801fdd4   0x000000f4   Code   RO         5891    i.xPortStartScheduler  port.o
-    0x0801fec8   0x0801fec8   0x00000024   Code   RO         4773    i.xQueueCreateMutex  queue.o
-    0x0801feec   0x0801feec   0x0000004c   Code   RO         4774    i.xQueueGenericCreate  queue.o
-    0x0801ff38   0x0801ff38   0x00000088   Code   RO         4775    i.xQueueGenericReset  queue.o
-    0x0801ffc0   0x0801ffc0   0x00000160   Code   RO         4776    i.xQueueGenericSend  queue.o
-    0x08020120   0x08020120   0x0000009c   Code   RO         4778    i.xQueueGiveFromISR  queue.o
-    0x080201bc   0x080201bc   0x00000178   Code   RO         4785    i.xQueueSemaphoreTake  queue.o
-    0x08020334   0x08020334   0x00000074   Code   RO         5134    i.xTaskCheckForTimeOut  tasks.o
-    0x080203a8   0x080203a8   0x00000056   Code   RO         5135    i.xTaskCreate       tasks.o
-    0x080203fe   0x080203fe   0x00000002   PAD
-    0x08020400   0x08020400   0x0000001c   Code   RO         5141    i.xTaskGetSchedulerState  tasks.o
-    0x0802041c   0x0802041c   0x0000000c   Code   RO         5142    i.xTaskGetTickCount  tasks.o
-    0x08020428   0x08020428   0x000000cc   Code   RO         5144    i.xTaskIncrementTick  tasks.o
-    0x080204f4   0x080204f4   0x00000098   Code   RO         5147    i.xTaskPriorityDisinherit  tasks.o
-    0x0802058c   0x0802058c   0x0000008c   Code   RO         5148    i.xTaskPriorityInherit  tasks.o
-    0x08020618   0x08020618   0x00000074   Code   RO         5149    i.xTaskRemoveFromEventList  tasks.o
-    0x0802068c   0x0802068c   0x000000c4   Code   RO         5150    i.xTaskResumeAll    tasks.o
-    0x08020750   0x08020750   0x0000006a   Code   RO        10932    i.yarrowFastReseed  yarrow.o
-    0x080207ba   0x080207ba   0x0000002c   Code   RO        10933    i.yarrowGenerateBlock  yarrow.o
-    0x080207e6   0x080207e6   0x0000002e   Code   RO        10934    i.yarrowInit        yarrow.o
-    0x08020814   0x08020814   0x0000007e   Code   RO        10935    i.yarrowRead        yarrow.o
-    0x08020892   0x08020892   0x0000001e   Code   RO        10937    i.yarrowSeed        yarrow.o
-    0x080208b0   0x080208b0   0x0000002c   Code   RO        16348    locale$$code        c_w.l(lc_ctype_c.o)
-    0x080208dc   0x080208dc   0x0000000a   Code   RO        16554    x$fpl$fpinit        fz_wm.l(fpinit.o)
-    0x080208e6   0x080208e6   0x000005f0   Data   RO          556    .constdata          ssd1306_fonts.o
-    0x08020ed6   0x08020ed6   0x00000002   PAD
-    0x08020ed8   0x08020ed8   0x000006fd   Data   RO          586    .constdata          ssd1306_tests.o
-    0x080215d5   0x080215d5   0x00000003   PAD
-    0x080215d8   0x080215d8   0x00000050   Data   RO          897    .constdata          main.o
-    0x08021628   0x08021628   0x00000010   Data   RO         4582    .constdata          system_stm32f4xx.o
-    0x08021638   0x08021638   0x00000008   Data   RO         4583    .constdata          system_stm32f4xx.o
-    0x08021640   0x08021640   0x00000006   Data   RO         6720    .constdata          ethernet.o
-    0x08021646   0x08021646   0x00000006   Data   RO         6721    .constdata          ethernet.o
-    0x0802164c   0x0802164c   0x00000040   Data   RO         6958    .constdata          ethernet_misc.o
-    0x0802168c   0x0802168c   0x00000008   Data   RO         7133    .constdata          ip.o
-    0x08021694   0x08021694   0x00000018   Data   RO         7763    .constdata          net_misc.o
-    0x080216ac   0x080216ac   0x00000010   Data   RO         7764    .constdata          net_misc.o
-    0x080216bc   0x080216bc   0x00000038   Data   RO         8306    .constdata          socket.o
-    0x080216f4   0x080216f4   0x00000014   Data   RO         9747    .constdata          lan8742_driver.o
-    0x08021708   0x08021708   0x00000040   Data   RO         9818    .constdata          stm32f4xx_eth_driver.o
-    0x08021748   0x08021748   0x00000007   Data   RO        10032    .constdata          dhcp_client_misc.o
-    0x0802174f   0x0802174f   0x00000001   PAD
-    0x08021750   0x08021750   0x00000284   Data   RO        10790    .constdata          web_socket_misc.o
-    0x080219d4   0x080219d4   0x00000040   Data   RO        11089    .constdata          gcm.o
-    0x08021a14   0x08021a14   0x00000a2c   Data   RO        11156    .constdata          aes.o
-    0x08022440   0x08022440   0x00000024   Data   RO        11157    .constdata          aes.o
-    0x08022464   0x08022464   0x00000007   Data   RO        11484    .constdata          ecdsa.o
-    0x0802246b   0x0802246b   0x00000008   Data   RO        11485    .constdata          ecdsa.o
-    0x08022473   0x08022473   0x00000008   Data   RO        11486    .constdata          ecdsa.o
-    0x0802247b   0x0802247b   0x00000008   Data   RO        11487    .constdata          ecdsa.o
-    0x08022483   0x08022483   0x00000008   Data   RO        11488    .constdata          ecdsa.o
-    0x0802248b   0x0802248b   0x00000001   PAD
-    0x0802248c   0x0802248c   0x000008f0   Data   RO        11588    .constdata          ec_curves.o
-    0x08022d7c   0x08022d7c   0x00000007   Data   RO        11670    .constdata          ec.o
-    0x08022d83   0x08022d83   0x000000c0   Data   RO        12028    .constdata          base64.o
-    0x08022e43   0x08022e43   0x00000040   Data   RO        12113    .constdata          sha1.o
-    0x08022e83   0x08022e83   0x00000005   Data   RO        12115    .constdata          sha1.o
-    0x08022e88   0x08022e88   0x00000034   Data   RO        12116    .constdata          sha1.o
-    0x08022ebc   0x08022ebc   0x00000140   Data   RO        12203    .constdata          sha256.o
-    0x08022ffc   0x08022ffc   0x00000009   Data   RO        12204    .constdata          sha256.o
-    0x08023005   0x08023005   0x00000003   PAD
-    0x08023008   0x08023008   0x00000034   Data   RO        12205    .constdata          sha256.o
-    0x0802303c   0x0802303c   0x00000009   Data   RO        12253    .constdata          sha384.o
-    0x08023045   0x08023045   0x00000003   PAD
-    0x08023048   0x08023048   0x00000034   Data   RO        12254    .constdata          sha384.o
-    0x0802307c   0x0802307c   0x00000004   PAD
-    0x08023080   0x08023080   0x00000300   Data   RO        12297    .constdata          sha512.o
-    0x08023380   0x08023380   0x00000009   Data   RO        12298    .constdata          sha512.o
-    0x08023389   0x08023389   0x00000003   PAD
-    0x0802338c   0x0802338c   0x00000034   Data   RO        12299    .constdata          sha512.o
-    0x080233c0   0x080233c0   0x00000007   Data   RO        12712    .constdata          dsa.o
-    0x080233c7   0x080233c7   0x00000003   Data   RO        13354    .constdata          x509_common.o
-    0x080233ca   0x080233ca   0x00000003   Data   RO        13355    .constdata          x509_common.o
-    0x080233cd   0x080233cd   0x00000003   Data   RO        13356    .constdata          x509_common.o
-    0x080233d0   0x080233d0   0x00000003   Data   RO        13357    .constdata          x509_common.o
-    0x080233d3   0x080233d3   0x00000003   Data   RO        13358    .constdata          x509_common.o
-    0x080233d6   0x080233d6   0x00000003   Data   RO        13359    .constdata          x509_common.o
-    0x080233d9   0x080233d9   0x00000003   Data   RO        13360    .constdata          x509_common.o
-    0x080233dc   0x080233dc   0x00000003   Data   RO        13361    .constdata          x509_common.o
-    0x080233df   0x080233df   0x00000003   Data   RO        13362    .constdata          x509_common.o
-    0x080233e2   0x080233e2   0x00000003   Data   RO        13363    .constdata          x509_common.o
-    0x080233e5   0x080233e5   0x00000003   Data   RO        13364    .constdata          x509_common.o
-    0x080233e8   0x080233e8   0x00000003   Data   RO        13365    .constdata          x509_common.o
-    0x080233eb   0x080233eb   0x00000003   Data   RO        13366    .constdata          x509_common.o
-    0x080233ee   0x080233ee   0x00000003   Data   RO        13367    .constdata          x509_common.o
-    0x080233f1   0x080233f1   0x00000003   Data   RO        13368    .constdata          x509_common.o
-    0x080233f4   0x080233f4   0x00000003   Data   RO        13370    .constdata          x509_common.o
-    0x080233f7   0x080233f7   0x00000003   Data   RO        13371    .constdata          x509_common.o
-    0x080233fa   0x080233fa   0x00000003   Data   RO        13372    .constdata          x509_common.o
-    0x080233fd   0x080233fd   0x00000003   Data   RO        13374    .constdata          x509_common.o
-    0x08023400   0x08023400   0x00000003   Data   RO        13381    .constdata          x509_common.o
-    0x08023403   0x08023403   0x00000003   Data   RO        13385    .constdata          x509_common.o
-    0x08023406   0x08023406   0x00000003   Data   RO        13387    .constdata          x509_common.o
-    0x08023409   0x08023409   0x00000009   Data   RO        13390    .constdata          x509_common.o
-    0x08023412   0x08023412   0x00000004   Data   RO        13391    .constdata          x509_common.o
-    0x08023416   0x08023416   0x00000008   Data   RO        13392    .constdata          x509_common.o
-    0x0802341e   0x0802341e   0x00000008   Data   RO        13393    .constdata          x509_common.o
-    0x08023426   0x08023426   0x00000008   Data   RO        13394    .constdata          x509_common.o
-    0x0802342e   0x0802342e   0x00000008   Data   RO        13395    .constdata          x509_common.o
-    0x08023436   0x08023436   0x00000008   Data   RO        13396    .constdata          x509_common.o
-    0x0802343e   0x0802343e   0x00000008   Data   RO        13397    .constdata          x509_common.o
-    0x08023446   0x08023446   0x00000009   Data   RO        13567    .constdata          rsa.o
-    0x0802344f   0x0802344f   0x00000009   Data   RO        13569    .constdata          rsa.o
-    0x08023458   0x08023458   0x00000009   Data   RO        13570    .constdata          rsa.o
-    0x08023461   0x08023461   0x00000009   Data   RO        13572    .constdata          rsa.o
-    0x0802346a   0x0802346a   0x00000009   Data   RO        13573    .constdata          rsa.o
-    0x08023473   0x08023473   0x00000009   Data   RO        13574    .constdata          rsa.o
-    0x0802347c   0x0802347c   0x00000009   Data   RO        13581    .constdata          rsa.o
-    0x08023485   0x08023485   0x00000008   Data   RO        13583    .constdata          rsa.o
-    0x0802348d   0x0802348d   0x00000040   Data   RO        13850    .constdata          md5.o
-    0x080234cd   0x080234cd   0x00000008   Data   RO        13852    .constdata          md5.o
-    0x080234d5   0x080234d5   0x00000003   PAD
-    0x080234d8   0x080234d8   0x00000034   Data   RO        13853    .constdata          md5.o
-    0x0802350c   0x0802350c   0x00000008   Data   RO        13908    .constdata          tls13_misc.o
-    0x08023514   0x08023514   0x00000008   Data   RO        13909    .constdata          tls13_misc.o
-    0x0802351c   0x0802351c   0x00000020   Data   RO        13910    .constdata          tls13_misc.o
-    0x0802353c   0x0802353c   0x0000002e   Data   RO        15315    .constdata          tls_client_extensions.o
-    0x0802356a   0x0802356a   0x00000002   PAD
-    0x0802356c   0x0802356c   0x00000344   Data   RO        15509    .constdata          tls_cipher_suites.o
-    0x080238b0   0x080238b0   0x00000007   Data   RO        15986    .constdata          retarget_io.o
-    0x080238b7   0x080238b7   0x00000008   Data   RO        15987    .constdata          retarget_io.o
-    0x080238bf   0x080238bf   0x00000008   Data   RO        15988    .constdata          retarget_io.o
-    0x080238c7   0x080238c7   0x00000028   Data   RO        16140    .constdata          c_w.l(_printf_hex_int.o)
-    0x080238ef   0x080238ef   0x00000011   Data   RO        16170    .constdata          c_w.l(__printf_flags_wp.o)
-    0x08023900   0x08023900   0x00000030   Data   RO          898    .conststring        main.o
-    0x08023930   0x08023930   0x00000060   Data   RO        10033    .conststring        dhcp_client_misc.o
-    0x08023990   0x08023990   0x00000004   Data   RO        11158    .conststring        aes.o
-    0x08023994   0x08023994   0x0000003b   Data   RO        11600    .conststring        ec_curves.o
-    0x080239cf   0x080239cf   0x00000001   PAD
-    0x080239d0   0x080239d0   0x00000006   Data   RO        12117    .conststring        sha1.o
-    0x080239d6   0x080239d6   0x00000002   PAD
-    0x080239d8   0x080239d8   0x00000008   Data   RO        12206    .conststring        sha256.o
-    0x080239e0   0x080239e0   0x00000008   Data   RO        12255    .conststring        sha384.o
-    0x080239e8   0x080239e8   0x00000008   Data   RO        12300    .conststring        sha512.o
-    0x080239f0   0x080239f0   0x00000004   Data   RO        13854    .conststring        md5.o
-    0x080239f4   0x080239f4   0x00000048   Data   RO        14318    .conststring        tls_misc.o
-    0x08023a3c   0x08023a3c   0x00000341   Data   RO        15510    .conststring        tls_cipher_suites.o
-    0x08023d7d   0x08023d7d   0x00000003   PAD
-    0x08023d80   0x08023d80   0x00000040   Data   RO        16645    Region$$Table       anon$$obj.o
-    0x08023dc0   0x08023dc0   0x00000110   Data   RO        16347    locale$$data        c_w.l(lc_ctype_c.o)
+    0x0801fc2c   0x0801fc2c   0x0000004c   Code   RO          722    i.xBeeConnectionKeeper  xbee.o
+    0x0801fc78   0x0801fc78   0x00000048   Code   RO          723    i.xBeeFunction      xbee.o
+    0x0801fcc0   0x0801fcc0   0x00000094   Code   RO          725    i.xBeeTimer         xbee.o
+    0x0801fd54   0x0801fd54   0x0000004c   Code   RO          727    i.xBee_IRQHandler   xbee.o
+    0x0801fda0   0x0801fda0   0x00000028   Code   RO          729    i.xBeeintervalRSSI  xbee.o
+    0x0801fdc8   0x0801fdc8   0x000000f4   Code   RO         5891    i.xPortStartScheduler  port.o
+    0x0801febc   0x0801febc   0x00000024   Code   RO         4773    i.xQueueCreateMutex  queue.o
+    0x0801fee0   0x0801fee0   0x0000004c   Code   RO         4774    i.xQueueGenericCreate  queue.o
+    0x0801ff2c   0x0801ff2c   0x00000088   Code   RO         4775    i.xQueueGenericReset  queue.o
+    0x0801ffb4   0x0801ffb4   0x00000160   Code   RO         4776    i.xQueueGenericSend  queue.o
+    0x08020114   0x08020114   0x0000009c   Code   RO         4778    i.xQueueGiveFromISR  queue.o
+    0x080201b0   0x080201b0   0x00000178   Code   RO         4785    i.xQueueSemaphoreTake  queue.o
+    0x08020328   0x08020328   0x00000074   Code   RO         5134    i.xTaskCheckForTimeOut  tasks.o
+    0x0802039c   0x0802039c   0x00000056   Code   RO         5135    i.xTaskCreate       tasks.o
+    0x080203f2   0x080203f2   0x00000002   PAD
+    0x080203f4   0x080203f4   0x0000001c   Code   RO         5141    i.xTaskGetSchedulerState  tasks.o
+    0x08020410   0x08020410   0x0000000c   Code   RO         5142    i.xTaskGetTickCount  tasks.o
+    0x0802041c   0x0802041c   0x000000cc   Code   RO         5144    i.xTaskIncrementTick  tasks.o
+    0x080204e8   0x080204e8   0x00000098   Code   RO         5147    i.xTaskPriorityDisinherit  tasks.o
+    0x08020580   0x08020580   0x0000008c   Code   RO         5148    i.xTaskPriorityInherit  tasks.o
+    0x0802060c   0x0802060c   0x00000074   Code   RO         5149    i.xTaskRemoveFromEventList  tasks.o
+    0x08020680   0x08020680   0x000000c4   Code   RO         5150    i.xTaskResumeAll    tasks.o
+    0x08020744   0x08020744   0x0000006a   Code   RO        10932    i.yarrowFastReseed  yarrow.o
+    0x080207ae   0x080207ae   0x0000002c   Code   RO        10933    i.yarrowGenerateBlock  yarrow.o
+    0x080207da   0x080207da   0x0000002e   Code   RO        10934    i.yarrowInit        yarrow.o
+    0x08020808   0x08020808   0x0000007e   Code   RO        10935    i.yarrowRead        yarrow.o
+    0x08020886   0x08020886   0x0000001e   Code   RO        10937    i.yarrowSeed        yarrow.o
+    0x080208a4   0x080208a4   0x0000002c   Code   RO        16348    locale$$code        c_w.l(lc_ctype_c.o)
+    0x080208d0   0x080208d0   0x0000000a   Code   RO        16554    x$fpl$fpinit        fz_wm.l(fpinit.o)
+    0x080208da   0x080208da   0x000005f0   Data   RO          556    .constdata          ssd1306_fonts.o
+    0x08020eca   0x08020eca   0x00000002   PAD
+    0x08020ecc   0x08020ecc   0x000006fd   Data   RO          586    .constdata          ssd1306_tests.o
+    0x080215c9   0x080215c9   0x00000003   PAD
+    0x080215cc   0x080215cc   0x00000050   Data   RO          897    .constdata          main.o
+    0x0802161c   0x0802161c   0x00000010   Data   RO         4582    .constdata          system_stm32f4xx.o
+    0x0802162c   0x0802162c   0x00000008   Data   RO         4583    .constdata          system_stm32f4xx.o
+    0x08021634   0x08021634   0x00000006   Data   RO         6720    .constdata          ethernet.o
+    0x0802163a   0x0802163a   0x00000006   Data   RO         6721    .constdata          ethernet.o
+    0x08021640   0x08021640   0x00000040   Data   RO         6958    .constdata          ethernet_misc.o
+    0x08021680   0x08021680   0x00000008   Data   RO         7133    .constdata          ip.o
+    0x08021688   0x08021688   0x00000018   Data   RO         7763    .constdata          net_misc.o
+    0x080216a0   0x080216a0   0x00000010   Data   RO         7764    .constdata          net_misc.o
+    0x080216b0   0x080216b0   0x00000038   Data   RO         8306    .constdata          socket.o
+    0x080216e8   0x080216e8   0x00000014   Data   RO         9747    .constdata          lan8742_driver.o
+    0x080216fc   0x080216fc   0x00000040   Data   RO         9818    .constdata          stm32f4xx_eth_driver.o
+    0x0802173c   0x0802173c   0x00000007   Data   RO        10032    .constdata          dhcp_client_misc.o
+    0x08021743   0x08021743   0x00000001   PAD
+    0x08021744   0x08021744   0x00000284   Data   RO        10790    .constdata          web_socket_misc.o
+    0x080219c8   0x080219c8   0x00000040   Data   RO        11089    .constdata          gcm.o
+    0x08021a08   0x08021a08   0x00000a2c   Data   RO        11156    .constdata          aes.o
+    0x08022434   0x08022434   0x00000024   Data   RO        11157    .constdata          aes.o
+    0x08022458   0x08022458   0x00000007   Data   RO        11484    .constdata          ecdsa.o
+    0x0802245f   0x0802245f   0x00000008   Data   RO        11485    .constdata          ecdsa.o
+    0x08022467   0x08022467   0x00000008   Data   RO        11486    .constdata          ecdsa.o
+    0x0802246f   0x0802246f   0x00000008   Data   RO        11487    .constdata          ecdsa.o
+    0x08022477   0x08022477   0x00000008   Data   RO        11488    .constdata          ecdsa.o
+    0x0802247f   0x0802247f   0x00000001   PAD
+    0x08022480   0x08022480   0x000008f0   Data   RO        11588    .constdata          ec_curves.o
+    0x08022d70   0x08022d70   0x00000007   Data   RO        11670    .constdata          ec.o
+    0x08022d77   0x08022d77   0x000000c0   Data   RO        12028    .constdata          base64.o
+    0x08022e37   0x08022e37   0x00000040   Data   RO        12113    .constdata          sha1.o
+    0x08022e77   0x08022e77   0x00000005   Data   RO        12115    .constdata          sha1.o
+    0x08022e7c   0x08022e7c   0x00000034   Data   RO        12116    .constdata          sha1.o
+    0x08022eb0   0x08022eb0   0x00000140   Data   RO        12203    .constdata          sha256.o
+    0x08022ff0   0x08022ff0   0x00000009   Data   RO        12204    .constdata          sha256.o
+    0x08022ff9   0x08022ff9   0x00000003   PAD
+    0x08022ffc   0x08022ffc   0x00000034   Data   RO        12205    .constdata          sha256.o
+    0x08023030   0x08023030   0x00000009   Data   RO        12253    .constdata          sha384.o
+    0x08023039   0x08023039   0x00000003   PAD
+    0x0802303c   0x0802303c   0x00000034   Data   RO        12254    .constdata          sha384.o
+    0x08023070   0x08023070   0x00000300   Data   RO        12297    .constdata          sha512.o
+    0x08023370   0x08023370   0x00000009   Data   RO        12298    .constdata          sha512.o
+    0x08023379   0x08023379   0x00000003   PAD
+    0x0802337c   0x0802337c   0x00000034   Data   RO        12299    .constdata          sha512.o
+    0x080233b0   0x080233b0   0x00000007   Data   RO        12712    .constdata          dsa.o
+    0x080233b7   0x080233b7   0x00000003   Data   RO        13354    .constdata          x509_common.o
+    0x080233ba   0x080233ba   0x00000003   Data   RO        13355    .constdata          x509_common.o
+    0x080233bd   0x080233bd   0x00000003   Data   RO        13356    .constdata          x509_common.o
+    0x080233c0   0x080233c0   0x00000003   Data   RO        13357    .constdata          x509_common.o
+    0x080233c3   0x080233c3   0x00000003   Data   RO        13358    .constdata          x509_common.o
+    0x080233c6   0x080233c6   0x00000003   Data   RO        13359    .constdata          x509_common.o
+    0x080233c9   0x080233c9   0x00000003   Data   RO        13360    .constdata          x509_common.o
+    0x080233cc   0x080233cc   0x00000003   Data   RO        13361    .constdata          x509_common.o
+    0x080233cf   0x080233cf   0x00000003   Data   RO        13362    .constdata          x509_common.o
+    0x080233d2   0x080233d2   0x00000003   Data   RO        13363    .constdata          x509_common.o
+    0x080233d5   0x080233d5   0x00000003   Data   RO        13364    .constdata          x509_common.o
+    0x080233d8   0x080233d8   0x00000003   Data   RO        13365    .constdata          x509_common.o
+    0x080233db   0x080233db   0x00000003   Data   RO        13366    .constdata          x509_common.o
+    0x080233de   0x080233de   0x00000003   Data   RO        13367    .constdata          x509_common.o
+    0x080233e1   0x080233e1   0x00000003   Data   RO        13368    .constdata          x509_common.o
+    0x080233e4   0x080233e4   0x00000003   Data   RO        13370    .constdata          x509_common.o
+    0x080233e7   0x080233e7   0x00000003   Data   RO        13371    .constdata          x509_common.o
+    0x080233ea   0x080233ea   0x00000003   Data   RO        13372    .constdata          x509_common.o
+    0x080233ed   0x080233ed   0x00000003   Data   RO        13374    .constdata          x509_common.o
+    0x080233f0   0x080233f0   0x00000003   Data   RO        13381    .constdata          x509_common.o
+    0x080233f3   0x080233f3   0x00000003   Data   RO        13385    .constdata          x509_common.o
+    0x080233f6   0x080233f6   0x00000003   Data   RO        13387    .constdata          x509_common.o
+    0x080233f9   0x080233f9   0x00000009   Data   RO        13390    .constdata          x509_common.o
+    0x08023402   0x08023402   0x00000004   Data   RO        13391    .constdata          x509_common.o
+    0x08023406   0x08023406   0x00000008   Data   RO        13392    .constdata          x509_common.o
+    0x0802340e   0x0802340e   0x00000008   Data   RO        13393    .constdata          x509_common.o
+    0x08023416   0x08023416   0x00000008   Data   RO        13394    .constdata          x509_common.o
+    0x0802341e   0x0802341e   0x00000008   Data   RO        13395    .constdata          x509_common.o
+    0x08023426   0x08023426   0x00000008   Data   RO        13396    .constdata          x509_common.o
+    0x0802342e   0x0802342e   0x00000008   Data   RO        13397    .constdata          x509_common.o
+    0x08023436   0x08023436   0x00000009   Data   RO        13567    .constdata          rsa.o
+    0x0802343f   0x0802343f   0x00000009   Data   RO        13569    .constdata          rsa.o
+    0x08023448   0x08023448   0x00000009   Data   RO        13570    .constdata          rsa.o
+    0x08023451   0x08023451   0x00000009   Data   RO        13572    .constdata          rsa.o
+    0x0802345a   0x0802345a   0x00000009   Data   RO        13573    .constdata          rsa.o
+    0x08023463   0x08023463   0x00000009   Data   RO        13574    .constdata          rsa.o
+    0x0802346c   0x0802346c   0x00000009   Data   RO        13581    .constdata          rsa.o
+    0x08023475   0x08023475   0x00000008   Data   RO        13583    .constdata          rsa.o
+    0x0802347d   0x0802347d   0x00000040   Data   RO        13850    .constdata          md5.o
+    0x080234bd   0x080234bd   0x00000008   Data   RO        13852    .constdata          md5.o
+    0x080234c5   0x080234c5   0x00000003   PAD
+    0x080234c8   0x080234c8   0x00000034   Data   RO        13853    .constdata          md5.o
+    0x080234fc   0x080234fc   0x00000008   Data   RO        13908    .constdata          tls13_misc.o
+    0x08023504   0x08023504   0x00000008   Data   RO        13909    .constdata          tls13_misc.o
+    0x0802350c   0x0802350c   0x00000020   Data   RO        13910    .constdata          tls13_misc.o
+    0x0802352c   0x0802352c   0x0000002e   Data   RO        15315    .constdata          tls_client_extensions.o
+    0x0802355a   0x0802355a   0x00000002   PAD
+    0x0802355c   0x0802355c   0x00000344   Data   RO        15509    .constdata          tls_cipher_suites.o
+    0x080238a0   0x080238a0   0x00000007   Data   RO        15986    .constdata          retarget_io.o
+    0x080238a7   0x080238a7   0x00000008   Data   RO        15987    .constdata          retarget_io.o
+    0x080238af   0x080238af   0x00000008   Data   RO        15988    .constdata          retarget_io.o
+    0x080238b7   0x080238b7   0x00000028   Data   RO        16140    .constdata          c_w.l(_printf_hex_int.o)
+    0x080238df   0x080238df   0x00000011   Data   RO        16170    .constdata          c_w.l(__printf_flags_wp.o)
+    0x080238f0   0x080238f0   0x00000030   Data   RO          898    .conststring        main.o
+    0x08023920   0x08023920   0x00000060   Data   RO        10033    .conststring        dhcp_client_misc.o
+    0x08023980   0x08023980   0x00000004   Data   RO        11158    .conststring        aes.o
+    0x08023984   0x08023984   0x0000003b   Data   RO        11600    .conststring        ec_curves.o
+    0x080239bf   0x080239bf   0x00000001   PAD
+    0x080239c0   0x080239c0   0x00000006   Data   RO        12117    .conststring        sha1.o
+    0x080239c6   0x080239c6   0x00000002   PAD
+    0x080239c8   0x080239c8   0x00000008   Data   RO        12206    .conststring        sha256.o
+    0x080239d0   0x080239d0   0x00000008   Data   RO        12255    .conststring        sha384.o
+    0x080239d8   0x080239d8   0x00000008   Data   RO        12300    .conststring        sha512.o
+    0x080239e0   0x080239e0   0x00000004   Data   RO        13854    .conststring        md5.o
+    0x080239e4   0x080239e4   0x00000048   Data   RO        14318    .conststring        tls_misc.o
+    0x08023a2c   0x08023a2c   0x00000341   Data   RO        15510    .conststring        tls_cipher_suites.o
+    0x08023d6d   0x08023d6d   0x00000003   PAD
+    0x08023d70   0x08023d70   0x00000040   Data   RO        16645    Region$$Table       anon$$obj.o
+    0x08023db0   0x08023db0   0x00000110   Data   RO        16347    locale$$data        c_w.l(lc_ctype_c.o)
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08023ed0, Size: 0x00019080, Max: 0x0001c000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08023ec0, Size: 0x00019080, Max: 0x0001c000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x08023ed0   0x00000004   Data   RW          848    .data               tcp_protocol_handle.o
-    0x20000004   0x08023ed4   0x00000020   Data   RW          899    .data               main.o
-    0x20000024   0x08023ef4   0x0000000c   Data   RW         2437    .data               stm32f4xx_hal.o
-    0x20000030   0x08023f00   0x00000004   Data   RW         7999    .data               nic.o
-    0x20000034   0x08023f04   0x00000002   Data   RW         8536    .data               tcp.o
-    0x20000036   0x08023f06   0x00000002   Data   RW         8959    .data               udp.o
-    0x20000038   0x08023f08   0x00000004   Data   RW         9062    .data               arp.o
-    0x2000003c   0x08023f0c   0x0000000c   Data   RW         9819    .data               stm32f4xx_eth_driver.o
-    0x20000048   0x08023f18   0x00000024   Data   RW        10034    .data               dhcp_client_misc.o
-    0x2000006c   0x08023f3c   0x00000004   Data   RW        10035    .data               dhcp_client_misc.o
-    0x20000070   0x08023f40   0x00000004   Data   RW        10274    .data               igmp_common.o
-    0x20000074   0x08023f44   0x00000004   Data   RW        11028    .data               stm32f4xx_crypto.o
-    0x20000078   0x08023f48   0x00000004   Data   RW        16190    .data               c_w.l(stdio_streams.o)
-    0x2000007c   0x08023f4c   0x00000004   PAD
+    0x20000000   0x08023ec0   0x00000004   Data   RW          848    .data               tcp_protocol_handle.o
+    0x20000004   0x08023ec4   0x00000020   Data   RW          899    .data               main.o
+    0x20000024   0x08023ee4   0x0000000c   Data   RW         2437    .data               stm32f4xx_hal.o
+    0x20000030   0x08023ef0   0x00000004   Data   RW         7999    .data               nic.o
+    0x20000034   0x08023ef4   0x00000002   Data   RW         8536    .data               tcp.o
+    0x20000036   0x08023ef6   0x00000002   Data   RW         8959    .data               udp.o
+    0x20000038   0x08023ef8   0x00000004   Data   RW         9062    .data               arp.o
+    0x2000003c   0x08023efc   0x0000000c   Data   RW         9819    .data               stm32f4xx_eth_driver.o
+    0x20000048   0x08023f08   0x00000024   Data   RW        10034    .data               dhcp_client_misc.o
+    0x2000006c   0x08023f2c   0x00000004   Data   RW        10035    .data               dhcp_client_misc.o
+    0x20000070   0x08023f30   0x00000004   Data   RW        10274    .data               igmp_common.o
+    0x20000074   0x08023f34   0x00000004   Data   RW        11028    .data               stm32f4xx_crypto.o
+    0x20000078   0x08023f38   0x00000004   Data   RW        16190    .data               c_w.l(stdio_streams.o)
+    0x2000007c   0x08023f3c   0x00000004   PAD
     0x20000080        -       0x00000898   Zero   RW          892    .bss                main.o
     0x20000918        -       0x00000048   Zero   RW         1500    .bss                stm32f4xx_hal_timebase_tim.o
     0x20000960        -       0x00000040   Zero   RW         4786    .bss                queue.o
@@ -11772,12 +11769,12 @@ Memory Map of the image
     0x20008974        -       0x00000054   Zero   RW        16186    .bss                c_w.l(stdio_streams.o)
     0x200089c8        -       0x00000054   Zero   RW        16188    .bss                c_w.l(stdio_streams.o)
     0x20008a1c        -       0x00000060   Zero   RW        16441    .bss                c_w.l(libspace.o)
-    0x20008a7c   0x08023f4c   0x00000004   PAD
+    0x20008a7c   0x08023f3c   0x00000004   PAD
     0x20008a80        -       0x00010200   Zero   RW            2    HEAP                startup_stm32f407xx.o
     0x20018c80        -       0x00000400   Zero   RW            1    STACK               startup_stm32f407xx.o
 
 
-    Execution Region RW_IRAM2 (Exec base: 0x2001c000, Load base: 0x08023f4c, Size: 0x0000107c, Max: 0x00004000, ABSOLUTE, COMPRESSED[0x0000019c])
+    Execution Region RW_IRAM2 (Exec base: 0x2001c000, Load base: 0x08023f3c, Size: 0x0000107c, Max: 0x00004000, ABSOLUTE, COMPRESSED[0x0000019c])
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -11953,13 +11950,13 @@ Image component sizes
        288         50        127          0          0      16443   x509_common.o
        880         42          0          0          0       8277   x509_key_parse.o
        334          0          0          0          0       3989   x509_signature.o
-       692         68          0         80       1036      39188   xbee.o
+       680         66          0         80       1036      39144   xbee.o
        352          0          0          0          0       4756   yarrow.o
 
     ----------------------------------------------------------------------
-    127484       8338      13865       1948     104432    2368352   Object Totals
+    127472       8336      13861       1948     104432    2368308   Object Totals
          0          0         64          0          0          0   (incl. Generated)
-       208          0         31          5          0          0   (incl. Padding)
+       208          0         27          5          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -12081,15 +12078,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-    132958       8582      14194       1960     104788    2273372   Grand Totals
-    132958       8582      14194        536     104788    2273372   ELF Image Totals (compressed)
-    132958       8582      14194        536          0          0   ROM Totals
+    132946       8580      14190       1960     104788    2273328   Grand Totals
+    132946       8580      14190        536     104788    2273328   ELF Image Totals (compressed)
+    132946       8580      14190        536          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)               147152 ( 143.70kB)
+    Total RO  Size (Code + RO Data)               147136 ( 143.69kB)
     Total RW  Size (RW Data + ZI Data)            106748 ( 104.25kB)
-    Total ROM Size (Code + RO Data + RW Data)     147688 ( 144.23kB)
+    Total ROM Size (Code + RO Data + RW Data)     147672 ( 144.21kB)
 
 ==============================================================================
 
