@@ -12,6 +12,7 @@
 "master\stm32f4xx_it.o"
 "master\stm32f4xx_hal_msp.o"
 "master\stm32f4xx_hal_timebase_tim.o"
+"master\stm32custombootloader.o"
 "master\stm32f4xx_hal_rcc.o"
 "master\stm32f4xx_hal_rcc_ex.o"
 "master\stm32f4xx_hal_flash.o"

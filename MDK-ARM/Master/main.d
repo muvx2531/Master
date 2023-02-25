@@ -150,3 +150,4 @@ master\main.o: ../Core/Inc/ssd1306_fonts.h
 master\main.o: ../Core/Inc/ssd1306_tests.h
 master\main.o: ../cyclone_tcp/core/bsd_socket.h
 master\main.o: ../Core/Inc/TCP_protocol_Handle.h
+master\main.o: ../Core/Inc/STM32CustomBootloader.h

@@ -37,6 +37,7 @@
 #include "ssd1306_tests.h"
 #include "core/bsd_socket.h"
 #include "TCP_protocol_Handle.h"
+#include "STM32CustomBootloader.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -498,7 +499,8 @@ void TCPTestTask(void const * argument)
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+char test[]="HEX=9313*4A";
+uint32_t line;
 /* USER CODE END 0 */
 
 /**
@@ -520,6 +522,8 @@ int main(void)
 #if (APP_USE_SLAAC == DISABLED)
    Ipv6Addr ipv6Addr;
 #endif
+	
+	
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -718,7 +722,7 @@ int main(void)
   myTask03Handle = osThreadCreate(osThread(myTask03), NULL);
 
   /* definition and creation of myTask04 */
-  osThreadDef(myTask04, TCPServer, osPriorityIdle, 0, 1024);
+  osThreadDef(myTask04, TCPServer, osPriorityIdle, 0, 2048);
   myTask04Handle = osThreadCreate(osThread(myTask04), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
@@ -1135,6 +1139,9 @@ void StartTask03(void const * argument)
 void TCPServer(void const * argument)
 {
   /* USER CODE BEGIN TCPServer */
+	
+	#define MaxComeinCMD 1024
+	#define HexLoadStepsize 22 //line
 	  TcpState state;
 	  error_t error;
 		Socket *socket; 
@@ -1142,10 +1149,15 @@ void TCPServer(void const * argument)
 	  IpAddr localIP;
 		IpAddr ClientIpAddr;
 		uint16_t Port=0;
-		uint8_t rec[256];
+		uint8_t rec[1152];
 	  size_t size_rec=0;
 		char strout[256];
-		static uint8_t res=0;
+		static uint8_t Programmingstate = 0;
+	
+	
+		uint32_t Totalhexline=0;
+		uint32_t HexRequestStart =0;
+		uint32_t HexRequestStop =0;
 	
 		//Create a connection-oriented socket 
 		socket = socketOpen(SOCKET_TYPE_STREAM, SOCKET_IP_PROTO_TCP);
@@ -1174,43 +1186,70 @@ void TCPServer(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-			if(res != 1)
+			switch(Programmingstate)
 			{
-				csocket = socketAccept(socket,&ClientIpAddr,&Port);
-				if(!csocket) {
-				TRACE_INFO("***Error accepting connection***\r\n");
-				}
-				else
-				{
-					sprintf(strout,"Start Master node\r\n");
-					error = socketSend(csocket,strout, strlen(strout), NULL, SOCKET_FLAG_NO_DELAY); 
-					res = 1;
-				}
-			}
-			
-			if(res == 1)
-			{
-				//tcpReceive
-				error = socketReceive(csocket,rec, 256,&size_rec,SOCKET_FLAG_DONT_WAIT);
-				if(!error) {
-				TRACE_INFO("***ERROR Listen ***\r\n");
-				}
+				case 0x00://listenning
+					csocket = socketAccept(socket,&ClientIpAddr,&Port);
+					if(!csocket) 
+					{
+						TRACE_INFO("***Error accepting connection***\r\n");
+					}
+					else
+					{
+						sprintf(strout,"Start Master node\r\n");
+						error = socketSend(csocket,strout, strlen(strout), NULL, SOCKET_FLAG_NO_DELAY); 
+						Programmingstate = 0x01;
+					}
+					break;
 				
-				if(size_rec != 0){
-					sprintf(strout,"rec = %s\r\n",rec);
-					error = socketSend(csocket,strout, strlen(strout), NULL, SOCKET_FLAG_NO_DELAY); 
-					TRACE_INFO("***Data incomming ***\r\n");
+				case 0x01://tcpReceive
 					
-					Protocol_Handle(rec,size_rec);
-				}
+					error = socketReceive(csocket,rec, 1152,&size_rec,SOCKET_FLAG_DONT_WAIT);
+					if(!error) {
+					TRACE_INFO("***ERROR Listen ***\r\n");
+					}
+					
+					if(size_rec != 0){
+//						sprintf(strout,"rec = %s\r\n",rec);
+//						error = socketSend(csocket,strout, strlen(strout), NULL, SOCKET_FLAG_NO_DELAY); 
+//						TRACE_INFO("***Data incomming ***\r\n");
+						
+						if(Get_linetotal((uint8_t*)test,strlen(test),&Totalhexline) == True)
+						{
+							Programmingstate = 0x02;
+							HexRequestStart = 1;
+							HexRequestStop = HexLoadStepsize;
+						}
+						
+//						if(program_verify_fanuc(rec,size_rec) == True)
+//						{
+//							HexIntelDecodeFlashProgramming(rec,size_rec);
+//						}
+						size_rec=0;
+					}
+					break;
+					
+				case 0x02:
+						if(program_verify_fanuc(rec,size_rec) == True)
+						{
+							HexIntelDecodeFlashProgramming(rec,size_rec);
+						}
+					
+					break;
+					
+				default:
+					break;
 			}
-			
+
+			//monitor
 			state = tcpGetState(csocket);
 			if((state == TCP_STATE_CLOSE_WAIT) ||  (state == TCP_STATE_CLOSED) || state >= 11)
 			{
-				res = 0;
+				Programmingstate = 0;
 				socketClose(csocket);
 			}
+			
+			
 		osDelayTask(50);
 		HAL_IWDG_Refresh(&hiwdg);
   }

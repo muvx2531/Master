@@ -129,6 +129,7 @@ _Bool CheckNodeCaonnected(uint8_t NodeID)
 	{
 		if((NodeSensordata[i].MarkNode == NodeID) && (NodeSensordata[i].tNode.Status == ENABLE))return True;
 	}
+	return False;
 }
 
 void WeatherProcesstimer(void)

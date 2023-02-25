@@ -522,32 +522,32 @@ void Readflash(unsigned int Address,unsigned char *dat,unsigned int size)
 	for(i=0;i<size;i++)*(dat+i) = (unsigned char)*((unsigned int*)(Address+i));
 }
 
-void ConvertStringtoHEX(unsigned char *String,unsigned char size,unsigned char *Output)
-{
-		 unsigned char i,j;
-		 unsigned char OutputCounter=0;
-	   unsigned char buff[2];
-		 for(i=0;i<size;i+=2)
-		 {
-				for(j=0;j<2;j++)
-				{
-					if((*(String+i+j) >= 'A') && (*(String+i+j) <= 'F'))
-					{
-						buff[j]=*(String+i+j)-0x37;
-					}
-					else if((*(String+i+j) >= 'a') && (*(String+i+j) <= 'f'))
-					{
-						buff[j]=*(String+i+j)-0x57;
-					}
-					else if((*(String+i+j) >= '0') && (*(String+i+j) <= '9'))
-					{
-						buff[j]=*(String+i+j)-0x30;
-					}
-			  }
-				*(Output+OutputCounter) = buff[0]<<4|buff[1];
-				OutputCounter++;
-		 }
-}
+//void ConvertStringtoHEX(unsigned char *String,unsigned char size,unsigned char *Output)
+//{
+//		 unsigned char i,j;
+//		 unsigned char OutputCounter=0;
+//	   unsigned char buff[2];
+//		 for(i=0;i<size;i+=2)
+//		 {
+//				for(j=0;j<2;j++)
+//				{
+//					if((*(String+i+j) >= 'A') && (*(String+i+j) <= 'F'))
+//					{
+//						buff[j]=*(String+i+j)-0x37;
+//					}
+//					else if((*(String+i+j) >= 'a') && (*(String+i+j) <= 'f'))
+//					{
+//						buff[j]=*(String+i+j)-0x57;
+//					}
+//					else if((*(String+i+j) >= '0') && (*(String+i+j) <= '9'))
+//					{
+//						buff[j]=*(String+i+j)-0x30;
+//					}
+//			  }
+//				*(Output+OutputCounter) = buff[0]<<4|buff[1];
+//				OutputCounter++;
+//		 }
+//}
 
 unsigned char Writeflash(unsigned int Address,unsigned char *dat,unsigned int size)
 {

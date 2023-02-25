@@ -27,14 +27,14 @@
 #define CRC_7         7
 #define CRC7poly     0x00000089
 
-#define MCU_Flash_memory_per_page 1024
-#define MAX_EEPROM								128
-#define APPoffset									0x3000
-#define ApplicationAddress    	0x08000000|APPoffset
-#define StartEeprom     				0x08080000  //infomations  //last page midle value line medium-density devices 1-64
-#define EndEeprom   						0x08080FFF //0x0800FFFF
-#define Pagesize    						0x00000100  //256 byte
-#define SNsectionadds 					StartEeprom
+//#define MCU_Flash_memory_per_page 1024
+//#define MAX_EEPROM								128
+//#define APPoffset									0x3000
+//#define ApplicationAddress    	0x08000000|APPoffset
+//#define StartEeprom     				0x08080000  //infomations  //last page midle value line medium-density devices 1-64
+//#define EndEeprom   						0x08080FFF //0x0800FFFF
+//#define Pagesize    						0x00000100  //256 byte
+//#define SNsectionadds 					StartEeprom
 
 typedef void (*pFUNC)(void);
 typedef void (*PFuncInit)(unsigned char *s);

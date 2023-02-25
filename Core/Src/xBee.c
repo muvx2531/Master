@@ -95,7 +95,13 @@ void xBeeConnectionKeeper(void)
 		tResetAll.Status = ENABLE;
 		//HAL_IWDG_Refresh(&hiwdg);
 	}
-	else {if(tResetAll.Status == 0x02)NVIC_SystemReset();}
+	else 
+	{
+		if(tResetAll.Status == 0x02)
+			{
+				//NVIC_SystemReset();
+			}
+	}
 }
 
 void xBeeFunction(void)
