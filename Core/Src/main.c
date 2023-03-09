@@ -413,6 +413,8 @@ error_t webSocketClient(void)
    return error;
 }
 
+
+
 void TCPTestTask(void const * argument)
 {
    error_t error;
@@ -1190,57 +1192,57 @@ void TCPServer(void const * argument)
 			{
 				case 0x00://listenning
 					csocket = socketAccept(socket,&ClientIpAddr,&Port);
-					if(!csocket) 
+					if(!csocket)
 					{
 						TRACE_INFO("***Error accepting connection***\r\n");
 					}
 					else
 					{
-						sprintf(strout,"Start Master node\r\n");
-						error = socketSend(csocket,strout, strlen(strout), NULL, SOCKET_FLAG_NO_DELAY); 
 						Programmingstate = 0x01;
 					}
 					break;
-				
+
 				case 0x01://tcpReceive
-					
+
 					error = socketReceive(csocket,rec, 1152,&size_rec,SOCKET_FLAG_DONT_WAIT);
 					if(!error) {
 					TRACE_INFO("***ERROR Listen ***\r\n");
 					}
-					
+
 					if(size_rec != 0){
-//						sprintf(strout,"rec = %s\r\n",rec);
-//						error = socketSend(csocket,strout, strlen(strout), NULL, SOCKET_FLAG_NO_DELAY); 
-//						TRACE_INFO("***Data incomming ***\r\n");
-						
-						if(Get_linetotal((uint8_t*)test,strlen(test),&Totalhexline) == True)
-						{
-							Programmingstate = 0x02;
-							HexRequestStart = 1;
-							HexRequestStop = HexLoadStepsize;
-						}
-						
-//						if(program_verify_fanuc(rec,size_rec) == True)
+
+//						if(ForceDelete_APP2EEPROM((uint8_t*)rec,strlen((char*)rec),&Totalhexline) == true)
 //						{
-//							HexIntelDecodeFlashProgramming(rec,size_rec);
+//							write_eeprom_0x08004000U_512(0x80,"EMPTY",5);
+//							NVIC_SystemReset();// Go app by bootload() select app
 //						}
 						size_rec=0;
 					}
 					break;
-					
+
 				case 0x02:
+
+					error = socketReceive(csocket,rec, 1152,&size_rec,SOCKET_FLAG_DONT_WAIT);
+					if(!error) {
+					TRACE_INFO("***ERROR Listen ***\r\n");
+					}
+
+					if(size_rec != 0)
+					{
 						if(program_verify_fanuc(rec,size_rec) == True)
 						{
 							HexIntelDecodeFlashProgramming(rec,size_rec);
+							//update record
+							HexRequestStart = HexRequestStop+1;
+							HexRequestStop = HexRequestStart+HexLoadStepsize-1;
+							if(HexRequestStop > Totalhexline) HexRequestStop = Totalhexline;
 						}
-					
+					}
 					break;
-					
+
 				default:
 					break;
 			}
-
 			//monitor
 			state = tcpGetState(csocket);
 			if((state == TCP_STATE_CLOSE_WAIT) ||  (state == TCP_STATE_CLOSED) || state >= 11)
@@ -1248,9 +1250,7 @@ void TCPServer(void const * argument)
 				Programmingstate = 0;
 				socketClose(csocket);
 			}
-			
-			
-		osDelayTask(50);
+			osDelayTask(1);
 		HAL_IWDG_Refresh(&hiwdg);
   }
   /* USER CODE END TCPServer */

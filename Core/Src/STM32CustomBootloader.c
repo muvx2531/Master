@@ -117,8 +117,8 @@ void EraseAPP(void)
 
 	   /* Fill EraseInit structure*/
 	   EraseInitStruct.TypeErase   = FLASH_TYPEERASE_SECTORS;
-	   EraseInitStruct.Sector = 6;
-	   EraseInitStruct.NbSectors    = 6;
+	   EraseInitStruct.Sector = 8;
+	   EraseInitStruct.NbSectors    = 4;
 		 EraseInitStruct.VoltageRange = FLASH_VOLTAGE_RANGE_3;
 
 	   if (HAL_FLASHEx_Erase(&EraseInitStruct, &PAGEError) != HAL_OK)
@@ -127,10 +127,7 @@ void EraseAPP(void)
 		  //return HAL_FLASH_GetError ();
 	   }
 	
-	
 		HAL_FLASH_Lock();
-	
-	
 }
 
 uint8_t Get_linetotal(uint8_t *String,uint16_t size,uint32_t *LineTotal)

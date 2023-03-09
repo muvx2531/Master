@@ -208,8 +208,6 @@ void MasternodeInfo(void)
 		 
 //	Nodeweatherdata NodeSensordata[Maxnodesize]
 	
-	
-   
     do {
         ssd1306_SetCursor(2, 28*2);
         ssd1306_WriteString(message, Font_6x8, White);

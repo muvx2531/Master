@@ -19,7 +19,7 @@ typedef  void (*pFunction)(void);
 /************Bootloader configuration************/
 
 #define NVIC_VectTab_FLASH  ((uint32_t)0x08000000) //default
-#define APPoffset			((uint32_t)0x0000F000)
+#define APPoffset			((uint32_t)0x00030000)
 #define ApplicationAddress  (NVIC_VectTab_FLASH | APPoffset)
 
 /******************36

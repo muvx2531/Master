@@ -22,43 +22,19 @@ Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
 D:\ARM_work\MasternodeWeatherstation\Master\MDK-ARM\Master.uvprojx
-Project File Date:  02/24/2023
+Project File Date:  03/03/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Master'
-compiling main.c...
+compiling ssd1306_tests.c...
 ../Core/Inc/ssd1306.h(165): warning:  #1295-D: Deprecated declaration ssd1306_GetDisplayOn - give arg types
   uint8_t ssd1306_GetDisplayOn();
-../Core/Src/main.c(191): warning:  #177-D: variable "inc"  was declared but never referenced
-  	 static unsigned int inc=0;
-../Core/Src/main.c(419): warning:  #177-D: variable "connectionState"  was declared but never referenced
-     bool_t connectionState;
-../Core/Src/main.c(420): warning:  #177-D: variable "buttonState"  was declared but never referenced
-     uint_t buttonState;
-../Core/Src/main.c(421): warning:  #177-D: variable "prevButtonState"  was declared but never referenced
-     uint_t prevButtonState;
-../Core/Src/main.c(428): warning:  #177-D: variable "res"  was declared but never referenced
-  		uint16_t res;
-../Core/Src/main.c(429): warning:  #177-D: variable "strbuffer"  was declared but never referenced
-  		char strbuffer[20];
-../Core/Src/main.c(514): warning:  #177-D: variable "i"  was declared but never referenced
-     uint_t i;
-../Core/Src/main.c(515): warning:  #177-D: variable "value"  was declared but never referenced
-     uint32_t value;
-../Core/Src/main.c(516): warning:  #177-D: variable "task"  was declared but never referenced
-     OsTask *task;
-../Core/Src/main.c(523): warning:  #177-D: variable "ipv6Addr"  was declared but never referenced
-     Ipv6Addr ipv6Addr;
-../Core/Src/main.c(1159): warning:  #550-D: variable "HexRequestStart"  was set but never used
-  		uint32_t HexRequestStart =0;
-../Core/Src/main.c(1160): warning:  #550-D: variable "HexRequestStop"  was set but never used
-  		uint32_t HexRequestStop =0;
-../Core/Src/main.c: 13 warnings, 0 errors
+..\Core\Src\ssd1306_tests.c: 1 warning, 0 errors
 linking...
-Program Size: Code=134554 RO-data=14190 RW-data=1972 ZI-data=105332  
+Program Size: Code=134218 RO-data=14190 RW-data=1956 ZI-data=105332  
 FromELF: creating hex file...
-"Master\Master.axf" - 0 Error(s), 13 Warning(s).
+"Master\Master.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -99,7 +75,7 @@ Package Vendor: Keil
 
    * Component: Keil.ARM Compiler::Compiler:I/O:STDOUT:Breakpoint:1.2.0
       Source file:   Source\retarget_io.c
-Build Time Elapsed:  00:00:04
+Build Time Elapsed:  00:00:09
 </pre>
 </body>
 </html>
