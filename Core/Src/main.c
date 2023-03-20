@@ -551,7 +551,7 @@ int main(void)
   MX_USART3_UART_Init();
   MX_TIM5_Init();
   MX_I2C1_Init();
-  MX_IWDG_Init();
+  //MX_IWDG_Init();
   /* USER CODE BEGIN 2 */
 	
 		ssd1306_Init();
@@ -1125,8 +1125,10 @@ void StartTask03(void const * argument)
       //buttonEventFlag = FALSE;
 
       //WebSocket client test routine
-      webSocketClient();
-    osDelay(1);
+      //webSocketClient();
+		
+		HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_10);
+    osDelay(1000);
   }
   /* USER CODE END StartTask03 */
 }
